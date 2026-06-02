@@ -1,0 +1,108 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Microsoft\\source\\repos\\DVLD_Presentation_Layer\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{87FE3201-3477-42EF-9B81-C420AE9B9083}|DVLD_DataAccess_Layer\\DVLD_DataAccess_Layer.csproj|c:\\users\\microsoft\\source\\repos\\dvld_presentation_layer\\dvld_dataaccess_layer\\peolpe\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{87FE3201-3477-42EF-9B81-C420AE9B9083}|DVLD_DataAccess_Layer\\DVLD_DataAccess_Layer.csproj|solutionrelative:dvld_dataaccess_layer\\peolpe\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9A57A301-BC60-6213-62AD-4A89481FAA26}|DVLD_Presentation_Layer\\DVLD_Presentation_Layer.csproj|c:\\users\\microsoft\\source\\repos\\dvld_presentation_layer\\dvld_presentation_layer\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9A57A301-BC60-6213-62AD-4A89481FAA26}|DVLD_Presentation_Layer\\DVLD_Presentation_Layer.csproj|solutionrelative:dvld_presentation_layer\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CA8E639B-CE7D-42CF-9C5E-62B55E166214}|DVLD_Business_Layer\\DVLD_Business_Layer.csproj|C:\\Users\\Microsoft\\source\\repos\\DVLD_Presentation_Layer\\dvld_business_layer\\users\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CA8E639B-CE7D-42CF-9C5E-62B55E166214}|DVLD_Business_Layer\\DVLD_Business_Layer.csproj|solutionrelative:dvld_business_layer\\users\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9A57A301-BC60-6213-62AD-4A89481FAA26}|DVLD_Presentation_Layer\\DVLD_Presentation_Layer.csproj|c:\\users\\microsoft\\source\\repos\\dvld_presentation_layer\\dvld_presentation_layer\\peoplemanagment\\people.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9A57A301-BC60-6213-62AD-4A89481FAA26}|DVLD_Presentation_Layer\\DVLD_Presentation_Layer.csproj|solutionrelative:dvld_presentation_layer\\peoplemanagment\\people.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9A57A301-BC60-6213-62AD-4A89481FAA26}|DVLD_Presentation_Layer\\DVLD_Presentation_Layer.csproj|C:\\Users\\Microsoft\\source\\repos\\DVLD_Presentation_Layer\\dvld_presentation_layer\\peoplemanagment\\people.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{9A57A301-BC60-6213-62AD-4A89481FAA26}|DVLD_Presentation_Layer\\DVLD_Presentation_Layer.csproj|solutionrelative:dvld_presentation_layer\\peoplemanagment\\people.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 3,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Form1.cs",
+              "DocumentMoniker": "C:\\Users\\Microsoft\\source\\repos\\DVLD_Presentation_Layer\\DVLD_Presentation_Layer\\Form1.cs",
+              "RelativeDocumentMoniker": "DVLD_Presentation_Layer\\Form1.cs",
+              "ToolTip": "C:\\Users\\Microsoft\\source\\repos\\DVLD_Presentation_Layer\\DVLD_Presentation_Layer\\Form1.cs",
+              "RelativeToolTip": "DVLD_Presentation_Layer\\Form1.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAA6wBMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-02T21:14:55.554Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Class1.cs",
+              "DocumentMoniker": "C:\\Users\\Microsoft\\source\\repos\\DVLD_Presentation_Layer\\DVLD_Business_Layer\\Users\\Class1.cs",
+              "RelativeDocumentMoniker": "DVLD_Business_Layer\\Users\\Class1.cs",
+              "ToolTip": "C:\\Users\\Microsoft\\source\\repos\\DVLD_Presentation_Layer\\DVLD_Business_Layer\\Users\\Class1.cs",
+              "RelativeToolTip": "DVLD_Business_Layer\\Users\\Class1.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-02T21:12:08.21Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Class1.cs",
+              "DocumentMoniker": "C:\\Users\\Microsoft\\source\\repos\\DVLD_Presentation_Layer\\DVLD_DataAccess_Layer\\Peolpe\\Class1.cs",
+              "RelativeDocumentMoniker": "DVLD_DataAccess_Layer\\Peolpe\\Class1.cs",
+              "ToolTip": "C:\\Users\\Microsoft\\source\\repos\\DVLD_Presentation_Layer\\DVLD_DataAccess_Layer\\Peolpe\\Class1.cs",
+              "RelativeToolTip": "DVLD_DataAccess_Layer\\Peolpe\\Class1.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-02T21:11:53.94Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "People.cs",
+              "DocumentMoniker": "C:\\Users\\Microsoft\\source\\repos\\DVLD_Presentation_Layer\\DVLD_Presentation_Layer\\PeopleManagment\\People.cs",
+              "RelativeDocumentMoniker": "DVLD_Presentation_Layer\\PeopleManagment\\People.cs",
+              "ToolTip": "C:\\Users\\Microsoft\\source\\repos\\DVLD_Presentation_Layer\\DVLD_Presentation_Layer\\PeopleManagment\\People.cs",
+              "RelativeToolTip": "DVLD_Presentation_Layer\\PeopleManagment\\People.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAYAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-02T21:10:11.42Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "People.cs [Conception]",
+              "DocumentMoniker": "C:\\Users\\Microsoft\\source\\repos\\DVLD_Presentation_Layer\\DVLD_Presentation_Layer\\PeopleManagment\\People.cs",
+              "RelativeDocumentMoniker": "DVLD_Presentation_Layer\\PeopleManagment\\People.cs",
+              "ToolTip": "C:\\Users\\Microsoft\\source\\repos\\DVLD_Presentation_Layer\\DVLD_Presentation_Layer\\PeopleManagment\\People.cs [Conception]",
+              "RelativeToolTip": "DVLD_Presentation_Layer\\PeopleManagment\\People.cs [Conception]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-02T21:09:59.665Z",
+              "EditorCaption": " [Conception]"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
