@@ -14,3 +14,12 @@ C:\Users\Microsoft\source\repos\DVLD_Presentation_Layer\DVLD_Presentation_Layer\
 C:\Users\Microsoft\source\repos\DVLD_Presentation_Layer\DVLD_Presentation_Layer\obj\Debug\net8.0-windows\DVLD_Presentation_Layer.pdb
 C:\Users\Microsoft\source\repos\DVLD_Presentation_Layer\DVLD_Presentation_Layer\obj\Debug\net8.0-windows\DVLD_Presentation_Layer.genruntimeconfig.cache
 C:\Users\Microsoft\source\repos\DVLD_Presentation_Layer\DVLD_Presentation_Layer\obj\Debug\net8.0-windows\ref\DVLD_Presentation_Layer.dll
+C:\Users\Microsoft\source\repos\DVLD_Presentation_Layer\DVLD_Presentation_Layer\obj\Debug\net8.0-windows\DVLD_Presentation_Layer.sourcelink.json
+C:\Users\Microsoft\source\repos\DVLD_Presentation_Layer\DVLD_Presentation_Layer\bin\Debug\net8.0-windows\DVLD_Business_Layer.dll
+C:\Users\Microsoft\source\repos\DVLD_Presentation_Layer\DVLD_Presentation_Layer\bin\Debug\net8.0-windows\DVLD_Business_Layer.pdb
+C:\Users\Microsoft\source\repos\DVLD_Presentation_Layer\DVLD_Presentation_Layer\obj\Debug\net8.0-windows\DVLD_Presentation_Layer.csproj.AssemblyReference.cache
+C:\Users\Microsoft\source\repos\DVLD_Presentation_Layer\DVLD_Presentation_Layer\obj\Debug\net8.0-windows\DVLD_Pre.C0DB5FD9.Up2Date
+C:\Users\Microsoft\source\repos\DVLD_Presentation_Layer\DVLD_Presentation_Layer\obj\Debug\net8.0-windows\DVLD_Presentation_Layer.Properties.Resources.resources
+C:\Users\Microsoft\source\repos\DVLD_Presentation_Layer\DVLD_Presentation_Layer\bin\Debug\net8.0-windows\DVLD_DataAccess_Layer.dll
+C:\Users\Microsoft\source\repos\DVLD_Presentation_Layer\DVLD_Presentation_Layer\bin\Debug\net8.0-windows\DVLD_DataAccess_Layer.pdb
+C:\Users\Microsoft\source\repos\DVLD_Presentation_Layer\DVLD_Presentation_Layer\obj\Debug\net8.0-windows\DVLD_Presentation_Layer.PeopleManagment.People.resources

@@ -1,0 +1,9 @@
+C:\Users\Microsoft\source\repos\DVLD_Presentation_Layer\DVLD_ Business_Layer\bin\Debug\DVLD_ Business_Layer.dll
+C:\Users\Microsoft\source\repos\DVLD_Presentation_Layer\DVLD_ Business_Layer\bin\Debug\DVLD_ Business_Layer.pdb
+C:\Users\Microsoft\source\repos\DVLD_Presentation_Layer\DVLD_ Business_Layer\obj\Debug\DVLD_ Business_Layer.csproj.AssemblyReference.cache
+C:\Users\Microsoft\source\repos\DVLD_Presentation_Layer\DVLD_ Business_Layer\obj\Debug\DVLD_ Business_Layer.csproj.CoreCompileInputs.cache
+C:\Users\Microsoft\source\repos\DVLD_Presentation_Layer\DVLD_ Business_Layer\obj\Debug\DVLD_ Business_Layer.dll
+C:\Users\Microsoft\source\repos\DVLD_Presentation_Layer\DVLD_ Business_Layer\obj\Debug\DVLD_ Business_Layer.pdb
+C:\Users\Microsoft\source\repos\DVLD_Presentation_Layer\DVLD_ Business_Layer\bin\Debug\DVLD_ Data_Access_Layer.dll
+C:\Users\Microsoft\source\repos\DVLD_Presentation_Layer\DVLD_ Business_Layer\bin\Debug\DVLD_ Data_Access_Layer.pdb
+C:\Users\Microsoft\source\repos\DVLD_Presentation_Layer\DVLD_ Business_Layer\obj\Debug\DVLD_ Bu.E432F29B.Up2Date

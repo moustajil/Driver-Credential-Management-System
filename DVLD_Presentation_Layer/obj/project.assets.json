@@ -1,11 +1,46 @@
 {
-  "version": 3,
+  "version": 4,
   "targets": {
-    "net8.0-windows7.0": {}
+    "net8.0-windows": {
+      "DVLD_Business_Layer/1.0.0": {
+        "type": "project",
+        "dependencies": {
+          "DVLD_DataAccess_Layer": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/DVLD_Business_Layer.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/DVLD_Business_Layer.dll": {}
+        }
+      },
+      "DVLD_DataAccess_Layer/1.0.0": {
+        "type": "project",
+        "compile": {
+          "bin/placeholder/DVLD_DataAccess_Layer.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/DVLD_DataAccess_Layer.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "DVLD_Business_Layer/1.0.0": {
+      "type": "project",
+      "path": "../DVLD_Business_Layer/DVLD_Business_Layer.csproj",
+      "msbuildProject": "../DVLD_Business_Layer/DVLD_Business_Layer.csproj"
+    },
+    "DVLD_DataAccess_Layer/1.0.0": {
+      "type": "project",
+      "path": "../DVLD_DataAccess_Layer/DVLD_DataAccess_Layer.csproj",
+      "msbuildProject": "../DVLD_DataAccess_Layer/DVLD_DataAccess_Layer.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    "net8.0-windows7.0": []
+    "net8.0-windows": [
+      "DVLD_Business_Layer >= 1.0.0"
+    ]
   },
   "packageFolders": {
     "C:\\Users\\Microsoft\\.nuget\\packages\\": {},
@@ -37,9 +72,14 @@
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
-        "net8.0-windows7.0": {
+        "net8.0-windows": {
+          "framework": "net8.0-windows7.0",
           "targetAlias": "net8.0-windows",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\Microsoft\\source\\repos\\DVLD_Presentation_Layer\\DVLD_Business_Layer\\DVLD_Business_Layer.csproj": {
+              "projectPath": "C:\\Users\\Microsoft\\source\\repos\\DVLD_Presentation_Layer\\DVLD_Business_Layer\\DVLD_Business_Layer.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
@@ -52,10 +92,11 @@
         "auditLevel": "low",
         "auditMode": "direct"
       },
-      "SdkAnalysisLevel": "10.0.200"
+      "SdkAnalysisLevel": "10.0.300"
     },
     "frameworks": {
-      "net8.0-windows7.0": {
+      "net8.0-windows": {
+        "framework": "net8.0-windows7.0",
         "targetAlias": "net8.0-windows",
         "imports": [
           "net461",
@@ -76,7 +117,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.201/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.300/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
