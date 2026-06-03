@@ -1,3 +1,8 @@
 <Solution>
-  <Project Path="Driving-License-Management-System/Driving-License-Management-System.csproj" />
+  <Folder Name="/Éléments de solution/">
+    <File Path=".gitignore" />
+  </Folder>
+  <Project Path="Driving-License-Management-System/DVLD Presentation Layer.csproj" />
+  <Project Path="DVL Data Access Layer/DVLD Data Access Layer.csproj" Id="2611611f-7926-4be1-a063-14e697f8e5f1" />
+  <Project Path="DVLD Business Layer/DVLD_Business_Layer.csproj" Id="cf19f845-1d19-4cd8-a673-6af6653ccf0f" />
 </Solution>

@@ -7,3 +7,12 @@ C:\Users\Microsoft\source\repos\DVLD_Presentation_Layer\DVLD_DataAccess_Layer\ob
 C:\Users\Microsoft\source\repos\DVLD_Presentation_Layer\DVLD_DataAccess_Layer\bin\Debug\System.Data.SqlClient.dll
 C:\Users\Microsoft\source\repos\DVLD_Presentation_Layer\DVLD_DataAccess_Layer\bin\Debug\System.Data.SqlClient.xml
 C:\Users\Microsoft\source\repos\DVLD_Presentation_Layer\DVLD_DataAccess_Layer\obj\Debug\DVLD_Dat.7464936D.Up2Date
+C:\Users\Microsoft\source\repos\Driving-License-Management-System\DVLD_DataAccess_Layer\bin\Debug\DVLD_DataAccess_Layer.dll
+C:\Users\Microsoft\source\repos\Driving-License-Management-System\DVLD_DataAccess_Layer\bin\Debug\DVLD_DataAccess_Layer.pdb
+C:\Users\Microsoft\source\repos\Driving-License-Management-System\DVLD_DataAccess_Layer\bin\Debug\System.Data.SqlClient.dll
+C:\Users\Microsoft\source\repos\Driving-License-Management-System\DVLD_DataAccess_Layer\bin\Debug\System.Data.SqlClient.xml
+C:\Users\Microsoft\source\repos\Driving-License-Management-System\DVLD_DataAccess_Layer\obj\Debug\DVLD_DataAccess_Layer.csproj.AssemblyReference.cache
+C:\Users\Microsoft\source\repos\Driving-License-Management-System\DVLD_DataAccess_Layer\obj\Debug\DVLD_DataAccess_Layer.csproj.CoreCompileInputs.cache
+C:\Users\Microsoft\source\repos\Driving-License-Management-System\DVLD_DataAccess_Layer\obj\Debug\DVLD_Dat.7464936D.Up2Date
+C:\Users\Microsoft\source\repos\Driving-License-Management-System\DVLD_DataAccess_Layer\obj\Debug\DVLD_DataAccess_Layer.dll
+C:\Users\Microsoft\source\repos\Driving-License-Management-System\DVLD_DataAccess_Layer\obj\Debug\DVLD_DataAccess_Layer.pdb
