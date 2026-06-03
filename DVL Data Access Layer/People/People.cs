@@ -223,6 +223,35 @@ namespace DVL_Data_Access_Layer.People
             return dt;
         }
 
+        public static int CountsOfPeopls()
+        {
+            int count = 0;
+
+            SqlConnection Connection =
+             new SqlConnection(DataBaseSetting.ConnectionString);
+
+            string Query = "SELECT COUNT(*) FROM People";
+
+            SqlCommand Command = new SqlCommand(Query, Connection);
+
+            try
+            {
+                Connection.Open();
+
+                count = (int)Command.ExecuteScalar();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                Connection.Close();
+            }
+
+            return count;
+        }
+
         public static bool FindPersonByID(
             int PersonID,
             ref string NationalID,
@@ -286,5 +315,5 @@ namespace DVL_Data_Access_Layer.People
 
             return IsFound;
         }
-    }
+  }
 }

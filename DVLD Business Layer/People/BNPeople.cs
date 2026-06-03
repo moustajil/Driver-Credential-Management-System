@@ -144,6 +144,12 @@ namespace DVLD_Business_Layer
 
                 return null;
             }
+
+
+            public static int NumbersOfPeople()
+            {
+                return DVL_Data_Access_Layer.People.BDAPeople.CountsOfPeopls();
+            }
         }
     }
 }

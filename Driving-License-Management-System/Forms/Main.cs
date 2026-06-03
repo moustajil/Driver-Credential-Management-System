@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Driving_License_Management_System.Forms.People;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -17,8 +18,10 @@ namespace Driving_License_Management_System
 
         private void showToolStripMenuItem_Click(object sender, EventArgs e)
         {
+
             People people = new People();
             people.Show();
+
         }
     }
 }

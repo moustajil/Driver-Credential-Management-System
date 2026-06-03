@@ -32,13 +32,16 @@
             applicationToolStripMenuItem = new ToolStripMenuItem();
             peopleToolStripMenuItem = new ToolStripMenuItem();
             showToolStripMenuItem = new ToolStripMenuItem();
+            driverToolStripMenuItem = new ToolStripMenuItem();
+            userToolStripMenuItem = new ToolStripMenuItem();
+            accountSettingToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // menuStrip1
             // 
             menuStrip1.ImageScalingSize = new Size(20, 20);
-            menuStrip1.Items.AddRange(new ToolStripItem[] { applicationToolStripMenuItem, peopleToolStripMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { applicationToolStripMenuItem, peopleToolStripMenuItem, driverToolStripMenuItem, userToolStripMenuItem, accountSettingToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Size = new Size(1018, 28);
@@ -61,9 +64,27 @@
             // showToolStripMenuItem
             // 
             showToolStripMenuItem.Name = "showToolStripMenuItem";
-            showToolStripMenuItem.Size = new Size(224, 26);
+            showToolStripMenuItem.Size = new Size(132, 26);
             showToolStripMenuItem.Text = "Show ";
             showToolStripMenuItem.Click += showToolStripMenuItem_Click;
+            // 
+            // driverToolStripMenuItem
+            // 
+            driverToolStripMenuItem.Name = "driverToolStripMenuItem";
+            driverToolStripMenuItem.Size = new Size(63, 24);
+            driverToolStripMenuItem.Text = "Driver";
+            // 
+            // userToolStripMenuItem
+            // 
+            userToolStripMenuItem.Name = "userToolStripMenuItem";
+            userToolStripMenuItem.Size = new Size(52, 24);
+            userToolStripMenuItem.Text = "User";
+            // 
+            // accountSettingToolStripMenuItem
+            // 
+            accountSettingToolStripMenuItem.Name = "accountSettingToolStripMenuItem";
+            accountSettingToolStripMenuItem.Size = new Size(128, 24);
+            accountSettingToolStripMenuItem.Text = "Account Setting";
             // 
             // Main
             // 
@@ -87,5 +108,9 @@
         private ToolStripMenuItem applicationToolStripMenuItem;
         private ToolStripMenuItem peopleToolStripMenuItem;
         private ToolStripMenuItem showToolStripMenuItem;
+        private ToolStripMenuItem driverToolStripMenuItem;
+        private ToolStripMenuItem userToolStripMenuItem;
+        private ToolStripMenuItem accountSettingToolStripMenuItem;
+        private Panel panel1;
     }
 }
