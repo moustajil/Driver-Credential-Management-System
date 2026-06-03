@@ -17,6 +17,8 @@ namespace Driving_License_Management_System.Forms.People
 
         private void People_Load(object sender, EventArgs e)
         {
+            dataGridView1.ContextMenuStrip = contextMenuStrip1;
+
             dataGridView1.DataSource = DVLD_Business_Layer.DVLD_Business_Layer.BNPeople.GetAllPeople();
 
             comboBox1.Items.Add("NationalID");
@@ -37,7 +39,17 @@ namespace Driving_License_Management_System.Forms.People
         {
             string selected = comboBox1.SelectedItem.ToString();
 
-           
+
+        }
+
+        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+
+        private void toolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
