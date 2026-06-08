@@ -2,88 +2,85 @@
 using Microsoft.Data.SqlClient;
 using System;
 using System.Data;
+using System.Net;
 
 namespace DVL_Data_Access_Layer.People
 {
     public class BDAPeople
     {
         public static bool AddPerson(
-            string NationalID,
-            string FirstName,
-            string SecondName,
-            string ThirdName,
-            string LastName,
-            DateTime DateOfBirth,
-            byte Gender,
-            string Address,
-            string Phone,
-            string Email,
-            int NationalityCountryID,
-            string ImagePath)
+    string NationalNo,
+    string FirstName,
+    string SecondName,
+    string ThirdName,
+    string LastName,
+    DateTime DateOfBirth,
+    int Gender,
+    string Address,
+    string Phone,
+    string Email,
+    int NationalityCountryID,
+    string ImagePath)
         {
             int RowsAffected = 0;
 
-            SqlConnection Connection =
-                new SqlConnection(DataBaseSetting.ConnectionString);
-
             string Query = @"INSERT INTO People
-                            (
-                                NationalID,
-                                FirstName,
-                                SecondName,
-                                ThirdName,
-                                LastName,
-                                DateOfBirth,
-                                Gender,
-                                Address,
-                                Phone,
-                                Email,
-                                NationalityCountryID,
-                                ImagePath
-                            )
-                            VALUES
-                            (
-                                @NationalID,
-                                @FirstName,
-                                @SecondName,
-                                @ThirdName,
-                                @LastName,
-                                @DateOfBirth,
-                                @Gender,
-                                @Address,
-                                @Phone,
-                                @Email,
-                                @NationalityCountryID,
-                                @ImagePath
-                            )";
-
-            SqlCommand Command = new SqlCommand(Query, Connection);
-
-            Command.Parameters.AddWithValue("@NationalID", NationalID);
-            Command.Parameters.AddWithValue("@FirstName", FirstName);
-            Command.Parameters.AddWithValue("@SecondName", SecondName);
-            Command.Parameters.AddWithValue("@ThirdName", ThirdName);
-            Command.Parameters.AddWithValue("@LastName", LastName);
-            Command.Parameters.AddWithValue("@DateOfBirth", DateOfBirth);
-            Command.Parameters.AddWithValue("@Gender", Gender);
-            Command.Parameters.AddWithValue("@Address", Address);
-            Command.Parameters.AddWithValue("@Phone", Phone);
-            Command.Parameters.AddWithValue("@Email", Email);
-            Command.Parameters.AddWithValue("@NationalityCountryID", NationalityCountryID);
-            Command.Parameters.AddWithValue("@ImagePath", ImagePath);
+            (
+                NationalNo,
+                FirstName,
+                SecondName,
+                ThirdName,
+                LastName,
+                DateOfBirth,
+                Gendor,
+                Address,
+                Phone,
+                Email,
+                NationalityCountryID,
+                ImagePath
+            )
+            VALUES
+            (
+                @NationalNo,
+                @FirstName,
+                @SecondName,
+                @ThirdName,
+                @LastName,
+                @DateOfBirth,
+                @Gendor,
+                @Address,
+                @Phone,
+                @Email,
+                @NationalityCountryID,
+                @ImagePath
+            )";
 
             try
             {
-                Connection.Open();
-                RowsAffected = Command.ExecuteNonQuery();
+                using (SqlConnection Connection =
+                    new SqlConnection(DataBaseSetting.ConnectionString))
+                using (SqlCommand Command = new SqlCommand(Query, Connection))
+                {
+                    Command.Parameters.AddWithValue("@NationalNo", NationalNo);
+                    Command.Parameters.AddWithValue("@FirstName", FirstName);
+                    Command.Parameters.AddWithValue("@SecondName", SecondName);
+                    Command.Parameters.AddWithValue("@ThirdName", ThirdName);
+                    Command.Parameters.AddWithValue("@LastName", LastName);
+                    Command.Parameters.AddWithValue("@DateOfBirth", DateOfBirth);
+                    Command.Parameters.AddWithValue("@Gendor", Gender);
+                    Command.Parameters.AddWithValue("@Address", Address);
+                    Command.Parameters.AddWithValue("@Phone", Phone);
+                    Command.Parameters.AddWithValue("@Email", Email);
+                    Command.Parameters.AddWithValue("@NationalityCountryID", NationalityCountryID);
+                    Command.Parameters.AddWithValue("@ImagePath", ImagePath ?? (object)DBNull.Value);
+
+                    Connection.Open();
+                    RowsAffected = Command.ExecuteNonQuery();
+                }
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
-            }
-            finally
-            {
-                Connection.Close();
+                throw new Exception("Error inserting person: " + ex.Message, ex);
             }
 
             return RowsAffected > 0;
@@ -91,13 +88,13 @@ namespace DVL_Data_Access_Layer.People
 
         public static bool UpdatePerson(
             int PersonID,
-            string NationalID,
+            string NationalNo,
             string FirstName,
             string SecondName,
             string ThirdName,
             string LastName,
             DateTime DateOfBirth,
-            byte Gender,
+            int Gendor,
             string Address,
             string Phone,
             string Email,
@@ -110,30 +107,30 @@ namespace DVL_Data_Access_Layer.People
                 new SqlConnection(DataBaseSetting.ConnectionString);
 
             string Query = @"UPDATE People
-                             SET NationalID = @NationalID,
-                                 FirstName = @FirstName,
-                                 SecondName = @SecondName,
-                                 ThirdName = @ThirdName,
-                                 LastName = @LastName,
-                                 DateOfBirth = @DateOfBirth,
-                                 Gender = @Gender,
-                                 Address = @Address,
-                                 Phone = @Phone,
-                                 Email = @Email,
-                                 NationalityCountryID = @NationalityCountryID,
-                                 ImagePath = @ImagePath
-                             WHERE PersonID = @PersonID";
+                     SET NationalNo = @NationalNo,
+                         FirstName = @FirstName,
+                         SecondName = @SecondName,
+                         ThirdName = @ThirdName,
+                         LastName = @LastName,
+                         DateOfBirth = @DateOfBirth,
+                         Gendor = @Gendor,
+                         Address = @Address,
+                         Phone = @Phone,
+                         Email = @Email,
+                         NationalityCountryID = @NationalityCountryID,
+                         ImagePath = @ImagePath
+                     WHERE PersonID = @PersonID";
 
             SqlCommand Command = new SqlCommand(Query, Connection);
 
             Command.Parameters.AddWithValue("@PersonID", PersonID);
-            Command.Parameters.AddWithValue("@NationalID", NationalID);
+            Command.Parameters.AddWithValue("@NationalNo", NationalNo);
             Command.Parameters.AddWithValue("@FirstName", FirstName);
             Command.Parameters.AddWithValue("@SecondName", SecondName);
             Command.Parameters.AddWithValue("@ThirdName", ThirdName);
             Command.Parameters.AddWithValue("@LastName", LastName);
             Command.Parameters.AddWithValue("@DateOfBirth", DateOfBirth);
-            Command.Parameters.AddWithValue("@Gender", Gender);
+            Command.Parameters.AddWithValue("@Gender", Gendor);
             Command.Parameters.AddWithValue("@Address", Address);
             Command.Parameters.AddWithValue("@Phone", Phone);
             Command.Parameters.AddWithValue("@Email", Email);
@@ -300,6 +297,46 @@ namespace DVL_Data_Access_Layer.People
                     Email = Reader["Email"].ToString();
                     NationalityCountryID = Convert.ToInt32(Reader["NationalityCountryID"]);
                     ImagePath = Reader["ImagePath"].ToString();
+                }
+
+                Reader.Close();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                Connection.Close();
+            }
+
+            return IsFound;
+        }
+
+        // check in nationa number añready exists
+        public static bool FindNationaNumber(string NationalNo)
+        {
+            bool IsFound = false;
+
+            SqlConnection Connection =
+                new SqlConnection(DataBaseSetting.ConnectionString);
+
+            string Query = "SELECT * FROM People WHERE NationalNo = @NationalNo";
+
+            SqlCommand Command = new SqlCommand(Query, Connection);
+
+            Command.Parameters.AddWithValue("@NationalNo", NationalNo);
+
+
+            try
+            {
+                Connection.Open();
+
+                SqlDataReader Reader = Command.ExecuteReader();
+
+                if (Reader.Read())
+                {
+                    IsFound = true;
                 }
 
                 Reader.Close();

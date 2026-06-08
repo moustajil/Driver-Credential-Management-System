@@ -41,6 +41,7 @@
             contextMenuStrip1 = new ContextMenuStrip(components);
             toolStripMenuItem1 = new ToolStripMenuItem();
             toolStripMenuItem2 = new ToolStripMenuItem();
+            label3 = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
@@ -75,6 +76,7 @@
             pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox2.TabIndex = 2;
             pictureBox2.TabStop = false;
+            pictureBox2.Click += pictureBox2_Click;
             // 
             // label1
             // 
@@ -124,26 +126,39 @@
             contextMenuStrip1.ImageScalingSize = new Size(20, 20);
             contextMenuStrip1.Items.AddRange(new ToolStripItem[] { toolStripMenuItem1, toolStripMenuItem2 });
             contextMenuStrip1.Name = "contextMenuStrip1";
-            contextMenuStrip1.Size = new Size(212, 80);
+            contextMenuStrip1.Size = new Size(162, 52);
             contextMenuStrip1.Text = "Show";
             // 
             // toolStripMenuItem1
             // 
             toolStripMenuItem1.Name = "toolStripMenuItem1";
-            toolStripMenuItem1.Size = new Size(211, 24);
-            toolStripMenuItem1.Text = "toolStripMenuItem1";
+            toolStripMenuItem1.Size = new Size(161, 24);
+            toolStripMenuItem1.Text = "Delete";
+            toolStripMenuItem1.Click += toolStripMenuItem1_Click_1;
             // 
             // toolStripMenuItem2
             // 
             toolStripMenuItem2.Name = "toolStripMenuItem2";
-            toolStripMenuItem2.Size = new Size(211, 24);
-            toolStripMenuItem2.Text = "toolStripMenuItem2";
+            toolStripMenuItem2.Size = new Size(161, 24);
+            toolStripMenuItem2.Text = "Add\\Update";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label3.Location = new Point(455, 166);
+            label3.Name = "label3";
+            label3.Size = new Size(349, 46);
+            label3.TabIndex = 8;
+            label3.Text = "People Management";
+            label3.Click += label3_Click;
             // 
             // People
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1366, 640);
+            Controls.Add(label3);
             Controls.Add(recordes);
             Controls.Add(label2);
             Controls.Add(textBox1);
@@ -176,5 +191,6 @@
         private ContextMenuStrip contextMenuStrip1;
         private ToolStripMenuItem toolStripMenuItem1;
         private ToolStripMenuItem toolStripMenuItem2;
+        private Label label3;
     }
 }

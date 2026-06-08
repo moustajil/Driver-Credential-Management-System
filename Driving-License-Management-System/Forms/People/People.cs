@@ -51,5 +51,21 @@ namespace Driving_License_Management_System.Forms.People
         {
 
         }
+
+        private void toolStripMenuItem1_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            frmAddEdite frmAddEdite = new frmAddEdite();
+            frmAddEdite.ShowDialog();
+        }
     }
 }

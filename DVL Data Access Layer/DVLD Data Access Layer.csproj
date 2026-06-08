@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="Countries\Countries.cs" />
     <Compile Include="DataAccessSetting\DataBaseSetting.cs" />
     <Compile Include="People\People.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
