@@ -6,6 +6,10 @@ namespace Driving_License_Management_System.Forms.People
 {
     public partial class frmAddEdite : Form
     {
+
+        public delegate void DelegateEventHandler(object sender, int personID);
+        public DelegateEventHandler DataBack;
+
         /// <summary>
         /// Initializes the Add/Edit Person form.
         /// </summary>
@@ -36,6 +40,7 @@ namespace Driving_License_Management_System.Forms.People
         {
             personID.Text = obj.ToString();
             updateAddPerson.Text = "Update Person";
+            DataBack?.Invoke(this,obj);
         }
     }
 }

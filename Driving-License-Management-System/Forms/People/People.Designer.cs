@@ -134,7 +134,6 @@
             toolStripMenuItem1.Name = "toolStripMenuItem1";
             toolStripMenuItem1.Size = new Size(161, 24);
             toolStripMenuItem1.Text = "Delete";
-            toolStripMenuItem1.Click += toolStripMenuItem1_Click_1;
             // 
             // toolStripMenuItem2
             // 
