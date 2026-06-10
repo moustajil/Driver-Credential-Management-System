@@ -295,7 +295,20 @@ namespace DVL_Data_Access_Layer.People
             SqlCommand Command = new SqlCommand(Query, Connection);
 
             Command.Parameters.AddWithValue("@PersonID", PersonID);
-
+            /*
+            /*  Command.Parameters.AddWithValue("@NationalNo", NationalNo);
+                    Command.Parameters.AddWithValue("@FirstName", FirstName);
+                    Command.Parameters.AddWithValue("@SecondName", SecondName);
+                    Command.Parameters.AddWithValue("@ThirdName", ThirdName);
+                    Command.Parameters.AddWithValue("@LastName", LastName);
+                    Command.Parameters.AddWithValue("@DateOfBirth", DateOfBirth);
+                    Command.Parameters.AddWithValue("@Gendor", Gender);
+                    Command.Parameters.AddWithValue("@Address", Address);
+                    Command.Parameters.AddWithValue("@Phone", Phone);
+                    Command.Parameters.AddWithValue("@Email", Email);
+                    Command.Parameters.AddWithValue("@NationalityCountryID", NationalityCountryID);
+                    Command.Parameters.AddWithValue("@ImagePath", ImagePath ?? (object)DBNull.Value);*/
+            
             try
             {
                 Connection.Open();
@@ -306,13 +319,13 @@ namespace DVL_Data_Access_Layer.People
                 {
                     IsFound = true;
 
-                    NationalID = Reader["NationalID"].ToString();
+                    NationalID = Reader["NationalNo"].ToString();
                     FirstName = Reader["FirstName"].ToString();
                     SecondName = Reader["SecondName"].ToString();
                     ThirdName = Reader["ThirdName"].ToString();
                     LastName = Reader["LastName"].ToString();
                     DateOfBirth = Convert.ToDateTime(Reader["DateOfBirth"]);
-                    Gender = Convert.ToByte(Reader["Gender"]);
+                    Gender = Convert.ToByte(Reader["Gendor"]);
                     Address = Reader["Address"].ToString();
                     Phone = Reader["Phone"].ToString();
                     Email = Reader["Email"].ToString();

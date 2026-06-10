@@ -41,6 +41,7 @@
             contextMenuStrip1 = new ContextMenuStrip(components);
             toolStripMenuItem1 = new ToolStripMenuItem();
             toolStripMenuItem2 = new ToolStripMenuItem();
+            editePersonToolStripMenuItem = new ToolStripMenuItem();
             label3 = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
@@ -124,22 +125,30 @@
             // contextMenuStrip1
             // 
             contextMenuStrip1.ImageScalingSize = new Size(20, 20);
-            contextMenuStrip1.Items.AddRange(new ToolStripItem[] { toolStripMenuItem1, toolStripMenuItem2 });
+            contextMenuStrip1.Items.AddRange(new ToolStripItem[] { toolStripMenuItem1, toolStripMenuItem2, editePersonToolStripMenuItem });
             contextMenuStrip1.Name = "contextMenuStrip1";
-            contextMenuStrip1.Size = new Size(162, 52);
+            contextMenuStrip1.Size = new Size(211, 104);
             contextMenuStrip1.Text = "Show";
             // 
             // toolStripMenuItem1
             // 
             toolStripMenuItem1.Name = "toolStripMenuItem1";
-            toolStripMenuItem1.Size = new Size(161, 24);
+            toolStripMenuItem1.Size = new Size(210, 24);
             toolStripMenuItem1.Text = "Delete";
+            toolStripMenuItem1.Click += toolStripMenuItem1_Click_1;
             // 
             // toolStripMenuItem2
             // 
             toolStripMenuItem2.Name = "toolStripMenuItem2";
-            toolStripMenuItem2.Size = new Size(161, 24);
-            toolStripMenuItem2.Text = "Add\\Update";
+            toolStripMenuItem2.Size = new Size(210, 24);
+            toolStripMenuItem2.Text = "Add Person";
+            // 
+            // editePersonToolStripMenuItem
+            // 
+            editePersonToolStripMenuItem.Name = "editePersonToolStripMenuItem";
+            editePersonToolStripMenuItem.Size = new Size(210, 24);
+            editePersonToolStripMenuItem.Text = "Edite Person";
+            editePersonToolStripMenuItem.Click += editePersonToolStripMenuItem_Click;
             // 
             // label3
             // 
@@ -191,5 +200,6 @@
         private ToolStripMenuItem toolStripMenuItem1;
         private ToolStripMenuItem toolStripMenuItem2;
         private Label label3;
+        private ToolStripMenuItem editePersonToolStripMenuItem;
     }
 }

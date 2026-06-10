@@ -41,11 +41,21 @@ namespace Driving_License_Management_System.Forms.People
 
         private void pictureBox2_Click(object sender, EventArgs e)
         {
-            frmAddEdite frm = new frmAddEdite();
+            frmAddEdite frm = new frmAddEdite(0);
 
             // FIX: make sure event exists in frmAddEdite
             frm.DataBack += Frm_DataBack;
 
+            frm.ShowDialog();
+        }
+
+        private void editePersonToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int personID = Convert.ToInt32(dataGridView1.CurrentRow.Cells["PersonID"].Value);
+
+            frmAddEdite frm = new frmAddEdite(personID);
+
+            frm.DataBack += Frm_DataBack;
             frm.ShowDialog();
         }
 
@@ -66,6 +76,17 @@ namespace Driving_License_Management_System.Forms.People
 
         private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
+        }
+
+        private void toolStripMenuItem1_Click_1(object sender, EventArgs e)
+        {
+            int personID = Convert.ToInt32(dataGridView1.CurrentRow.Cells["PersonID"].Value);
+            bool deletPerson = DVLD_Business_Layer.DVLD_Business_Layer.BNPeople.DeletePerson(personID);
+
+            if (deletPerson)
+            {
+                LoadPeople();
+            }
         }
     }
 }

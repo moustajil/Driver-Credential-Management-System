@@ -213,6 +213,8 @@ namespace Driving_License_Management_System.Controller.People
 
                 if (result)
                 {
+                    PersonIdCreated(personId);
+
                     MessageBox.Show(
                         "Person updated successfully.",
                         "Success",
@@ -267,6 +269,78 @@ namespace Driving_License_Management_System.Controller.People
                 : Properties.Resources.famel;
 
             pBImage.ImageLocation = null;
+        }
+
+
+
+
+        /// <summary>
+        /// Load Data From Perosn ID
+        /// </summary>
+        public void LoadPerson(int id)
+        {
+            if (id <= 0)
+                return;
+
+            personId = id;
+            status = "update";
+
+            BNPeople person = BNPeople.Find(id);
+
+            if (person != null)
+            {
+                PersonIdCreated(personId);
+
+                Console.WriteLine(person.FirstName);
+                MessageBox.Show(
+                    $"Name: {person.FirstName} {person.LastName.ToString()}\n" +
+                    $"Email: {person.Email}\n" +
+                    $"Phone: {person.Phone}",
+                    "Person Details",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information
+                );
+            }
+            else
+            {
+                MessageBox.Show(
+                    "Person not found!",
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
+            }
+
+            nNumber.Text = person.NationalID;
+            fName.Text = person.FirstName;
+            sName.Text = person.SecondName;
+            tName.Text = person.ThirdName;
+            foName.Text = person.LastName;
+
+            // ✅ SAFE FIX HERE
+            DateTime dob = person.DateOfBirth;
+
+            if (dob < dtPiker.MinDate)
+                dob = dtPiker.MinDate;
+
+            if (dob > dtPiker.MaxDate)
+                dob = dtPiker.MaxDate;
+
+            dtPiker.Value = dob;
+
+            rtbAddress.Text = person.Address;
+            pNumber.Text = person.Phone;
+            email.Text = person.Email;
+
+            cbCountry.SelectedIndex = person.NationalityCountryID;
+
+            if (person.Gender == 1)
+                rbFamel.Checked = true;
+            else
+                rbMale.Checked = true;
+
+            if (!string.IsNullOrEmpty(person.ImagePath))
+                pBImage.ImageLocation = person.ImagePath;
         }
     }
 }

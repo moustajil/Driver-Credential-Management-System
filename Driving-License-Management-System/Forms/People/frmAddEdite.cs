@@ -13,10 +13,19 @@ namespace Driving_License_Management_System.Forms.People
         /// <summary>
         /// Initializes the Add/Edit Person form.
         /// </summary>
-        public frmAddEdite()
+ 
+
+        private int _personID = 0;
+
+        public frmAddEdite(int persID)
         {
             InitializeComponent();
-            personID.Text = "0";
+            if (_personID > 0)
+            {
+                updateAddPerson.Text = "Update Person";
+            }
+            _personID = persID;
+            personID.Text = persID.ToString();
         }
 
         /// <summary>
@@ -31,6 +40,7 @@ namespace Driving_License_Management_System.Forms.People
         /// </summary>
         private void frmAddEdite_Load(object sender, EventArgs e)
         {
+            ctlFromAddEdite1.LoadPerson(_personID); // ✅ send to control
         }
 
         /// <summary>
