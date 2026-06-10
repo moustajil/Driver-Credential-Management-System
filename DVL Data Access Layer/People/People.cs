@@ -386,5 +386,39 @@ namespace DVL_Data_Access_Layer.People
 
             return IsFound;
         }
-  }
+
+        public static DataTable FindByColumn(string ColumnName, string columnValue)
+        {
+            DataTable dt = new DataTable();
+
+            using (SqlConnection connection =
+                new SqlConnection(DataBaseSetting.ConnectionString))
+            {
+                // ⚠️ Column name MUST be injected safely (not as parameter)
+                string query = $"SELECT * FROM People WHERE {ColumnName} LIKE @Value";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    // ✅ correct parameter
+                    command.Parameters.AddWithValue("@Value", "%" + columnValue + "%");
+
+                    try
+                    {
+                        connection.Open();
+
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            dt.Load(reader);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                    }
+                }
+            }
+
+            return dt;
+        }
+    }
 }

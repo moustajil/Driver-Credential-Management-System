@@ -1,6 +1,7 @@
 ﻿
 
 using System;
+using System.Data;
 
 namespace DVLD_Business_Layer
 {
@@ -218,6 +219,11 @@ namespace DVLD_Business_Layer
             public static bool checkNationaNumber(string nNumber)
             {
                 return DVL_Data_Access_Layer.People.BDAPeople.FindNationaNumber(nNumber);
+            }
+
+            public static DataTable FindByCol(string colName,string colValue)
+            {
+                return DVL_Data_Access_Layer.People.BDAPeople.FindByColumn(colName, colValue);
             }
         }
     }

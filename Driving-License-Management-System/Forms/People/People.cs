@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
-using DVLD_Business_Layer.DVLD_Business_Layer;
+using BNPeople = DVLD_Business_Layer.DVLD_Business_Layer.BNPeople;
 
 namespace Driving_License_Management_System.Forms.People
 {
@@ -23,70 +23,158 @@ namespace Driving_License_Management_System.Forms.People
 
             LoadPeople();
 
-            comboBox1.Items.Add("NationalID");
-            comboBox1.Items.Add("FirstName");
-            comboBox1.Items.Add("SecondName");
-            comboBox1.Items.Add("ThirdName");
-            comboBox1.Items.Add("LastName");
-            comboBox1.Items.Add("Phone");
-            comboBox1.Items.Add("Email");
+            cbFilter.Items.Add("none");
+            cbFilter.Items.Add("Person ID");
+            cbFilter.Items.Add("NationalID");
+            cbFilter.Items.Add("FirstName");
+            cbFilter.Items.Add("SecondName");
+            cbFilter.Items.Add("ThirdName");
+            cbFilter.Items.Add("LastName");
+            cbFilter.Items.Add("Gendor");
+            cbFilter.Items.Add("Phone");
+            cbFilter.Items.Add("Email");
 
-            comboBox1.SelectedIndex = 0;
+            cbFilter.SelectedIndex = 0;
+
+           // tbfilter.Visible = false;
+           // tbfilter.Clear();
         }
 
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        // ---------------- FILTER CHANGE ----------------
+
+        private void cbFilter_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // optional: reset search box or prepare filter
+            tbfilter.Clear();
+
+            if (cbFilter.SelectedItem == null)
+                return;
+
+            string selected = cbFilter.SelectedItem.ToString();
+
+            if (selected == "none")
+            {
+                tbfilter.Visible = false;
+                LoadPeople();
+                return;
+            }
+
+            tbfilter.Visible = true;
+            tbfilter.Focus();
         }
+
+        // ---------------- SEARCH ENGINE ----------------
+
+        private void ApplySearch(string column, string value)
+        {
+            string dbColumn = column switch
+            {
+                "Person ID" => "PersonID",
+                "NationalID" => "NationalNo",
+                "FirstName" => "FirstName",
+                "SecondName" => "SecondName",
+                "ThirdName" => "ThirdName",
+                "LastName" => "LastName",
+                "Gendor" => "Gendor",
+                "Phone" => "Phone",
+                "Email" => "Email",
+                _ => null
+            };
+
+            if (string.IsNullOrEmpty(dbColumn))
+                return;
+
+            MessageBox.Show(dbColumn + "==" + value, "Search Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+
+            dataGridView1.DataSource = BNPeople.FindByCol(dbColumn, value);
+        }
+
+        // ---------------- ADD ----------------
 
         private void pictureBox2_Click(object sender, EventArgs e)
         {
             frmAddEdite frm = new frmAddEdite(0);
-
-            // FIX: make sure event exists in frmAddEdite
             frm.DataBack += Frm_DataBack;
-
             frm.ShowDialog();
         }
 
+        // ---------------- EDIT ----------------
+
         private void editePersonToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            int personID = Convert.ToInt32(dataGridView1.CurrentRow.Cells["PersonID"].Value);
+            if (dataGridView1.CurrentRow == null)
+                return;
+
+            if (!int.TryParse(dataGridView1.CurrentRow.Cells["PersonID"].Value?.ToString(), out int personID))
+                return;
 
             frmAddEdite frm = new frmAddEdite(personID);
-
             frm.DataBack += Frm_DataBack;
             frm.ShowDialog();
         }
 
         private void Frm_DataBack(object sender, int personID)
         {
-            // IMPORTANT: reload data from DB (not Refresh)
             LoadPeople();
         }
 
-        private void toolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            // optional delete/edit logic here
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-        }
+        // ---------------- DELETE ----------------
 
         private void toolStripMenuItem1_Click_1(object sender, EventArgs e)
         {
-            int personID = Convert.ToInt32(dataGridView1.CurrentRow.Cells["PersonID"].Value);
-            bool deletPerson = DVLD_Business_Layer.DVLD_Business_Layer.BNPeople.DeletePerson(personID);
-
-            if (deletPerson)
+            if (dataGridView1.CurrentRow == null)
             {
+                MessageBox.Show("Please select a person first.");
+                return;
+            }
+
+            if (!int.TryParse(dataGridView1.CurrentRow.Cells["PersonID"].Value?.ToString(), out int personID))
+            {
+                MessageBox.Show("Invalid Person ID.");
+                return;
+            }
+
+            if (MessageBox.Show("Are you sure you want to delete this person?",
+                "Confirm Delete",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning) != DialogResult.Yes)
+                return;
+
+            if (BNPeople.DeletePerson(personID))
+            {
+                MessageBox.Show("Deleted successfully.");
                 LoadPeople();
             }
+            else
+            {
+                MessageBox.Show("Delete failed.");
+            }
+        }
+
+        // ---------------- LIVE SEARCH ----------------
+
+        private void tbfilter_TextChanged_1(object sender, EventArgs e)
+        {
+            if (!tbfilter.Visible) return;
+            if (cbFilter.SelectedItem == null) return;
+
+            string column = cbFilter.SelectedItem.ToString();
+
+
+            if (column == "none")
+                return;
+
+            string value = tbfilter.Text.Trim();
+
+            if (string.IsNullOrWhiteSpace(value))
+            {
+                LoadPeople();
+                return;
+            }
+
+
+
+            ApplySearch(column, value);
         }
     }
 }

@@ -34,8 +34,7 @@
             dataGridView1 = new DataGridView();
             pictureBox2 = new PictureBox();
             label1 = new Label();
-            comboBox1 = new ComboBox();
-            textBox1 = new TextBox();
+            cbFilter = new ComboBox();
             label2 = new Label();
             recordes = new Label();
             contextMenuStrip1 = new ContextMenuStrip(components);
@@ -43,6 +42,7 @@
             toolStripMenuItem2 = new ToolStripMenuItem();
             editePersonToolStripMenuItem = new ToolStripMenuItem();
             label3 = new Label();
+            tbfilter = new TextBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
@@ -88,21 +88,13 @@
             label1.TabIndex = 3;
             label1.Text = "Filter By :";
             // 
-            // comboBox1
+            // cbFilter
             // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(130, 291);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(151, 28);
-            comboBox1.TabIndex = 4;
-            comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
-            // 
-            // textBox1
-            // 
-            textBox1.Location = new Point(287, 292);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(205, 27);
-            textBox1.TabIndex = 5;
+            cbFilter.FormattingEnabled = true;
+            cbFilter.Location = new Point(130, 291);
+            cbFilter.Name = "cbFilter";
+            cbFilter.Size = new Size(151, 28);
+            cbFilter.TabIndex = 4;
             // 
             // label2
             // 
@@ -127,26 +119,26 @@
             contextMenuStrip1.ImageScalingSize = new Size(20, 20);
             contextMenuStrip1.Items.AddRange(new ToolStripItem[] { toolStripMenuItem1, toolStripMenuItem2, editePersonToolStripMenuItem });
             contextMenuStrip1.Name = "contextMenuStrip1";
-            contextMenuStrip1.Size = new Size(211, 104);
+            contextMenuStrip1.Size = new Size(160, 76);
             contextMenuStrip1.Text = "Show";
             // 
             // toolStripMenuItem1
             // 
             toolStripMenuItem1.Name = "toolStripMenuItem1";
-            toolStripMenuItem1.Size = new Size(210, 24);
+            toolStripMenuItem1.Size = new Size(159, 24);
             toolStripMenuItem1.Text = "Delete";
             toolStripMenuItem1.Click += toolStripMenuItem1_Click_1;
             // 
             // toolStripMenuItem2
             // 
             toolStripMenuItem2.Name = "toolStripMenuItem2";
-            toolStripMenuItem2.Size = new Size(210, 24);
+            toolStripMenuItem2.Size = new Size(159, 24);
             toolStripMenuItem2.Text = "Add Person";
             // 
             // editePersonToolStripMenuItem
             // 
             editePersonToolStripMenuItem.Name = "editePersonToolStripMenuItem";
-            editePersonToolStripMenuItem.Size = new Size(210, 24);
+            editePersonToolStripMenuItem.Size = new Size(159, 24);
             editePersonToolStripMenuItem.Text = "Edite Person";
             editePersonToolStripMenuItem.Click += editePersonToolStripMenuItem_Click;
             // 
@@ -159,18 +151,27 @@
             label3.Size = new Size(349, 46);
             label3.TabIndex = 8;
             label3.Text = "People Management";
-            label3.Click += label3_Click;
+            // 
+            // tbfilter
+            // 
+            tbfilter.BackColor = SystemColors.HighlightText;
+            tbfilter.ForeColor = SystemColors.InactiveCaptionText;
+            tbfilter.Location = new Point(308, 291);
+            tbfilter.Name = "tbfilter";
+            tbfilter.Size = new Size(263, 27);
+            tbfilter.TabIndex = 9;
+            tbfilter.TextChanged += tbfilter_TextChanged_1;
             // 
             // People
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1366, 640);
+            Controls.Add(tbfilter);
             Controls.Add(label3);
             Controls.Add(recordes);
             Controls.Add(label2);
-            Controls.Add(textBox1);
-            Controls.Add(comboBox1);
+            Controls.Add(cbFilter);
             Controls.Add(label1);
             Controls.Add(pictureBox2);
             Controls.Add(dataGridView1);
@@ -192,8 +193,7 @@
         private DataGridView dataGridView1;
         private PictureBox pictureBox2;
         private Label label1;
-        private ComboBox comboBox1;
-        private TextBox textBox1;
+        private ComboBox cbFilter;
         private Label label2;
         private Label recordes;
         private ContextMenuStrip contextMenuStrip1;
@@ -201,5 +201,6 @@
         private ToolStripMenuItem toolStripMenuItem2;
         private Label label3;
         private ToolStripMenuItem editePersonToolStripMenuItem;
+        private TextBox tbfilter;
     }
 }
