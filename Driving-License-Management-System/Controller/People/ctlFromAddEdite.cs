@@ -1,11 +1,7 @@
 ﻿using Driving_License_Management_System.Forms.People;
 using DVLD_Business_Layer.DVLD_Business_Layer;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
@@ -13,6 +9,24 @@ namespace Driving_License_Management_System.Controller.People
 {
     public partial class ctlFromAddEdite : UserControl
     {
+        public event Action<int> GetPersonIdCreated;
+
+        /// <summary>
+        /// Raises the GetPersonIdCreated event and sends the created person ID.
+        /// </summary>
+        protected virtual void PersonIdCreated(int persondID)
+        {
+            Action<int> handler = GetPersonIdCreated;
+
+            if (handler != null)
+            {
+                handler(persondID);
+            }
+        }
+
+        /// <summary>
+        /// Initializes the control and loads default values.
+        /// </summary>
         public ctlFromAddEdite()
         {
             InitializeComponent();
@@ -30,42 +44,58 @@ namespace Driving_License_Management_System.Controller.People
             llRemoveImage.Visible = false;
         }
 
+        /// <summary>
+        /// Handles text changes in TextBox1.
+        /// </summary>
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-
         }
 
+        /// <summary>
+        /// Validates the national number when the control loses focus.
+        /// </summary>
         private void nNumber_Leave(object sender, EventArgs e)
         {
-
             string nationalityNumber = nNumber.Text.Trim();
 
-            // Check if National Number exists
-            bool checkNationaNumber = DVLD_Business_Layer.DVLD_Business_Layer.BNPeople.checkNationaNumber(nationalityNumber);
+            bool checkNationaNumber =
+                DVLD_Business_Layer.DVLD_Business_Layer.BNPeople
+                .checkNationaNumber(nationalityNumber);
 
             if (checkNationaNumber)
             {
-                errorProvider1.SetError(nNumber, "National Number already exists.");
+                errorProvider1.SetError(
+                    nNumber,
+                    "National Number already exists."
+                );
+
                 nNumber.Focus();
             }
             else
             {
                 errorProvider1.SetError(nNumber, "");
             }
-
         }
 
+        /// <summary>
+        /// Changes the displayed image when Male is selected.
+        /// </summary>
         private void rbMale_CheckedChanged(object sender, EventArgs e)
         {
             pBImage.Image = Properties.Resources.famel;
         }
 
+        /// <summary>
+        /// Changes the displayed image when Female is selected.
+        /// </summary>
         private void rbFamel_CheckedChanged(object sender, EventArgs e)
         {
             pBImage.Image = Properties.Resources.male;
-
         }
 
+        /// <summary>
+        /// Validates the email format when the control loses focus.
+        /// </summary>
         private void email_Leave(object sender, EventArgs e)
         {
             string emailT = email.Text;
@@ -74,20 +104,35 @@ namespace Driving_License_Management_System.Controller.People
 
             if (!Regex.IsMatch(emailT, pattern))
             {
-                MessageBox.Show("Invalid email format!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(
+                    "Invalid email format!",
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
+
                 email.Focus();
             }
         }
 
+        /// <summary>
+        /// Handles control load event.
+        /// </summary>
         private void ctlFromAddEdite_Load(object sender, EventArgs e)
         {
-
         }
 
-        private void lkImage_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        /// <summary>
+        /// Opens a dialog to select an image.
+        /// </summary>
+        private void lkImage_LinkClicked(
+            object sender,
+            LinkLabelLinkClickedEventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog();
+
             ofd.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp";
+
             if (ofd.ShowDialog() == DialogResult.OK)
             {
                 pBImage.Image = Image.FromFile(ofd.FileName);
@@ -95,6 +140,9 @@ namespace Driving_License_Management_System.Controller.People
             }
         }
 
+        /// <summary>
+        /// Saves the person information and creates a new person record.
+        /// </summary>
         private void btnSave_Click(object sender, EventArgs e)
         {
             try
@@ -113,7 +161,6 @@ namespace Driving_License_Management_System.Controller.People
 
                 DateTime birthDate = dtPiker.Value.Date;
 
-                // SQL SAFE RANGE CHECK
                 DateTime sqlMin = new DateTime(1753, 1, 1);
                 DateTime sqlMax = new DateTime(9999, 12, 31);
 
@@ -123,13 +170,17 @@ namespace Driving_License_Management_System.Controller.People
                     return;
                 }
 
-                // AGE VALIDATION (18+)
                 int age = DateTime.Today.Year - birthDate.Year;
-                if (birthDate > DateTime.Today.AddYears(-age)) age--;
+
+                if (birthDate > DateTime.Today.AddYears(-age))
+                    age--;
 
                 if (age < 18)
                 {
-                    MessageBox.Show("Person must be at least 18 years old.");
+                    MessageBox.Show(
+                        "Person must be at least 18 years old."
+                    );
+
                     return;
                 }
 
@@ -137,7 +188,8 @@ namespace Driving_License_Management_System.Controller.People
                     ? Convert.ToInt32(cbCountry.SelectedIndex) + 1
                     : 0;
 
-                string imagePath = string.IsNullOrWhiteSpace(pBImage.ImageLocation)
+                string imagePath = string.IsNullOrWhiteSpace(
+                    pBImage.ImageLocation)
                     ? null
                     : pBImage.ImageLocation;
 
@@ -151,50 +203,71 @@ namespace Driving_License_Management_System.Controller.People
                     $"Country: {country}\n" +
                     $"Address: {address}\n" +
                     $"Image: {imagePath}",
-                    "Debug");
-
-                // CORRECT ORDER: nationalID, firstName, secondName, thirdName, lastName, dateOfBirth, gender, address, phone, email, nationalityCountryID, imagePath
-                BNPeople people = new BNPeople(
-                    nationalityNumber,      // 1. nationalID
-                    firstName,              // 2. firstName
-                    secondName,             // 3. secondName
-                    thirdName,              // 4. thirdName
-                    lastName,               // 5. lastName
-                    birthDate,              // 6. dateOfBirth
-                    gender,                 // 7. gender
-                    address,                // 8. address ← CORRIGÉ
-                    phoneNumber,            // 9. phone ← CORRIGÉ
-                    emailText,              // 10. email ← CORRIGÉ
-                    country,                // 11. nationalityCountryID ← CORRIGÉ
-                    imagePath               // 12. imagePath
+                    "Debug"
                 );
 
-                if (people.AddNewPerson())
+                BNPeople people = new BNPeople(
+                    nationalityNumber,
+                    firstName,
+                    secondName,
+                    thirdName,
+                    lastName,
+                    birthDate,
+                    gender,
+                    address,
+                    phoneNumber,
+                    emailText,
+                    country,
+                    imagePath
+                );
+
+                int personId = people.AddNewPerson();
+
+                if (personId > 0)
                 {
-                    MessageBox.Show("Person added successfully.",
+                    if (GetPersonIdCreated != null)
+                    {
+                        PersonIdCreated(personId);
+                    }
+
+                    MessageBox.Show(
+                        "Person added successfully.",
                         "Success",
                         MessageBoxButtons.OK,
-                        MessageBoxIcon.Information);
+                        MessageBoxIcon.Information
+                    );
                 }
                 else
                 {
-                    MessageBox.Show("Failed to add person.",
+                    MessageBox.Show(
+                        "Failed to add person.",
                         "Error",
                         MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
+                        MessageBoxIcon.Error
+                    );
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message + "\n\n" + ex.StackTrace,
+                MessageBox.Show(
+                    ex.Message + "\n\n" + ex.StackTrace,
                     "Exception",
                     MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
+                    MessageBoxIcon.Error
+                );
             }
         }
-        private void llRemoveImage_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+
+        /// <summary>
+        /// Removes the selected image and restores the default image.
+        /// </summary>
+        private void llRemoveImage_LinkClicked(
+            object sender,
+            LinkLabelLinkClickedEventArgs e)
         {
-            pBImage.Image = rbFamel.Checked ? Properties.Resources.male : Properties.Resources.famel;
+            pBImage.Image = rbFamel.Checked
+                ? Properties.Resources.male
+                : Properties.Resources.famel;
         }
     }
 }

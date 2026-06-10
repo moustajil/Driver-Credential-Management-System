@@ -67,10 +67,11 @@
             // 
             // ctlFromAddEdite1
             // 
-            ctlFromAddEdite1.Location = new Point(102, 125);
+            ctlFromAddEdite1.Location = new Point(102, 122);
             ctlFromAddEdite1.Name = "ctlFromAddEdite1";
             ctlFromAddEdite1.Size = new Size(878, 447);
             ctlFromAddEdite1.TabIndex = 3;
+            ctlFromAddEdite1.GetPersonIdCreated += ctlFromAddEdite1_GetPersonIdCreated;
             // 
             // frmAddEdite
             // 
@@ -83,6 +84,7 @@
             Controls.Add(label1);
             Name = "frmAddEdite";
             Text = "frmAddEdite";
+            Load += frmAddEdite_Load;
             ResumeLayout(false);
             PerformLayout();
         }

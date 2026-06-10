@@ -106,7 +106,7 @@ namespace DVLD_Business_Layer
                 ImagePath = imagePath;
             }
 
-            public bool AddNewPerson()
+            public int AddNewPerson()
             {
                 return DVL_Data_Access_Layer.People.BDAPeople.AddPerson(
                     NationalID,

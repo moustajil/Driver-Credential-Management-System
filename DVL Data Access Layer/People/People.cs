@@ -8,7 +8,7 @@ namespace DVL_Data_Access_Layer.People
 {
     public class BDAPeople
     {
-        public static bool AddPerson(
+        public static int AddPerson(
     string NationalNo,
     string FirstName,
     string SecondName,
@@ -22,38 +22,41 @@ namespace DVL_Data_Access_Layer.People
     int NationalityCountryID,
     string ImagePath)
         {
-            int RowsAffected = 0;
+            int insertedId = -1;
 
-            string Query = @"INSERT INTO People
-            (
-                NationalNo,
-                FirstName,
-                SecondName,
-                ThirdName,
-                LastName,
-                DateOfBirth,
-                Gendor,
-                Address,
-                Phone,
-                Email,
-                NationalityCountryID,
-                ImagePath
-            )
-            VALUES
-            (
-                @NationalNo,
-                @FirstName,
-                @SecondName,
-                @ThirdName,
-                @LastName,
-                @DateOfBirth,
-                @Gendor,
-                @Address,
-                @Phone,
-                @Email,
-                @NationalityCountryID,
-                @ImagePath
-            )";
+            string Query = @"
+    INSERT INTO People
+    (
+        NationalNo,
+        FirstName,
+        SecondName,
+        ThirdName,
+        LastName,
+        DateOfBirth,
+        Gendor,
+        Address,
+        Phone,
+        Email,
+        NationalityCountryID,
+        ImagePath
+    )
+    VALUES
+    (
+        @NationalNo,
+        @FirstName,
+        @SecondName,
+        @ThirdName,
+        @LastName,
+        @DateOfBirth,
+        @Gendor,
+        @Address,
+        @Phone,
+        @Email,
+        @NationalityCountryID,
+        @ImagePath
+    );
+
+    SELECT SCOPE_IDENTITY();";
 
             try
             {
@@ -75,7 +78,12 @@ namespace DVL_Data_Access_Layer.People
                     Command.Parameters.AddWithValue("@ImagePath", ImagePath ?? (object)DBNull.Value);
 
                     Connection.Open();
-                    RowsAffected = Command.ExecuteNonQuery();
+
+                    object result = Command.ExecuteScalar();
+                    if (result != null && int.TryParse(result.ToString(), out int id))
+                    {
+                        insertedId = id;
+                    }
                 }
             }
             catch (Exception ex)
@@ -83,7 +91,7 @@ namespace DVL_Data_Access_Layer.People
                 throw new Exception("Error inserting person: " + ex.Message, ex);
             }
 
-            return RowsAffected > 0;
+            return insertedId;
         }
 
         public static bool UpdatePerson(
