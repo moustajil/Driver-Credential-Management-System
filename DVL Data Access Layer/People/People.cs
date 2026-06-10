@@ -8,15 +8,17 @@ namespace DVL_Data_Access_Layer.People
 {
     public class BDAPeople
     {
+
+        // Add New Person
         public static int AddPerson(
-    string NationalNo,
-    string FirstName,
-    string SecondName,
-    string ThirdName,
-    string LastName,
-    DateTime DateOfBirth,
-    int Gender,
-    string Address,
+           string NationalNo,
+           string FirstName,
+           string SecondName,
+           string ThirdName,
+           string LastName,
+           DateTime DateOfBirth,
+           int Gender,
+           string Address,
     string Phone,
     string Email,
     int NationalityCountryID,
@@ -94,6 +96,8 @@ namespace DVL_Data_Access_Layer.People
             return insertedId;
         }
 
+
+        // Update Person
         public static bool UpdatePerson(
             int PersonID,
             string NationalNo,
@@ -129,18 +133,6 @@ namespace DVL_Data_Access_Layer.People
                          ImagePath = @ImagePath
                      WHERE PersonID = @PersonID";
 
-            /*  Command.Parameters.AddWithValue("@NationalNo", NationalNo);
-                    Command.Parameters.AddWithValue("@FirstName", FirstName);
-                    Command.Parameters.AddWithValue("@SecondName", SecondName);
-                    Command.Parameters.AddWithValue("@ThirdName", ThirdName);
-                    Command.Parameters.AddWithValue("@LastName", LastName);
-                    Command.Parameters.AddWithValue("@DateOfBirth", DateOfBirth);
-                    Command.Parameters.AddWithValue("@Gendor", Gender);
-                    Command.Parameters.AddWithValue("@Address", Address);
-                    Command.Parameters.AddWithValue("@Phone", Phone);
-                    Command.Parameters.AddWithValue("@Email", Email);
-                    Command.Parameters.AddWithValue("@NationalityCountryID", NationalityCountryID);
-                    Command.Parameters.AddWithValue("@ImagePath", ImagePath ?? (object)DBNull.Value);*/
 
             SqlCommand Command = new SqlCommand(Query, Connection);
 
@@ -175,6 +167,7 @@ namespace DVL_Data_Access_Layer.People
             return RowsAffected > 0;
         }
 
+        // Delete Person
         public static bool DeletePerson(int PersonID)
         {
             int RowsAffected = 0;
@@ -205,6 +198,8 @@ namespace DVL_Data_Access_Layer.People
             return RowsAffected > 0;
         }
 
+
+        // Get All People
         public static DataTable GetAllPeople()
         {
             DataTable dt = new DataTable();
@@ -241,6 +236,8 @@ namespace DVL_Data_Access_Layer.People
             return dt;
         }
 
+
+        // Count People
         public static int CountsOfPeopls()
         {
             int count = 0;
@@ -270,6 +267,8 @@ namespace DVL_Data_Access_Layer.People
             return count;
         }
 
+
+        // Find Person By ID
         public static bool FindPersonByID(
             int PersonID,
             ref string NationalID,
@@ -295,20 +294,7 @@ namespace DVL_Data_Access_Layer.People
             SqlCommand Command = new SqlCommand(Query, Connection);
 
             Command.Parameters.AddWithValue("@PersonID", PersonID);
-            /*
-            /*  Command.Parameters.AddWithValue("@NationalNo", NationalNo);
-                    Command.Parameters.AddWithValue("@FirstName", FirstName);
-                    Command.Parameters.AddWithValue("@SecondName", SecondName);
-                    Command.Parameters.AddWithValue("@ThirdName", ThirdName);
-                    Command.Parameters.AddWithValue("@LastName", LastName);
-                    Command.Parameters.AddWithValue("@DateOfBirth", DateOfBirth);
-                    Command.Parameters.AddWithValue("@Gendor", Gender);
-                    Command.Parameters.AddWithValue("@Address", Address);
-                    Command.Parameters.AddWithValue("@Phone", Phone);
-                    Command.Parameters.AddWithValue("@Email", Email);
-                    Command.Parameters.AddWithValue("@NationalityCountryID", NationalityCountryID);
-                    Command.Parameters.AddWithValue("@ImagePath", ImagePath ?? (object)DBNull.Value);*/
-            
+
             try
             {
                 Connection.Open();
@@ -347,7 +333,7 @@ namespace DVL_Data_Access_Layer.People
             return IsFound;
         }
 
-        // check in nationa number añready exists
+        // Find Person By National Number
         public static bool FindNationaNumber(string NationalNo)
         {
             bool IsFound = false;
@@ -387,6 +373,8 @@ namespace DVL_Data_Access_Layer.People
             return IsFound;
         }
 
+
+        // Find Person By Column
         public static DataTable FindByColumn(string ColumnName, string columnValue)
         {
             DataTable dt = new DataTable();
@@ -394,12 +382,10 @@ namespace DVL_Data_Access_Layer.People
             using (SqlConnection connection =
                 new SqlConnection(DataBaseSetting.ConnectionString))
             {
-                // ⚠️ Column name MUST be injected safely (not as parameter)
                 string query = $"SELECT * FROM People WHERE {ColumnName} LIKE @Value";
 
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
-                    // ✅ correct parameter
                     command.Parameters.AddWithValue("@Value", "%" + columnValue + "%");
 
                     try

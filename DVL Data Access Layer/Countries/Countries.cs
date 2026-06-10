@@ -7,6 +7,8 @@ namespace DVL_Data_Access_Layer
 {
     public class Countries
     {
+
+        // Get All Name Of Countrys
         public static string[] GetAllCountries()
         {
             List<string> countries = new List<string>();
