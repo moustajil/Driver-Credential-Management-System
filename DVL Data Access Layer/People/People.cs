@@ -129,6 +129,19 @@ namespace DVL_Data_Access_Layer.People
                          ImagePath = @ImagePath
                      WHERE PersonID = @PersonID";
 
+            /*  Command.Parameters.AddWithValue("@NationalNo", NationalNo);
+                    Command.Parameters.AddWithValue("@FirstName", FirstName);
+                    Command.Parameters.AddWithValue("@SecondName", SecondName);
+                    Command.Parameters.AddWithValue("@ThirdName", ThirdName);
+                    Command.Parameters.AddWithValue("@LastName", LastName);
+                    Command.Parameters.AddWithValue("@DateOfBirth", DateOfBirth);
+                    Command.Parameters.AddWithValue("@Gendor", Gender);
+                    Command.Parameters.AddWithValue("@Address", Address);
+                    Command.Parameters.AddWithValue("@Phone", Phone);
+                    Command.Parameters.AddWithValue("@Email", Email);
+                    Command.Parameters.AddWithValue("@NationalityCountryID", NationalityCountryID);
+                    Command.Parameters.AddWithValue("@ImagePath", ImagePath ?? (object)DBNull.Value);*/
+
             SqlCommand Command = new SqlCommand(Query, Connection);
 
             Command.Parameters.AddWithValue("@PersonID", PersonID);
@@ -138,12 +151,12 @@ namespace DVL_Data_Access_Layer.People
             Command.Parameters.AddWithValue("@ThirdName", ThirdName);
             Command.Parameters.AddWithValue("@LastName", LastName);
             Command.Parameters.AddWithValue("@DateOfBirth", DateOfBirth);
-            Command.Parameters.AddWithValue("@Gender", Gendor);
+            Command.Parameters.AddWithValue("@Gendor", Gendor);
             Command.Parameters.AddWithValue("@Address", Address);
             Command.Parameters.AddWithValue("@Phone", Phone);
             Command.Parameters.AddWithValue("@Email", Email);
             Command.Parameters.AddWithValue("@NationalityCountryID", NationalityCountryID);
-            Command.Parameters.AddWithValue("@ImagePath", ImagePath);
+            Command.Parameters.AddWithValue("@ImagePath", ImagePath ?? (object)DBNull.Value);
 
             try
             {

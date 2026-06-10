@@ -35,6 +35,7 @@ namespace Driving_License_Management_System.Forms.People
         private void ctlFromAddEdite1_GetPersonIdCreated(int obj)
         {
             personID.Text = obj.ToString();
+            updateAddPerson.Text = "Update Person";
         }
     }
 }

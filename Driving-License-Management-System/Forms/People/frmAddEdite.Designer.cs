@@ -28,22 +28,22 @@
         /// </summary>
         private void InitializeComponent()
         {
-            label1 = new Label();
+            updateAddPerson = new Label();
             label2 = new Label();
             personID = new Label();
             ctlFromAddEdite1 = new Driving_License_Management_System.Controller.People.ctlFromAddEdite();
             SuspendLayout();
             // 
-            // label1
+            // updateAddPerson
             // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(336, 23);
-            label1.Name = "label1";
-            label1.Size = new Size(285, 46);
-            label1.TabIndex = 0;
-            label1.Text = "Add New Person";
-            label1.Click += label1_Click;
+            updateAddPerson.AutoSize = true;
+            updateAddPerson.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            updateAddPerson.Location = new Point(336, 23);
+            updateAddPerson.Name = "updateAddPerson";
+            updateAddPerson.Size = new Size(285, 46);
+            updateAddPerson.TabIndex = 0;
+            updateAddPerson.Text = "Add New Person";
+            updateAddPerson.Click += label1_Click;
             // 
             // label2
             // 
@@ -81,7 +81,7 @@
             Controls.Add(ctlFromAddEdite1);
             Controls.Add(personID);
             Controls.Add(label2);
-            Controls.Add(label1);
+            Controls.Add(updateAddPerson);
             Name = "frmAddEdite";
             Text = "frmAddEdite";
             Load += frmAddEdite_Load;
@@ -91,7 +91,7 @@
 
         #endregion
 
-        private Label label1;
+        private Label updateAddPerson;
         private Label label2;
         private Label personID;
         private Controller.People.ctlFromAddEdite ctlFromAddEdite1;
