@@ -24,6 +24,12 @@ namespace Driving_License_Management_System.Controller.People
             }
         }
 
+        // Mode: add or update
+        private string status = "add";
+
+        // Current Person ID (used in update)
+        private int personId = 0;
+
         /// <summary>
         /// Initializes the control and loads default values.
         /// </summary>
@@ -45,30 +51,26 @@ namespace Driving_License_Management_System.Controller.People
         }
 
         /// <summary>
-        /// Handles text changes in TextBox1.
+        /// Text changed event (unused).
         /// </summary>
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
         }
 
         /// <summary>
-        /// Validates the national number when the control loses focus.
+        /// Validate national number uniqueness.
         /// </summary>
         private void nNumber_Leave(object sender, EventArgs e)
         {
             string nationalityNumber = nNumber.Text.Trim();
 
-            bool checkNationaNumber =
+            bool exists =
                 DVLD_Business_Layer.DVLD_Business_Layer.BNPeople
                 .checkNationaNumber(nationalityNumber);
 
-            if (checkNationaNumber)
+            if (exists)
             {
-                errorProvider1.SetError(
-                    nNumber,
-                    "National Number already exists."
-                );
-
+                errorProvider1.SetError(nNumber, "National Number already exists.");
                 nNumber.Focus();
             }
             else
@@ -78,7 +80,7 @@ namespace Driving_License_Management_System.Controller.People
         }
 
         /// <summary>
-        /// Changes the displayed image when Male is selected.
+        /// Male selected.
         /// </summary>
         private void rbMale_CheckedChanged(object sender, EventArgs e)
         {
@@ -86,7 +88,7 @@ namespace Driving_License_Management_System.Controller.People
         }
 
         /// <summary>
-        /// Changes the displayed image when Female is selected.
+        /// Female selected.
         /// </summary>
         private void rbFamel_CheckedChanged(object sender, EventArgs e)
         {
@@ -94,7 +96,7 @@ namespace Driving_License_Management_System.Controller.People
         }
 
         /// <summary>
-        /// Validates the email format when the control loses focus.
+        /// Email validation.
         /// </summary>
         private void email_Leave(object sender, EventArgs e)
         {
@@ -108,134 +110,78 @@ namespace Driving_License_Management_System.Controller.People
                     "Invalid email format!",
                     "Error",
                     MessageBoxButtons.OK,
-                    MessageBoxIcon.Error
-                );
+                    MessageBoxIcon.Error);
 
                 email.Focus();
             }
         }
 
         /// <summary>
-        /// Handles control load event.
+        /// Load event.
         /// </summary>
         private void ctlFromAddEdite_Load(object sender, EventArgs e)
         {
         }
 
         /// <summary>
-        /// Opens a dialog to select an image.
+        /// Select image.
         /// </summary>
-        private void lkImage_LinkClicked(
-            object sender,
-            LinkLabelLinkClickedEventArgs e)
+        private void lkImage_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog();
-
             ofd.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp";
 
             if (ofd.ShowDialog() == DialogResult.OK)
             {
                 pBImage.Image = Image.FromFile(ofd.FileName);
+                pBImage.ImageLocation = ofd.FileName;
                 llRemoveImage.Visible = true;
             }
         }
 
         /// <summary>
-        /// Saves the person information and creates a new person record.
+        /// Build BNPeople object from form data.
         /// </summary>
-        private void btnSave_Click(object sender, EventArgs e)
+        private BNPeople BuildPerson()
+        {
+            return new BNPeople(
+                nNumber.Text.Trim(),
+                fName.Text.Trim(),
+                sName.Text.Trim(),
+                tName.Text.Trim(),
+                foName.Text.Trim(),
+                dtPiker.Value.Date,
+                rbFamel.Checked ? 1 : 0,
+                rtbAddress.Text.Trim(),
+                pNumber.Text.Trim(),
+                email.Text.Trim(),
+                cbCountry.SelectedIndex >= 0 ? cbCountry.SelectedIndex + 1 : 0,
+                string.IsNullOrWhiteSpace(pBImage.ImageLocation) ? null : pBImage.ImageLocation
+            );
+        }
+
+        /// <summary>
+        /// Add new person.
+        /// </summary>
+        private void AddPerson()
         {
             try
             {
-                string firstName = fName.Text?.Trim() ?? "";
-                string secondName = sName.Text?.Trim() ?? "";
-                string thirdName = tName.Text?.Trim() ?? "";
-                string lastName = foName.Text?.Trim() ?? "";
+                BNPeople people = BuildPerson();
 
-                string emailText = email.Text?.Trim() ?? "";
-                string phoneNumber = pNumber.Text?.Trim() ?? "";
-                string nationalityNumber = nNumber.Text?.Trim() ?? "";
-                string address = rtbAddress.Text?.Trim() ?? "";
-
-                int gender = rbFamel.Checked ? 1 : 0;
-
-                DateTime birthDate = dtPiker.Value.Date;
-
-                DateTime sqlMin = new DateTime(1753, 1, 1);
-                DateTime sqlMax = new DateTime(9999, 12, 31);
-
-                if (birthDate < sqlMin || birthDate > sqlMax)
-                {
-                    MessageBox.Show("Birth date is out of valid range.");
-                    return;
-                }
-
-                int age = DateTime.Today.Year - birthDate.Year;
-
-                if (birthDate > DateTime.Today.AddYears(-age))
-                    age--;
-
-                if (age < 18)
-                {
-                    MessageBox.Show(
-                        "Person must be at least 18 years old."
-                    );
-
-                    return;
-                }
-
-                int country = cbCountry.SelectedIndex != null
-                    ? Convert.ToInt32(cbCountry.SelectedIndex) + 1
-                    : 0;
-
-                string imagePath = string.IsNullOrWhiteSpace(
-                    pBImage.ImageLocation)
-                    ? null
-                    : pBImage.ImageLocation;
-
-                MessageBox.Show(
-                    $"National Number: {nationalityNumber}\n" +
-                    $"Name: {firstName} {secondName} {thirdName} {lastName}\n" +
-                    $"Birth Date: {birthDate}\n" +
-                    $"Gender: {gender}\n" +
-                    $"Phone: {phoneNumber}\n" +
-                    $"Email: {emailText}\n" +
-                    $"Country: {country}\n" +
-                    $"Address: {address}\n" +
-                    $"Image: {imagePath}",
-                    "Debug"
-                );
-
-                BNPeople people = new BNPeople(
-                    nationalityNumber,
-                    firstName,
-                    secondName,
-                    thirdName,
-                    lastName,
-                    birthDate,
-                    gender,
-                    address,
-                    phoneNumber,
-                    emailText,
-                    country,
-                    imagePath
-                );
-
-                int personId = people.AddNewPerson();
+                personId = people.AddNewPerson();
 
                 if (personId > 0)
                 {
-                    if (GetPersonIdCreated != null)
-                    {
-                        PersonIdCreated(personId);
-                    }
+                    PersonIdCreated(personId);
+
+                    status = "update";
 
                     MessageBox.Show(
                         "Person added successfully.",
                         "Success",
                         MessageBoxButtons.OK,
-                        MessageBoxIcon.Information
-                    );
+                        MessageBoxIcon.Information);
                 }
                 else
                 {
@@ -243,31 +189,84 @@ namespace Driving_License_Management_System.Controller.People
                         "Failed to add person.",
                         "Error",
                         MessageBoxButtons.OK,
-                        MessageBoxIcon.Error
-                    );
+                        MessageBoxIcon.Error);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show(
-                    ex.Message + "\n\n" + ex.StackTrace,
-                    "Exception",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error
-                );
+                MessageBox.Show(ex.Message, "Exception");
             }
         }
 
         /// <summary>
-        /// Removes the selected image and restores the default image.
+        /// Update existing person.
         /// </summary>
-        private void llRemoveImage_LinkClicked(
-            object sender,
-            LinkLabelLinkClickedEventArgs e)
+        private void UpdatePerson(int id)
+        {
+            try
+            {
+                BNPeople people = BuildPerson();
+
+                people.PersonID = id;
+
+                bool result = people.UpdatePerson();
+
+                if (result)
+                {
+                    MessageBox.Show(
+                        "Person updated successfully.",
+                        "Success",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show(
+                        "Failed to update person.",
+                        "Error",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Exception");
+            }
+        }
+
+        /// <summary>
+        /// Save button click.
+        /// </summary>
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            savePerson();
+        }
+
+        /// <summary>
+        /// Decide add or update.
+        /// </summary>
+        private void savePerson()
+        {
+            if (status == "add")
+            {
+                AddPerson();
+            }
+            else
+            {
+                UpdatePerson(personId);
+            }
+        }
+
+        /// <summary>
+        /// Remove image.
+        /// </summary>
+        private void llRemoveImage_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             pBImage.Image = rbFamel.Checked
                 ? Properties.Resources.male
                 : Properties.Resources.famel;
+
+            pBImage.ImageLocation = null;
         }
     }
 }
