@@ -1,4 +1,5 @@
 ﻿using Driving_License_Management_System.Forms.People;
+using Driving_License_Management_System.Forms.Users;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -22,6 +23,19 @@ namespace Driving_License_Management_System
             People people = new People();
             people.Show();
 
+        }
+
+        private void logoutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmLogin login = new frmLogin();
+            this.Close();
+            login.Show();
+        }
+
+        private void userToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmUserManagement userManagement = new frmUserManagement();
+            userManagement.Show();
         }
     }
 }

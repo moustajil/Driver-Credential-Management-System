@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,6 +24,11 @@ namespace DVLD_Business_Layer.Users
         public static bool checkIfUserExists(string userName,string pass)
         {
             return DVL_Data_Access_Layer.Users.DBAUser.CheckIfUserExistsAndActive(userName, pass);
+        }
+
+        public static DataTable GetAllUsers()
+        {
+            return DVL_Data_Access_Layer.Users.DBAUser.GetAllUser();
         }
     }
 }

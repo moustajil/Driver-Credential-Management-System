@@ -35,6 +35,9 @@
             driverToolStripMenuItem = new ToolStripMenuItem();
             userToolStripMenuItem = new ToolStripMenuItem();
             accountSettingToolStripMenuItem = new ToolStripMenuItem();
+            currentUserInfoToolStripMenuItem = new ToolStripMenuItem();
+            changePasswordToolStripMenuItem = new ToolStripMenuItem();
+            logoutToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -79,12 +82,33 @@
             userToolStripMenuItem.Name = "userToolStripMenuItem";
             userToolStripMenuItem.Size = new Size(52, 24);
             userToolStripMenuItem.Text = "User";
+            userToolStripMenuItem.Click += userToolStripMenuItem_Click;
             // 
             // accountSettingToolStripMenuItem
             // 
+            accountSettingToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { currentUserInfoToolStripMenuItem, changePasswordToolStripMenuItem, logoutToolStripMenuItem });
             accountSettingToolStripMenuItem.Name = "accountSettingToolStripMenuItem";
             accountSettingToolStripMenuItem.Size = new Size(128, 24);
             accountSettingToolStripMenuItem.Text = "Account Setting";
+            // 
+            // currentUserInfoToolStripMenuItem
+            // 
+            currentUserInfoToolStripMenuItem.Name = "currentUserInfoToolStripMenuItem";
+            currentUserInfoToolStripMenuItem.Size = new Size(224, 26);
+            currentUserInfoToolStripMenuItem.Text = "Current  User Info";
+            // 
+            // changePasswordToolStripMenuItem
+            // 
+            changePasswordToolStripMenuItem.Name = "changePasswordToolStripMenuItem";
+            changePasswordToolStripMenuItem.Size = new Size(224, 26);
+            changePasswordToolStripMenuItem.Text = "Change Password";
+            // 
+            // logoutToolStripMenuItem
+            // 
+            logoutToolStripMenuItem.Name = "logoutToolStripMenuItem";
+            logoutToolStripMenuItem.Size = new Size(224, 26);
+            logoutToolStripMenuItem.Text = "Logout";
+            logoutToolStripMenuItem.Click += logoutToolStripMenuItem_Click;
             // 
             // Main
             // 
@@ -112,5 +136,8 @@
         private ToolStripMenuItem userToolStripMenuItem;
         private ToolStripMenuItem accountSettingToolStripMenuItem;
         private Panel panel1;
+        private ToolStripMenuItem currentUserInfoToolStripMenuItem;
+        private ToolStripMenuItem changePasswordToolStripMenuItem;
+        private ToolStripMenuItem logoutToolStripMenuItem;
     }
 }

@@ -1,6 +1,7 @@
 ﻿using DVL_Data_Access_Layer.DataAccessSetting;
 using Microsoft.Data.SqlClient;
 using System;
+using System.Data;
 
 namespace DVL_Data_Access_Layer.Users
 {
@@ -43,6 +44,44 @@ namespace DVL_Data_Access_Layer.Users
             }
 
             return isFound;
+        }
+
+
+        // Get All Users
+        public static DataTable GetAllUser()
+        {
+            DataTable dt = new DataTable();
+
+            string query = @"
+        SELECT 
+            UserID,
+            PersonID,
+            UserName,
+            IsActive
+        FROM Users";
+
+            using (SqlConnection connection = new SqlConnection(DataBaseSetting.ConnectionString))
+            using (SqlCommand command = new SqlCommand(query, connection))
+            {
+                try
+                {
+                    connection.Open();
+
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.HasRows)
+                        {
+                            dt.Load(reader);
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
+
+            return dt;
         }
     }
 }
