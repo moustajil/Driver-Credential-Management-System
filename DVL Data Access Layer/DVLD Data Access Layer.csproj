@@ -52,6 +52,7 @@
     <Compile Include="DataAccessSetting\DataBaseSetting.cs" />
     <Compile Include="People\People.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Users\User.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
