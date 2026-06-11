@@ -83,5 +83,37 @@ namespace DVL_Data_Access_Layer.Users
 
             return dt;
         }
+
+
+        // Get Count All Users
+        public static int GetUserCount()
+        {
+            int count = 0;
+
+            string query = @"SELECT COUNT(*) FROM Users";
+
+            using (SqlConnection connection = new SqlConnection(DataBaseSetting.ConnectionString))
+            using (SqlCommand command = new SqlCommand(query, connection))
+            {
+                try
+                {
+                    connection.Open();
+
+                    object result = command.ExecuteScalar();
+
+                    if (result != null && result != DBNull.Value)
+                    {
+                        count = Convert.ToInt32(result);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
+
+            return count;
+        }
+
     }
 }

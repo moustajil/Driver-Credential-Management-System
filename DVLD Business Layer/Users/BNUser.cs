@@ -30,5 +30,10 @@ namespace DVLD_Business_Layer.Users
         {
             return DVL_Data_Access_Layer.Users.DBAUser.GetAllUser();
         }
+
+        public static int GetCountAllUsers()
+        {
+            return DVL_Data_Access_Layer.Users.DBAUser.GetUserCount();
+        }
     }
 }

@@ -36,8 +36,6 @@ namespace Driving_License_Management_System.Forms.People
 
             cbFilter.SelectedIndex = 0;
 
-           // tbfilter.Visible = false;
-           // tbfilter.Clear();
         }
 
         // ---------------- FILTER CHANGE ----------------

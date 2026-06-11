@@ -36,7 +36,7 @@
             cbFilterUsers = new ComboBox();
             textBox1 = new TextBox();
             label2 = new Label();
-            tbRecord = new Label();
+            lbRecord = new Label();
             button1 = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
@@ -81,6 +81,7 @@
             pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox2.TabIndex = 3;
             pictureBox2.TabStop = false;
+            pictureBox2.Click += pictureBox2_Click;
             // 
             // cbFilterUsers
             // 
@@ -107,15 +108,15 @@
             label2.TabIndex = 6;
             label2.Text = "Record :";
             // 
-            // tbRecord
+            // lbRecord
             // 
-            tbRecord.AutoSize = true;
-            tbRecord.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            tbRecord.Location = new Point(243, 491);
-            tbRecord.Name = "tbRecord";
-            tbRecord.Size = new Size(20, 25);
-            tbRecord.TabIndex = 7;
-            tbRecord.Text = "?";
+            lbRecord.AutoSize = true;
+            lbRecord.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lbRecord.Location = new Point(243, 491);
+            lbRecord.Name = "lbRecord";
+            lbRecord.Size = new Size(20, 25);
+            lbRecord.TabIndex = 7;
+            lbRecord.Text = "?";
             // 
             // button1
             // 
@@ -125,6 +126,7 @@
             button1.TabIndex = 8;
             button1.Text = "Close";
             button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
             // frmUserManagement
             // 
@@ -132,7 +134,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1000, 537);
             Controls.Add(button1);
-            Controls.Add(tbRecord);
+            Controls.Add(lbRecord);
             Controls.Add(label2);
             Controls.Add(textBox1);
             Controls.Add(cbFilterUsers);
@@ -159,7 +161,7 @@
         private ComboBox cbFilterUsers;
         private TextBox textBox1;
         private Label label2;
-        private Label tbRecord;
+        private Label lbRecord;
         private Button button1;
     }
 }
