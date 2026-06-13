@@ -2,6 +2,7 @@
 using Microsoft.Data.SqlClient;
 using System;
 using System.Data;
+using System.Linq;
 using System.Net;
 
 namespace DVL_Data_Access_Layer.People
@@ -408,6 +409,43 @@ namespace DVL_Data_Access_Layer.People
         }
 
 
-        
+
+        // Find and return PersonID by column
+        public static int FindPersonIDByColumn(string columnName, string columnValue)
+        {
+            int personID = -1;
+
+
+            string query = $@"
+        SELECT TOP 1 PersonID
+        FROM People
+        WHERE {columnName} = @ColumnValue";
+
+            try
+            {
+                using (SqlConnection connection =
+                       new SqlConnection(DataBaseSetting.ConnectionString))
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@ColumnValue", columnValue);
+
+                    connection.Open();
+
+                    object result = command.ExecuteScalar();
+
+                    if (result != null && result != DBNull.Value)
+                    {
+                        personID = Convert.ToInt32(result);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error finding PersonID: " + ex.Message);
+            }
+
+            return personID;
+        }
+
     }
 }

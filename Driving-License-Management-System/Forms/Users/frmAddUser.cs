@@ -1,6 +1,7 @@
-﻿using DVLD_Business_Layer.DVLD_Business_Layer;
-using System.Data.Common;
-
+﻿using Driving_License_Management_System.Controller.Users;
+using DVLD_Business_Layer.DVLD_Business_Layer;
+using System;
+using System.Windows.Forms;
 
 namespace Driving_License_Management_System.Forms.Users
 {
@@ -11,57 +12,51 @@ namespace Driving_License_Management_System.Forms.Users
             InitializeComponent();
         }
 
-        private void LoadData()
+        private void frmAddUser_Load(object sender, EventArgs e)
+        {
+            LoadFilterItems();
+        }
+
+        private void LoadFilterItems()
         {
             cbFilter.Items.Clear();
 
             cbFilter.Items.Add("Person ID");
-            cbFilter.Items.Add("NationalID");
-            cbFilter.Items.Add("FirstName");
-            cbFilter.Items.Add("SecondName");
-            cbFilter.Items.Add("ThirdName");
-            cbFilter.Items.Add("LastName");
-            cbFilter.Items.Add("Gendor");
+            cbFilter.Items.Add("National ID");
+            cbFilter.Items.Add("First Name");
+            cbFilter.Items.Add("Second Name");
+            cbFilter.Items.Add("Third Name");
+            cbFilter.Items.Add("Last Name");
+            cbFilter.Items.Add("Gender");
             cbFilter.Items.Add("Phone");
             cbFilter.Items.Add("Email");
 
             cbFilter.SelectedIndex = 0;
         }
 
-
-        private void groupBox1_Enter(object sender, EventArgs e)
+        private string GetDatabaseColumnName(string selectedFilter)
         {
-
-        }
-
-        private void frmAddUser_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private string GetDatabaseColumnName(string column)
-        {
-            switch (column)
+            switch (selectedFilter)
             {
                 case "Person ID":
                     return "PersonID";
 
-                case "NationalID":
+                case "National ID":
                     return "NationalNo";
 
-                case "FirstName":
+                case "First Name":
                     return "FirstName";
 
-                case "SecondName":
+                case "Second Name":
                     return "SecondName";
 
-                case "ThirdName":
+                case "Third Name":
                     return "ThirdName";
 
-                case "LastName":
+                case "Last Name":
                     return "LastName";
 
-                case "Gendor":
+                case "Gender":
                     return "Gendor";
 
                 case "Phone":
@@ -71,12 +66,16 @@ namespace Driving_License_Management_System.Forms.Users
                     return "Email";
 
                 default:
-                    return null;
+                    return string.Empty;
             }
         }
 
-
         private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            FindPerson();
+        }
+
+        private void FindPerson()
         {
             if (cbFilter.SelectedItem == null)
             {
@@ -84,32 +83,33 @@ namespace Driving_License_Management_System.Forms.Users
                     "Please select a filter.",
                     "Search Error",
                     MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
+                    MessageBoxIcon.Warning);
 
+                cbFilter.Focus();
                 return;
             }
 
-            string column = cbFilter.SelectedItem.ToString();
-
             string value = lbFilter.Text.Trim();
 
-            if (string.IsNullOrEmpty(value))
+            if (string.IsNullOrWhiteSpace(value))
             {
                 MessageBox.Show(
                     "Please enter a value to search.",
                     "Search Error",
                     MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
+                    MessageBoxIcon.Warning);
 
+                lbFilter.Focus();
                 return;
             }
 
-            string dbColumn = GetDatabaseColumnName(column);
+            string selectedFilter = cbFilter.SelectedItem.ToString();
+            string databaseColumn = GetDatabaseColumnName(selectedFilter);
 
-            if (string.IsNullOrEmpty(dbColumn))
+            if (string.IsNullOrWhiteSpace(databaseColumn))
             {
                 MessageBox.Show(
-                    "Invalid filter selected.",
+                    "The selected filter is invalid.",
                     "Search Error",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
@@ -117,27 +117,80 @@ namespace Driving_License_Management_System.Forms.Users
                 return;
             }
 
-            BNPeople person = BNPeople.FindByCol(dbColumn, value);
-
-            if (person == null)
+            if ((databaseColumn == "PersonID" || databaseColumn == "Gendor") &&
+                !int.TryParse(value, out _))
             {
                 MessageBox.Show(
-                    "Person not found.",
-                    "Search Result",
+                    $"{selectedFilter} must be a valid number.",
+                    "Invalid Value",
                     MessageBoxButtons.OK,
-                    MessageBoxIcon.Information);
+                    MessageBoxIcon.Warning);
 
+                lbFilter.Focus();
+                lbFilter.SelectAll();
                 return;
             }
 
-            MessageBox.Show(
-                "Person Found:\n\n" +
-                "National ID: " + person.NationalID + "\n" +
-                "Gender: " + person.Gender,
-                "Search Result",
-                MessageBoxButtons.OK,
-                MessageBoxIcon.Information);
+            try
+            {
+                int personID = BNPeople.FindPersonByColum(
+                    databaseColumn,
+                    value);
 
+                if (personID == -1)
+                {
+                    MessageBox.Show(
+                        "No person was found using the entered value.",
+                        "Person Not Found",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+
+                    return;
+                }
+
+                ctrInforPerson1.LoadPersonInfo(personID);
+
+
+                MessageBox.Show(
+                    $"Person found successfully.\n\nPerson ID: {personID}",
+                    "Person Found",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+
+                LoadPersonInformation(personID);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    $"An error occurred while searching:\n\n{ex.Message}",
+                    "Search Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+        }
+
+        private void LoadPersonInformation(int personID)
+        {
+            // Send the PersonID to your user control or person-information form.
+            // Example:
+            //
+            // ctrlPersonCard1.LoadPersonInfo(personID);
+        }
+
+        private void cbFilter_SelectedIndexChanged(
+            object sender,
+            EventArgs e)
+        {
+            lbFilter.Clear();
+            lbFilter.Focus();
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
         }
     }
 }

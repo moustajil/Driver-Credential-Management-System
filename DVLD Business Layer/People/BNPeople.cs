@@ -225,6 +225,11 @@ namespace DVLD_Business_Layer
             {
                 return DVL_Data_Access_Layer.People.BDAPeople.FindByColumn(colName, colValue);
             }
+
+            public static int FindPersonByColum(string colName, string colValue)
+            {
+                return DVL_Data_Access_Layer.People.BDAPeople.FindPersonIDByColumn(colName, colValue);
+            }
         }
     }
 }
