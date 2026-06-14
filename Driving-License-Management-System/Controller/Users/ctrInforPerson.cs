@@ -49,10 +49,18 @@ namespace Driving_License_Management_System.Controller.Users
 
             BNPeople person = DVLD_Business_Layer.DVLD_Business_Layer.BNPeople.Find(personID);
 
-            
+
 
             // Change these control names to your actual label names.
-            lbName.Text = person.FirstName + " " + person.SecondName;
+            lbPersonID.Text = person.PersonID.ToString();
+            lbName.Text = person.FirstName + " " + person.SecondName + " " + person.ThirdName ;
+            lbCountry.Text = DVLD_Business_Layer.BnCountries.GetCountryNameByCountryID(person.NationalityCountryID);
+            lbAddress.Text = person.Address;
+            lbNationalID.Text = person.NationalID;
+            lbGender.Text = person.Gender == 0 ? "Male" : "Female";
+            lbPhone.Text = person.Phone;
+            lbEmail.Text = person.Email;
+            lbDateOfBirth.Text = person.DateOfBirth.ToString();
             
 
             //LoadPersonImage(imagePath);

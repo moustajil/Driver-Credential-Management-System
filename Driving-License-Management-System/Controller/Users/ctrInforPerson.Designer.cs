@@ -79,7 +79,7 @@
             groupBox1.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             groupBox1.Location = new Point(3, 3);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(831, 383);
+            groupBox1.Size = new Size(811, 316);
             groupBox1.TabIndex = 0;
             groupBox1.TabStop = false;
             groupBox1.Text = "Personne Info";
@@ -89,7 +89,7 @@
             // 
             lbCountry.AutoSize = true;
             lbCountry.Font = new Font("Segoe UI Black", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lbCountry.Location = new Point(480, 165);
+            lbCountry.Location = new Point(425, 220);
             lbCountry.Name = "lbCountry";
             lbCountry.Size = new Size(27, 20);
             lbCountry.TabIndex = 19;
@@ -99,7 +99,7 @@
             // 
             label10.AutoSize = true;
             label10.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label10.Location = new Point(389, 163);
+            label10.Location = new Point(334, 218);
             label10.Name = "label10";
             label10.Size = new Size(85, 23);
             label10.TabIndex = 18;
@@ -109,7 +109,7 @@
             // 
             lbPhone.AutoSize = true;
             lbPhone.Font = new Font("Segoe UI Black", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lbPhone.Location = new Point(464, 117);
+            lbPhone.Location = new Point(410, 121);
             lbPhone.Name = "lbPhone";
             lbPhone.Size = new Size(27, 20);
             lbPhone.TabIndex = 17;
@@ -119,7 +119,7 @@
             // 
             label8.AutoSize = true;
             label8.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label8.Location = new Point(389, 114);
+            label8.Location = new Point(335, 118);
             label8.Name = "label8";
             label8.Size = new Size(69, 23);
             label8.TabIndex = 16;
@@ -170,7 +170,7 @@
             // 
             lbAddress.AutoSize = true;
             lbAddress.Font = new Font("Segoe UI Black", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lbAddress.Location = new Point(142, 322);
+            lbAddress.Location = new Point(436, 273);
             lbAddress.Name = "lbAddress";
             lbAddress.Size = new Size(27, 20);
             lbAddress.TabIndex = 11;
@@ -230,7 +230,7 @@
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label6.Location = new Point(41, 320);
+            label6.Location = new Point(335, 271);
             label6.Name = "label6";
             label6.Size = new Size(84, 23);
             label6.TabIndex = 5;
@@ -292,7 +292,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(groupBox1);
             Name = "ctrInforPerson";
-            Size = new Size(836, 393);
+            Size = new Size(818, 321);
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();

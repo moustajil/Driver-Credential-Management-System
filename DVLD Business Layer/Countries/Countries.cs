@@ -12,5 +12,10 @@ namespace DVLD_Business_Layer
         {
             return DVL_Data_Access_Layer.Countries.GetAllCountries();
         }
+
+
+        public static string GetCountryNameByCountryID(int countryID) {
+            return DVL_Data_Access_Layer.Countries.GetCountry(countryID);
+        }
     }
 }

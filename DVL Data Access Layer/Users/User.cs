@@ -115,5 +115,78 @@ namespace DVL_Data_Access_Layer.Users
             return count;
         }
 
+        // Add User 
+        public static int AddUser(
+    int personID,
+    string username,
+    string password,
+    bool isActive)
+        {
+            int userID = -1;
+
+            string query = @"
+        INSERT INTO Users
+        (
+            PersonID,
+            UserName,
+            Password,
+            IsActive
+        )
+        VALUES
+        (
+            @PersonID,
+            @UserName,
+            @Password,
+            @IsActive
+        );
+
+        SELECT SCOPE_IDENTITY();";
+
+            using (SqlConnection connection =
+                   new SqlConnection(DataBaseSetting.ConnectionString))
+            {
+                using (SqlCommand command =
+                       new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue(
+                        "@PersonID",
+                        personID);
+
+                    command.Parameters.AddWithValue(
+                        "@UserName",
+                        username);
+
+                    command.Parameters.AddWithValue(
+                        "@Password",
+                        password);
+
+                    command.Parameters.AddWithValue(
+                        "@IsActive",
+                        isActive);
+
+                    try
+                    {
+                        connection.Open();
+
+                        object result = command.ExecuteScalar();
+
+                        if (result != null &&
+                            int.TryParse(result.ToString(), out int insertedID))
+                        {
+                            userID = insertedID;
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(
+                            $"Error adding user: {ex.Message}");
+
+                        userID = -1;
+                    }
+                }
+            }
+
+            return userID;
+        }
     }
 }

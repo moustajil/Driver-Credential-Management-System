@@ -1,5 +1,6 @@
 ﻿using Driving_License_Management_System.Controller.Users;
 using DVLD_Business_Layer.DVLD_Business_Layer;
+using DVLD_Business_Layer.Users;
 using System;
 using System.Windows.Forms;
 
@@ -7,6 +8,7 @@ namespace Driving_License_Management_System.Forms.Users
 {
     public partial class frmAddUser : Form
     {
+        int personID;
         public frmAddUser()
         {
             InitializeComponent();
@@ -133,9 +135,10 @@ namespace Driving_License_Management_System.Forms.Users
 
             try
             {
-                int personID = BNPeople.FindPersonByColum(
-                    databaseColumn,
-                    value);
+                personID = BNPeople.FindPersonByColum(
+                   databaseColumn,
+                   value);
+
 
                 if (personID == -1)
                 {
@@ -157,7 +160,6 @@ namespace Driving_License_Management_System.Forms.Users
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
 
-                LoadPersonInformation(personID);
             }
             catch (Exception ex)
             {
@@ -169,13 +171,6 @@ namespace Driving_License_Management_System.Forms.Users
             }
         }
 
-        private void LoadPersonInformation(int personID)
-        {
-            // Send the PersonID to your user control or person-information form.
-            // Example:
-            //
-            // ctrlPersonCard1.LoadPersonInfo(personID);
-        }
 
         private void cbFilter_SelectedIndexChanged(
             object sender,
@@ -185,12 +180,114 @@ namespace Driving_License_Management_System.Forms.Users
             lbFilter.Focus();
         }
 
-        private void groupBox1_Enter(object sender, EventArgs e)
+     
+
+        private void btnNext_Click(object sender, EventArgs e)
         {
+            tabControl1.SelectedTab = tabPage2;
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
+        private bool ValidateUserInputs()
         {
+            bool isValid = true;
+
+            errorProvider1.Clear();
+
+            if (string.IsNullOrWhiteSpace(tbUserName.Text))
+            {
+                errorProvider1.SetError(tbUserName, "Username is required.");
+                isValid = false;
+            }
+
+            if (string.IsNullOrWhiteSpace(tbPassword.Text))
+            {
+                errorProvider1.SetError(tbPassword, "Password is required.");
+                isValid = false;
+            }
+            else if (tbPassword.Text.Length < 4)
+            {
+                errorProvider1.SetError(
+                    tbPassword,
+                    "Password must contain at least 4 characters.");
+
+                isValid = false;
+            }
+
+            if (string.IsNullOrWhiteSpace(tbConfirmPassword.Text))
+            {
+                errorProvider1.SetError(
+                    tbConfirmPassword,
+                    "Please confirm the password.");
+
+                isValid = false;
+            }
+            else if (tbPassword.Text != tbConfirmPassword.Text)
+            {
+                errorProvider1.SetError(
+                    tbConfirmPassword,
+                    "Passwords do not match.");
+
+                isValid = false;
+            }
+
+            return isValid;
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            if (!ValidateUserInputs())
+            {
+                MessageBox.Show(
+                    "Please correct the highlighted fields.",
+                    "Validation Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+
+                return;
+            }
+
+            string userName = tbUserName.Text.Trim();
+            string password = tbPassword.Text;
+            bool isActive = cbActive.Checked;
+
+            try
+            {
+                int userID = BNUser.AddUser(
+                    personID,
+                    userName,
+                    password,
+                    isActive);
+
+                if (userID <= 0)
+                {
+                    MessageBox.Show(
+                        "The user could not be added.\n" +
+                        "The username or person may already be linked to another user.",
+                        "Save Failed",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+
+                    return;
+                }
+
+                MessageBox.Show(
+                    $"User added successfully.\n\nUser ID: {userID}",
+                    "User Created",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+
+                lbUserIDLogin.Text = userID.ToString();
+                DialogResult = DialogResult.OK;
+                Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    $"An error occurred while saving the user:\n\n{ex.Message}",
+                    "Save Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
         }
     }
 }

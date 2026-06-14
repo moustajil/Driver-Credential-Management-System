@@ -35,5 +35,12 @@ namespace DVLD_Business_Layer.Users
         {
             return DVL_Data_Access_Layer.Users.DBAUser.GetUserCount();
         }
+
+        public static int AddUser(int personId,string userName, string passWord, bool isActive)
+        {
+            return DVL_Data_Access_Layer.Users.DBAUser.AddUser(
+                personId, userName, passWord, isActive
+                );
+        }
     }
 }
