@@ -222,5 +222,37 @@ namespace DVL_Data_Access_Layer.Users
 
             return dt;
         }
+
+        // Delete User
+        public static bool DeleteUser(int UserID)
+        {
+            int RowsAffected = 0;
+
+            SqlConnection Connection =
+                new SqlConnection(DataBaseSetting.ConnectionString);
+
+            string Query = "DELETE FROM Users WHERE UserID = @UserID";
+
+            SqlCommand Command = new SqlCommand(Query, Connection);
+
+            Command.Parameters.AddWithValue("@UserID", UserID);
+
+            try
+            {
+                Connection.Open();
+                RowsAffected = Command.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                Connection.Close();
+            }
+
+            return RowsAffected > 0;
+        }
+
     }
 }

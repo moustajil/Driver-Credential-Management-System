@@ -48,5 +48,10 @@ namespace DVLD_Business_Layer.Users
         {
             return DVL_Data_Access_Layer.Users.DBAUser.FindUserByColums(columnName,columnValue);
         }
+
+        public static bool DeletUser(int userID)
+        {
+            return DVL_Data_Access_Layer.Users.DBAUser.DeleteUser(userID);
+        }
     }
 }
