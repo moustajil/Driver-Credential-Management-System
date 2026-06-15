@@ -34,7 +34,7 @@
             dataGridView1 = new DataGridView();
             pictureBox2 = new PictureBox();
             cbFilterUsers = new ComboBox();
-            textBox1 = new TextBox();
+            tbFilter = new TextBox();
             label2 = new Label();
             lbRecord = new Label();
             button1 = new Button();
@@ -90,13 +90,15 @@
             cbFilterUsers.Name = "cbFilterUsers";
             cbFilterUsers.Size = new Size(151, 28);
             cbFilterUsers.TabIndex = 4;
+            cbFilterUsers.SelectedIndexChanged += cbFilterUsers_SelectedIndexChanged;
             // 
-            // textBox1
+            // tbFilter
             // 
-            textBox1.Location = new Point(331, 245);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(125, 27);
-            textBox1.TabIndex = 5;
+            tbFilter.Location = new Point(331, 245);
+            tbFilter.Name = "tbFilter";
+            tbFilter.Size = new Size(125, 27);
+            tbFilter.TabIndex = 5;
+            tbFilter.TextChanged += tbFilter_TextChanged;
             // 
             // label2
             // 
@@ -136,7 +138,7 @@
             Controls.Add(button1);
             Controls.Add(lbRecord);
             Controls.Add(label2);
-            Controls.Add(textBox1);
+            Controls.Add(tbFilter);
             Controls.Add(cbFilterUsers);
             Controls.Add(pictureBox2);
             Controls.Add(dataGridView1);
@@ -159,7 +161,7 @@
         private DataGridView dataGridView1;
         private PictureBox pictureBox2;
         private ComboBox cbFilterUsers;
-        private TextBox textBox1;
+        private TextBox tbFilter;
         private Label label2;
         private Label lbRecord;
         private Button button1;

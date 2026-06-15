@@ -42,5 +42,11 @@ namespace DVLD_Business_Layer.Users
                 personId, userName, passWord, isActive
                 );
         }
+
+
+        public static DataTable FindUserByColums(string columnName,string columnValue)
+        {
+            return DVL_Data_Access_Layer.Users.DBAUser.FindUserByColums(columnName,columnValue);
+        }
     }
 }

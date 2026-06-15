@@ -188,5 +188,39 @@ namespace DVL_Data_Access_Layer.Users
 
             return userID;
         }
+
+
+        // Filter User By Colum
+        public static DataTable FindUserByColums(string ColumnName, string columnValue)
+        {
+            DataTable dt = new DataTable();
+
+            using (SqlConnection connection =
+                new SqlConnection(DataBaseSetting.ConnectionString))
+            {
+                string query = $"SELECT * FROM Users WHERE {ColumnName} LIKE @Value";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@Value", "%" + columnValue + "%");
+
+                    try
+                    {
+                        connection.Open();
+
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            dt.Load(reader);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                    }
+                }
+            }
+
+            return dt;
+        }
     }
 }
