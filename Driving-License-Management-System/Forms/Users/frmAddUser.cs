@@ -8,7 +8,13 @@ namespace Driving_License_Management_System.Forms.Users
 {
     public partial class frmAddUser : Form
     {
-        int personID;
+        // Event used to return the newly created User ID.
+        public delegate void DataBackEventHandler(object sender, int userID);
+        public event DataBackEventHandler DataBack;
+
+        // -1 means that no person has been selected yet.
+        private int _personID = -1;
+
         public frmAddUser()
         {
             InitializeComponent();
@@ -17,6 +23,11 @@ namespace Driving_License_Management_System.Forms.Users
         private void frmAddUser_Load(object sender, EventArgs e)
         {
             LoadFilterItems();
+
+            // Prevent moving to the login information tab manually.
+            tabControl1.SelectedTab = tabPage1;
+
+            lbUserIDLogin.Text = "N/A";
         }
 
         private void LoadFilterItems()
@@ -79,10 +90,13 @@ namespace Driving_License_Management_System.Forms.Users
 
         private void FindPerson()
         {
+            // Reset the previous person before starting a new search.
+            _personID = -1;
+
             if (cbFilter.SelectedItem == null)
             {
                 MessageBox.Show(
-                    "Please select a filter.",
+                    "Please select a search filter.",
                     "Search Error",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning);
@@ -111,7 +125,7 @@ namespace Driving_License_Management_System.Forms.Users
             if (string.IsNullOrWhiteSpace(databaseColumn))
             {
                 MessageBox.Show(
-                    "The selected filter is invalid.",
+                    "The selected search filter is invalid.",
                     "Search Error",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
@@ -119,11 +133,11 @@ namespace Driving_License_Management_System.Forms.Users
                 return;
             }
 
-            if ((databaseColumn == "PersonID" || databaseColumn == "Gendor") &&
-                !int.TryParse(value, out _))
+            if (databaseColumn == "PersonID" &&
+                !int.TryParse(value, out int parsedPersonID))
             {
                 MessageBox.Show(
-                    $"{selectedFilter} must be a valid number.",
+                    "Person ID must be a valid number.",
                     "Invalid Value",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning);
@@ -133,15 +147,34 @@ namespace Driving_License_Management_System.Forms.Users
                 return;
             }
 
+            // Keep this validation only if Gender is stored as 0 or 1.
+            if (databaseColumn == "Gendor")
+            {
+                if (!int.TryParse(value, out int gender) ||
+                    (gender != 0 && gender != 1))
+                {
+                    MessageBox.Show(
+                        "Gender must be 0 or 1.",
+                        "Invalid Gender",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
+
+                    lbFilter.Focus();
+                    lbFilter.SelectAll();
+                    return;
+                }
+            }
+
             try
             {
-                personID = BNPeople.FindPersonByColum(
-                   databaseColumn,
-                   value);
+                _personID = BNPeople.FindPersonByColum(
+                    databaseColumn,
+                    value);
 
-
-                if (personID == -1)
+                if (_personID <= 0)
                 {
+                    _personID = -1;
+
                     MessageBox.Show(
                         "No person was found using the entered value.",
                         "Person Not Found",
@@ -151,18 +184,18 @@ namespace Driving_License_Management_System.Forms.Users
                     return;
                 }
 
-                ctrInforPerson1.LoadPersonInfo(personID);
-
+                ctrInforPerson1.LoadPersonInfo(_personID);
 
                 MessageBox.Show(
-                    $"Person found successfully.\n\nPerson ID: {personID}",
+                    $"Person found successfully.\n\nPerson ID: {_personID}",
                     "Person Found",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
-
             }
             catch (Exception ex)
             {
+                _personID = -1;
+
                 MessageBox.Show(
                     $"An error occurred while searching:\n\n{ex.Message}",
                     "Search Error",
@@ -171,20 +204,33 @@ namespace Driving_License_Management_System.Forms.Users
             }
         }
 
-
-        private void cbFilter_SelectedIndexChanged(
-            object sender,
-            EventArgs e)
+        private void cbFilter_SelectedIndexChanged(object sender, EventArgs e)
         {
             lbFilter.Clear();
             lbFilter.Focus();
-        }
 
-     
+            // The previous person should not remain selected
+            // after changing the search filter.
+            _personID = -1;
+        }
 
         private void btnNext_Click(object sender, EventArgs e)
         {
+            if (_personID <= 0)
+            {
+                MessageBox.Show(
+                    "Please find and select a person before continuing.",
+                    "Person Required",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+
+                tabControl1.SelectedTab = tabPage1;
+                lbFilter.Focus();
+                return;
+            }
+
             tabControl1.SelectedTab = tabPage2;
+            tbUserName.Focus();
         }
 
         private bool ValidateUserInputs()
@@ -193,18 +239,48 @@ namespace Driving_License_Management_System.Forms.Users
 
             errorProvider1.Clear();
 
-            if (string.IsNullOrWhiteSpace(tbUserName.Text))
+            if (_personID <= 0)
             {
-                errorProvider1.SetError(tbUserName, "Username is required.");
+                MessageBox.Show(
+                    "Please find and select a person first.",
+                    "Person Required",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+
+                tabControl1.SelectedTab = tabPage1;
+                return false;
+            }
+
+            string userName = tbUserName.Text.Trim();
+            string password = tbPassword.Text;
+            string confirmPassword = tbConfirmPassword.Text;
+
+            if (string.IsNullOrWhiteSpace(userName))
+            {
+                errorProvider1.SetError(
+                    tbUserName,
+                    "Username is required.");
+
+                isValid = false;
+            }
+            else if (userName.Length < 3)
+            {
+                errorProvider1.SetError(
+                    tbUserName,
+                    "Username must contain at least 3 characters.");
+
                 isValid = false;
             }
 
-            if (string.IsNullOrWhiteSpace(tbPassword.Text))
+            if (string.IsNullOrWhiteSpace(password))
             {
-                errorProvider1.SetError(tbPassword, "Password is required.");
+                errorProvider1.SetError(
+                    tbPassword,
+                    "Password is required.");
+
                 isValid = false;
             }
-            else if (tbPassword.Text.Length < 4)
+            else if (password.Length < 4)
             {
                 errorProvider1.SetError(
                     tbPassword,
@@ -213,7 +289,7 @@ namespace Driving_License_Management_System.Forms.Users
                 isValid = false;
             }
 
-            if (string.IsNullOrWhiteSpace(tbConfirmPassword.Text))
+            if (string.IsNullOrWhiteSpace(confirmPassword))
             {
                 errorProvider1.SetError(
                     tbConfirmPassword,
@@ -221,7 +297,7 @@ namespace Driving_License_Management_System.Forms.Users
 
                 isValid = false;
             }
-            else if (tbPassword.Text != tbConfirmPassword.Text)
+            else if (password != confirmPassword)
             {
                 errorProvider1.SetError(
                     tbConfirmPassword,
@@ -253,7 +329,7 @@ namespace Driving_License_Management_System.Forms.Users
             try
             {
                 int userID = BNUser.AddUser(
-                    personID,
+                    _personID,
                     userName,
                     password,
                     isActive);
@@ -261,8 +337,9 @@ namespace Driving_License_Management_System.Forms.Users
                 if (userID <= 0)
                 {
                     MessageBox.Show(
-                        "The user could not be added.\n" +
-                        "The username or person may already be linked to another user.",
+                        "The user could not be added.\n\n" +
+                        "The username may already exist, or this person " +
+                        "may already be linked to another user.",
                         "Save Failed",
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
@@ -270,13 +347,17 @@ namespace Driving_License_Management_System.Forms.Users
                     return;
                 }
 
+                lbUserIDLogin.Text = userID.ToString();
+
                 MessageBox.Show(
                     $"User added successfully.\n\nUser ID: {userID}",
                     "User Created",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
 
-                lbUserIDLogin.Text = userID.ToString();
+                // Notify frmUserManagement that a user was created.
+                DataBack?.Invoke(this, userID);
+
                 DialogResult = DialogResult.OK;
                 Close();
             }
@@ -288,6 +369,12 @@ namespace Driving_License_Management_System.Forms.Users
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
             }
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.Cancel;
+            Close();
         }
     }
 }
