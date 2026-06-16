@@ -174,5 +174,10 @@ namespace Driving_License_Management_System.Forms.People
 
             ApplySearch(column, value);
         }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

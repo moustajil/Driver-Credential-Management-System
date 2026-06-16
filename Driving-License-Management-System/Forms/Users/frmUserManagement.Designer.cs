@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmUserManagement));
             label1 = new Label();
             pictureBox1 = new PictureBox();
@@ -38,9 +39,15 @@
             label2 = new Label();
             lbRecord = new Label();
             button1 = new Button();
+            contextMenuStrip1 = new ContextMenuStrip(components);
+            showUserToolStripMenuItem = new ToolStripMenuItem();
+            addUserToolStripMenuItem = new ToolStripMenuItem();
+            deletUserToolStripMenuItem = new ToolStripMenuItem();
+            editeUserToolStripMenuItem = new ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
+            contextMenuStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // label1
@@ -66,6 +73,7 @@
             // dataGridView1
             // 
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.ContextMenuStrip = contextMenuStrip1;
             dataGridView1.Location = new Point(155, 287);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 51;
@@ -130,6 +138,38 @@
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
+            // contextMenuStrip1
+            // 
+            contextMenuStrip1.ImageScalingSize = new Size(20, 20);
+            contextMenuStrip1.Items.AddRange(new ToolStripItem[] { showUserToolStripMenuItem, addUserToolStripMenuItem, deletUserToolStripMenuItem, editeUserToolStripMenuItem });
+            contextMenuStrip1.Name = "contextMenuStrip1";
+            contextMenuStrip1.Size = new Size(148, 100);
+            // 
+            // showUserToolStripMenuItem
+            // 
+            showUserToolStripMenuItem.Name = "showUserToolStripMenuItem";
+            showUserToolStripMenuItem.Size = new Size(147, 24);
+            showUserToolStripMenuItem.Text = "Show User";
+            // 
+            // addUserToolStripMenuItem
+            // 
+            addUserToolStripMenuItem.Name = "addUserToolStripMenuItem";
+            addUserToolStripMenuItem.Size = new Size(147, 24);
+            addUserToolStripMenuItem.Text = "Add User";
+            // 
+            // deletUserToolStripMenuItem
+            // 
+            deletUserToolStripMenuItem.Name = "deletUserToolStripMenuItem";
+            deletUserToolStripMenuItem.Size = new Size(147, 24);
+            deletUserToolStripMenuItem.Text = "Delet User";
+            deletUserToolStripMenuItem.Click += deletUserToolStripMenuItem_Click;
+            // 
+            // editeUserToolStripMenuItem
+            // 
+            editeUserToolStripMenuItem.Name = "editeUserToolStripMenuItem";
+            editeUserToolStripMenuItem.Size = new Size(147, 24);
+            editeUserToolStripMenuItem.Text = "Edite User";
+            // 
             // frmUserManagement
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -150,6 +190,7 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
+            contextMenuStrip1.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -165,5 +206,10 @@
         private Label label2;
         private Label lbRecord;
         private Button button1;
+        private ContextMenuStrip contextMenuStrip1;
+        private ToolStripMenuItem showUserToolStripMenuItem;
+        private ToolStripMenuItem addUserToolStripMenuItem;
+        private ToolStripMenuItem deletUserToolStripMenuItem;
+        private ToolStripMenuItem editeUserToolStripMenuItem;
     }
 }

@@ -223,5 +223,70 @@ namespace Driving_License_Management_System.Forms.Users
                     return false;
             }
         }
+
+        private void deletUserToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.CurrentRow == null)
+            {
+                MessageBox.Show(
+                    "Please select a user first.",
+                    "No User Selected",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+
+                return;
+            }
+
+            int userID = Convert.ToInt32(
+                dataGridView1.CurrentRow.Cells["UserID"].Value
+            );
+
+            DialogResult result = MessageBox.Show(
+                $"Are you sure you want to delete user with ID {userID}?",
+                "Confirm Delete",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question
+            );
+
+            if (result != DialogResult.Yes)
+                return;
+
+            try
+            {
+                bool isDeleted = BNUser.DeletUser(userID);
+
+                if (isDeleted)
+                {
+                    MessageBox.Show(
+                        "User deleted successfully.",
+                        "Deleted",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information
+                    );
+
+                    LoadData();
+                }
+                else
+                {
+                    MessageBox.Show(
+                        "The user could not be deleted.",
+                        "Delete Failed",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error
+                    );
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    $"An error occurred while deleting the user:\n\n{ex.Message}",
+                    "Delete Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
+            }
+        }
+
     }
 }
