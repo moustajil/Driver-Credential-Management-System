@@ -30,12 +30,12 @@
         {
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAddUser));
-            label1 = new Label();
+            lbStatuUser = new Label();
             tabControl1 = new TabControl();
             tabPage1 = new TabPage();
             btnNext = new Button();
             ctrInforPerson1 = new Driving_License_Management_System.Controller.Users.ctrInforPerson();
-            groupBox1 = new GroupBox();
+            gbFindPerson = new GroupBox();
             pictureBox2 = new PictureBox();
             pictureBox1 = new PictureBox();
             lbFilter = new TextBox();
@@ -55,22 +55,22 @@
             errorProvider1 = new ErrorProvider(components);
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
-            groupBox1.SuspendLayout();
+            gbFindPerson.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)errorProvider1).BeginInit();
             SuspendLayout();
             // 
-            // label1
+            // lbStatuUser
             // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(387, 36);
-            label1.Name = "label1";
-            label1.Size = new Size(137, 38);
-            label1.TabIndex = 0;
-            label1.Text = "Add User";
+            lbStatuUser.AutoSize = true;
+            lbStatuUser.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lbStatuUser.Location = new Point(387, 36);
+            lbStatuUser.Name = "lbStatuUser";
+            lbStatuUser.Size = new Size(137, 38);
+            lbStatuUser.TabIndex = 0;
+            lbStatuUser.Text = "Add User";
             // 
             // tabControl1
             // 
@@ -86,7 +86,7 @@
             // 
             tabPage1.Controls.Add(btnNext);
             tabPage1.Controls.Add(ctrInforPerson1);
-            tabPage1.Controls.Add(groupBox1);
+            tabPage1.Controls.Add(gbFindPerson);
             tabPage1.Location = new Point(4, 29);
             tabPage1.Name = "tabPage1";
             tabPage1.Padding = new Padding(3);
@@ -112,18 +112,18 @@
             ctrInforPerson1.Size = new Size(839, 332);
             ctrInforPerson1.TabIndex = 1;
             // 
-            // groupBox1
+            // gbFindPerson
             // 
-            groupBox1.Controls.Add(pictureBox2);
-            groupBox1.Controls.Add(pictureBox1);
-            groupBox1.Controls.Add(lbFilter);
-            groupBox1.Controls.Add(cbFilter);
-            groupBox1.Location = new Point(29, 21);
-            groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(839, 77);
-            groupBox1.TabIndex = 0;
-            groupBox1.TabStop = false;
-            groupBox1.Text = "Filter Person";
+            gbFindPerson.Controls.Add(pictureBox2);
+            gbFindPerson.Controls.Add(pictureBox1);
+            gbFindPerson.Controls.Add(lbFilter);
+            gbFindPerson.Controls.Add(cbFilter);
+            gbFindPerson.Location = new Point(29, 21);
+            gbFindPerson.Name = "gbFindPerson";
+            gbFindPerson.Size = new Size(839, 77);
+            gbFindPerson.TabIndex = 0;
+            gbFindPerson.TabStop = false;
+            gbFindPerson.Text = "Filter Person";
             // 
             // pictureBox2
             // 
@@ -292,14 +292,14 @@
             Controls.Add(btnCancel);
             Controls.Add(btnSave);
             Controls.Add(tabControl1);
-            Controls.Add(label1);
+            Controls.Add(lbStatuUser);
             Name = "frmAddUser";
             Text = "frmAddUser";
             Load += frmAddUser_Load;
             tabControl1.ResumeLayout(false);
             tabPage1.ResumeLayout(false);
-            groupBox1.ResumeLayout(false);
-            groupBox1.PerformLayout();
+            gbFindPerson.ResumeLayout(false);
+            gbFindPerson.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             tabPage2.ResumeLayout(false);
@@ -311,12 +311,12 @@
 
         #endregion
 
-        private Label label1;
+        private Label lbStatuUser;
         private TabControl tabControl1;
         private TabPage tabPage1;
         private TabPage tabPage2;
         private Controller.Users.ctrInforPerson ctrInforPerson1;
-        protected GroupBox groupBox1;
+        protected GroupBox gbFindPerson;
         private TextBox lbFilter;
         private ComboBox cbFilter;
         private PictureBox pictureBox2;

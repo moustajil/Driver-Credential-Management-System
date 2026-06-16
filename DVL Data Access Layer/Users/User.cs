@@ -1,6 +1,7 @@
 ﻿using DVL_Data_Access_Layer.DataAccessSetting;
 using Microsoft.Data.SqlClient;
 using System;
+using System.Configuration;
 using System.Data;
 
 namespace DVL_Data_Access_Layer.Users
@@ -254,5 +255,83 @@ namespace DVL_Data_Access_Layer.Users
             return RowsAffected > 0;
         }
 
+
+        // Find User By ID
+        public static DataTable FindUserById(int UserID) {
+            DataTable dt = new DataTable();
+            SqlConnection Connection =
+                new SqlConnection(DataBaseSetting.ConnectionString);
+
+            string query = "Select * From Users WHERE UserID = @UserID";
+
+            using (SqlCommand command = new SqlCommand(query, Connection))
+            {
+                command.Parameters.AddWithValue("@UserID", UserID);
+
+                try
+                {
+                    Connection.Open();
+
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        dt.Load(reader);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
+
+            return dt;
+        }
+
+
+        // update user
+
+        // Updates a user record in the database.
+        public static bool UpdateUser(
+            int userID,
+            int personID,
+            string userName,
+            string password,
+            bool isActive)
+        {
+            int rowsAffected = 0;
+
+            using (SqlConnection Connection =
+                new SqlConnection(DataBaseSetting.ConnectionString))
+            {
+                string query = @"
+            UPDATE Users
+            SET PersonID = @PersonID,
+                UserName = @UserName,
+                Password = @Password,
+                IsActive = @IsActive
+            WHERE UserID = @UserID;";
+
+                using (SqlCommand command = new SqlCommand(query, Connection))
+                {
+                    command.Parameters.AddWithValue("@UserID", userID);
+                    command.Parameters.AddWithValue("@PersonID", personID);
+                    command.Parameters.AddWithValue("@UserName", userName);
+                    command.Parameters.AddWithValue("@Password", password);
+                    command.Parameters.AddWithValue("@IsActive", isActive);
+
+                    try
+                    {
+                        Connection.Open();
+
+                        rowsAffected = command.ExecuteNonQuery();
+                    }
+                    catch (Exception)
+                    {
+                        return false;
+                    }
+                }
+            }
+
+            return rowsAffected > 0;
+        }
     }
 }

@@ -89,7 +89,7 @@ namespace Driving_License_Management_System.Forms.Users
 
         private void pictureBox2_Click(object sender, EventArgs e)
         {
-            using (frmAddUser addUserForm = new frmAddUser())
+            using (frmAddUser addUserForm = new frmAddUser(-1))
             {
                 addUserForm.DataBack += AddUserForm_DataBack;
                 addUserForm.ShowDialog();
@@ -288,5 +288,19 @@ namespace Driving_License_Management_System.Forms.Users
             }
         }
 
+        private void editeUserToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int userID = Convert.ToInt32(
+                dataGridView1.CurrentRow.Cells["UserID"].Value
+            );
+
+            using (frmAddUser addUserForm = new frmAddUser(userID))
+            {
+                addUserForm.DataBack += AddUserForm_DataBack;
+                addUserForm.ShowDialog();
+            }
+
+
+        }
     }
 }

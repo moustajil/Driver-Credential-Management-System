@@ -1,35 +1,145 @@
-﻿using Driving_License_Management_System.Controller.Users;
-using DVLD_Business_Layer.DVLD_Business_Layer;
+﻿using DVLD_Business_Layer.DVLD_Business_Layer;
 using DVLD_Business_Layer.Users;
 using System;
+using System.Data;
 using System.Windows.Forms;
 
 namespace Driving_License_Management_System.Forms.Users
 {
     public partial class frmAddUser : Form
     {
-        // Event used to return the newly created User ID.
-        public delegate void DataBackEventHandler(object sender, int userID);
-        public event DataBackEventHandler DataBack;
+        // Represents the current form mode.
+        private enum FormMode
+        {
+            AddNew,
+            Update
+        }
 
-        // -1 means that no person has been selected yet.
+        // Stores whether the form is adding or updating a user.
+        private FormMode _mode = FormMode.AddNew;
+
+        // Stores the current user ID. -1 means no existing user.
+        private int _userID = -1;
+
+        // Stores the selected person's ID. -1 means no person is selected.
         private int _personID = -1;
 
+        // Event used to return the saved user ID to the management form.
+        public delegate void DataBackEventHandler(object sender, int userID);
+
+        public event DataBackEventHandler DataBack;
+
+        // Opens the form in Add New mode.
         public frmAddUser()
         {
             InitializeComponent();
+
+            _mode = FormMode.AddNew;
+            _userID = -1;
+            _personID = -1;
         }
 
+        // Opens the form in Update mode using an existing user ID.
+        public frmAddUser(int userID)
+        {
+            InitializeComponent();
+
+            _mode = FormMode.Update;
+            _userID = userID;
+        }
+
+        // Initializes the form and loads the required information.
         private void frmAddUser_Load(object sender, EventArgs e)
         {
             LoadFilterItems();
 
-            // Prevent moving to the login information tab manually.
             tabControl1.SelectedTab = tabPage1;
 
-            lbUserIDLogin.Text = "N/A";
+            if (_mode == FormMode.AddNew)
+            {
+                PrepareAddMode();
+            }
+            else
+            {
+                PrepareUpdateMode();
+            }
         }
 
+        // Configures the form for adding a new user.
+        private void PrepareAddMode()
+        {
+            lbStatuUser.Text = "Add New User";
+            lbUserIDLogin.Text = "N/A";
+
+            _userID = -1;
+            _personID = -1;
+
+            gbFindPerson.Enabled = true;
+            btnNext.Enabled = true;
+
+            tbUserName.Clear();
+            tbPassword.Clear();
+            tbConfirmPassword.Clear();
+
+            cbActive.Checked = true;
+        }
+
+        // Configures the form for updating an existing user.
+        private void PrepareUpdateMode()
+        {
+            lbStatuUser.Text = "Update User";
+            lbUserIDLogin.Text = _userID.ToString();
+
+            gbFindPerson.Enabled = false;
+
+            LoadUserData();
+        }
+
+        // Loads the existing user's data into the form controls.
+        private void LoadUserData()
+        {
+            try
+            {
+                DataTable userData = BNUser.FindUserByID(_userID);
+
+                if (userData == null || userData.Rows.Count == 0)
+                {
+                    MessageBox.Show(
+                        $"No user was found with ID {_userID}.",
+                        "User Not Found",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+
+                    Close();
+                    return;
+                }
+
+                DataRow row = userData.Rows[0];
+
+                _personID = Convert.ToInt32(row["PersonID"]);
+
+                tbUserName.Text = row["UserName"].ToString();
+                tbPassword.Text = row["Password"].ToString();
+                tbConfirmPassword.Text = row["Password"].ToString();
+                cbActive.Checked = Convert.ToBoolean(row["IsActive"]);
+
+                ctrInforPerson1.LoadPersonInfo(_personID);
+
+                tabControl1.SelectedTab = tabPage2;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    $"An error occurred while loading the user:\n\n{ex.Message}",
+                    "Loading Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+
+                Close();
+            }
+        }
+
+        // Loads all available person-search filters.
         private void LoadFilterItems()
         {
             cbFilter.Items.Clear();
@@ -47,6 +157,7 @@ namespace Driving_License_Management_System.Forms.Users
             cbFilter.SelectedIndex = 0;
         }
 
+        // Converts the displayed filter name to its database column name.
         private string GetDatabaseColumnName(string selectedFilter)
         {
             switch (selectedFilter)
@@ -83,14 +194,15 @@ namespace Driving_License_Management_System.Forms.Users
             }
         }
 
+        // Searches for a person when the search picture is clicked.
         private void pictureBox2_Click(object sender, EventArgs e)
         {
             FindPerson();
         }
 
+        // Validates the search value and searches for a person.
         private void FindPerson()
         {
-            // Reset the previous person before starting a new search.
             _personID = -1;
 
             if (cbFilter.SelectedItem == null)
@@ -120,7 +232,9 @@ namespace Driving_License_Management_System.Forms.Users
             }
 
             string selectedFilter = cbFilter.SelectedItem.ToString();
-            string databaseColumn = GetDatabaseColumnName(selectedFilter);
+
+            string databaseColumn =
+                GetDatabaseColumnName(selectedFilter);
 
             if (string.IsNullOrWhiteSpace(databaseColumn))
             {
@@ -134,7 +248,7 @@ namespace Driving_License_Management_System.Forms.Users
             }
 
             if (databaseColumn == "PersonID" &&
-                !int.TryParse(value, out int parsedPersonID))
+                !int.TryParse(value, out _))
             {
                 MessageBox.Show(
                     "Person ID must be a valid number.",
@@ -147,7 +261,6 @@ namespace Driving_License_Management_System.Forms.Users
                 return;
             }
 
-            // Keep this validation only if Gender is stored as 0 or 1.
             if (databaseColumn == "Gendor")
             {
                 if (!int.TryParse(value, out int gender) ||
@@ -204,16 +317,19 @@ namespace Driving_License_Management_System.Forms.Users
             }
         }
 
+        // Clears the previous search when the filter changes.
         private void cbFilter_SelectedIndexChanged(object sender, EventArgs e)
         {
             lbFilter.Clear();
             lbFilter.Focus();
 
-            // The previous person should not remain selected
-            // after changing the search filter.
-            _personID = -1;
+            if (_mode == FormMode.AddNew)
+            {
+                _personID = -1;
+            }
         }
 
+        // Moves the user to the login information tab.
         private void btnNext_Click(object sender, EventArgs e)
         {
             if (_personID <= 0)
@@ -233,6 +349,7 @@ namespace Driving_License_Management_System.Forms.Users
             tbUserName.Focus();
         }
 
+        // Validates the username, password, and selected person.
         private bool ValidateUserInputs()
         {
             bool isValid = true;
@@ -248,6 +365,7 @@ namespace Driving_License_Management_System.Forms.Users
                     MessageBoxIcon.Warning);
 
                 tabControl1.SelectedTab = tabPage1;
+
                 return false;
             }
 
@@ -309,6 +427,7 @@ namespace Driving_License_Management_System.Forms.Users
             return isValid;
         }
 
+        // Saves a new user or updates the existing user.
         private void btnSave_Click(object sender, EventArgs e)
         {
             if (!ValidateUserInputs())
@@ -322,41 +441,25 @@ namespace Driving_License_Management_System.Forms.Users
                 return;
             }
 
-            string userName = tbUserName.Text.Trim();
-            string password = tbPassword.Text;
-            bool isActive = cbActive.Checked;
-
             try
             {
-                int userID = BNUser.AddUser(
-                    _personID,
-                    userName,
-                    password,
-                    isActive);
+                bool isSaved;
 
-                if (userID <= 0)
+                if (_mode == FormMode.AddNew)
                 {
-                    MessageBox.Show(
-                        "The user could not be added.\n\n" +
-                        "The username may already exist, or this person " +
-                        "may already be linked to another user.",
-                        "Save Failed",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
+                    isSaved = AddNewUser();
+                }
+                else
+                {
+                    isSaved = UpdateExistingUser();
+                }
 
+                if (!isSaved)
+                {
                     return;
                 }
 
-                lbUserIDLogin.Text = userID.ToString();
-
-                MessageBox.Show(
-                    $"User added successfully.\n\nUser ID: {userID}",
-                    "User Created",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information);
-
-                // Notify frmUserManagement that a user was created.
-                DataBack?.Invoke(this, userID);
+                DataBack?.Invoke(this, _userID);
 
                 DialogResult = DialogResult.OK;
                 Close();
@@ -371,6 +474,83 @@ namespace Driving_License_Management_System.Forms.Users
             }
         }
 
+        // Adds a new user to the database.
+        private bool AddNewUser()
+        {
+            string userName = tbUserName.Text.Trim();
+            string password = tbPassword.Text;
+            bool isActive = cbActive.Checked;
+
+            int newUserID = BNUser.AddUser(
+                _personID,
+                userName,
+                password,
+                isActive);
+
+            if (newUserID <= 0)
+            {
+                MessageBox.Show(
+                    "The user could not be added.\n\n" +
+                    "The username may already exist, or this person " +
+                    "may already be linked to another user.",
+                    "Save Failed",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+
+                return false;
+            }
+
+            _userID = newUserID;
+
+            lbUserIDLogin.Text = _userID.ToString();
+            lbStatuUser.Text = "Update User";
+
+            MessageBox.Show(
+                $"User added successfully.\n\nUser ID: {_userID}",
+                "User Created",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information);
+
+            return true;
+        }
+
+        // Updates the current user's information in the database.
+        private bool UpdateExistingUser()
+        {
+            string userName = tbUserName.Text.Trim();
+            string password = tbPassword.Text;
+            bool isActive = cbActive.Checked;
+
+            bool isUpdated = BNUser.UpdateUser(
+                 _userID,
+                 _personID,
+                 userName,
+                 password,
+                 isActive);
+
+
+            if (!isUpdated)
+            {
+                MessageBox.Show(
+                    "The user could not be updated.\n\n" +
+                    "The username may already be used by another user.",
+                    "Update Failed",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+
+                return false;
+            }
+
+            MessageBox.Show(
+                $"User updated successfully.\n\nUser ID: {_userID}",
+                "User Updated",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information);
+
+            return true;
+        }
+
+        // Closes the form without saving changes.
         private void btnClose_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;

@@ -33,21 +33,21 @@
             label1 = new Label();
             pictureBox1 = new PictureBox();
             dataGridView1 = new DataGridView();
+            contextMenuStrip1 = new ContextMenuStrip(components);
+            showUserToolStripMenuItem = new ToolStripMenuItem();
+            addUserToolStripMenuItem = new ToolStripMenuItem();
+            deletUserToolStripMenuItem = new ToolStripMenuItem();
+            editeUserToolStripMenuItem = new ToolStripMenuItem();
             pictureBox2 = new PictureBox();
             cbFilterUsers = new ComboBox();
             tbFilter = new TextBox();
             label2 = new Label();
             lbRecord = new Label();
             button1 = new Button();
-            contextMenuStrip1 = new ContextMenuStrip(components);
-            showUserToolStripMenuItem = new ToolStripMenuItem();
-            addUserToolStripMenuItem = new ToolStripMenuItem();
-            deletUserToolStripMenuItem = new ToolStripMenuItem();
-            editeUserToolStripMenuItem = new ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             contextMenuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             SuspendLayout();
             // 
             // label1
@@ -79,6 +79,39 @@
             dataGridView1.RowHeadersWidth = 51;
             dataGridView1.Size = new Size(735, 188);
             dataGridView1.TabIndex = 2;
+            // 
+            // contextMenuStrip1
+            // 
+            contextMenuStrip1.ImageScalingSize = new Size(20, 20);
+            contextMenuStrip1.Items.AddRange(new ToolStripItem[] { showUserToolStripMenuItem, addUserToolStripMenuItem, deletUserToolStripMenuItem, editeUserToolStripMenuItem });
+            contextMenuStrip1.Name = "contextMenuStrip1";
+            contextMenuStrip1.Size = new Size(211, 128);
+            // 
+            // showUserToolStripMenuItem
+            // 
+            showUserToolStripMenuItem.Name = "showUserToolStripMenuItem";
+            showUserToolStripMenuItem.Size = new Size(210, 24);
+            showUserToolStripMenuItem.Text = "Show User";
+            // 
+            // addUserToolStripMenuItem
+            // 
+            addUserToolStripMenuItem.Name = "addUserToolStripMenuItem";
+            addUserToolStripMenuItem.Size = new Size(210, 24);
+            addUserToolStripMenuItem.Text = "Add User";
+            // 
+            // deletUserToolStripMenuItem
+            // 
+            deletUserToolStripMenuItem.Name = "deletUserToolStripMenuItem";
+            deletUserToolStripMenuItem.Size = new Size(210, 24);
+            deletUserToolStripMenuItem.Text = "Delet User";
+            deletUserToolStripMenuItem.Click += deletUserToolStripMenuItem_Click;
+            // 
+            // editeUserToolStripMenuItem
+            // 
+            editeUserToolStripMenuItem.Name = "editeUserToolStripMenuItem";
+            editeUserToolStripMenuItem.Size = new Size(210, 24);
+            editeUserToolStripMenuItem.Text = "Edite User";
+            editeUserToolStripMenuItem.Click += editeUserToolStripMenuItem_Click;
             // 
             // pictureBox2
             // 
@@ -138,38 +171,6 @@
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
-            // contextMenuStrip1
-            // 
-            contextMenuStrip1.ImageScalingSize = new Size(20, 20);
-            contextMenuStrip1.Items.AddRange(new ToolStripItem[] { showUserToolStripMenuItem, addUserToolStripMenuItem, deletUserToolStripMenuItem, editeUserToolStripMenuItem });
-            contextMenuStrip1.Name = "contextMenuStrip1";
-            contextMenuStrip1.Size = new Size(148, 100);
-            // 
-            // showUserToolStripMenuItem
-            // 
-            showUserToolStripMenuItem.Name = "showUserToolStripMenuItem";
-            showUserToolStripMenuItem.Size = new Size(147, 24);
-            showUserToolStripMenuItem.Text = "Show User";
-            // 
-            // addUserToolStripMenuItem
-            // 
-            addUserToolStripMenuItem.Name = "addUserToolStripMenuItem";
-            addUserToolStripMenuItem.Size = new Size(147, 24);
-            addUserToolStripMenuItem.Text = "Add User";
-            // 
-            // deletUserToolStripMenuItem
-            // 
-            deletUserToolStripMenuItem.Name = "deletUserToolStripMenuItem";
-            deletUserToolStripMenuItem.Size = new Size(147, 24);
-            deletUserToolStripMenuItem.Text = "Delet User";
-            deletUserToolStripMenuItem.Click += deletUserToolStripMenuItem_Click;
-            // 
-            // editeUserToolStripMenuItem
-            // 
-            editeUserToolStripMenuItem.Name = "editeUserToolStripMenuItem";
-            editeUserToolStripMenuItem.Size = new Size(147, 24);
-            editeUserToolStripMenuItem.Text = "Edite User";
-            // 
             // frmUserManagement
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -189,8 +190,8 @@
             Load += frmUserManagement_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             contextMenuStrip1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }

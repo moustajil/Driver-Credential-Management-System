@@ -53,5 +53,18 @@ namespace DVLD_Business_Layer.Users
         {
             return DVL_Data_Access_Layer.Users.DBAUser.DeleteUser(userID);
         }
+
+        public static DataTable FindUserByID(int userID) {
+            return DVL_Data_Access_Layer.Users.DBAUser.FindUserById(userID);
+        }
+
+        public static bool UpdateUser(int userID,
+            int personID,
+            string userName,
+            string password,
+            bool isActive)
+        {
+            return DVL_Data_Access_Layer.Users.DBAUser.UpdateUser(userID,personID,userName,password,isActive);
+        }
     }
 }
