@@ -47,6 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApplicationType\Application.cs" />
     <Compile Include="Class1.cs" />
     <Compile Include="Countries\Countries.cs" />
     <Compile Include="DataAccessSetting\DataBaseSetting.cs" />

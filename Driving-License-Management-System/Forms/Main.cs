@@ -1,4 +1,5 @@
-﻿using Driving_License_Management_System.Forms.People;
+﻿using Driving_License_Management_System.Forms.Application;
+using Driving_License_Management_System.Forms.People;
 using Driving_License_Management_System.Forms.Users;
 using System;
 using System.Collections.Generic;
@@ -36,6 +37,17 @@ namespace Driving_License_Management_System
         {
             frmUserManagement userManagement = new frmUserManagement();
             userManagement.Show();
+        }
+
+        private void currentUserInfoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void manageApplicationTypeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmManagetypeApplication frmManagetype = new frmManagetypeApplication();
+            frmManagetype.Show();
         }
     }
 }

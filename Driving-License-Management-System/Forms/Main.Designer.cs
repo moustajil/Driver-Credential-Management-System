@@ -35,9 +35,12 @@
             driverToolStripMenuItem = new ToolStripMenuItem();
             userToolStripMenuItem = new ToolStripMenuItem();
             accountSettingToolStripMenuItem = new ToolStripMenuItem();
-            currentUserInfoToolStripMenuItem = new ToolStripMenuItem();
-            changePasswordToolStripMenuItem = new ToolStripMenuItem();
             logoutToolStripMenuItem = new ToolStripMenuItem();
+            drivingLicensServiceToolStripMenuItem = new ToolStripMenuItem();
+            manageApplicationToolStripMenuItem = new ToolStripMenuItem();
+            detainLicenseToolStripMenuItem = new ToolStripMenuItem();
+            manageApplicationTypeToolStripMenuItem = new ToolStripMenuItem();
+            manageTestTypeToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -53,6 +56,7 @@
             // 
             // applicationToolStripMenuItem
             // 
+            applicationToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { drivingLicensServiceToolStripMenuItem, manageApplicationToolStripMenuItem, detainLicenseToolStripMenuItem, manageApplicationTypeToolStripMenuItem, manageTestTypeToolStripMenuItem });
             applicationToolStripMenuItem.Name = "applicationToolStripMenuItem";
             applicationToolStripMenuItem.Size = new Size(100, 24);
             applicationToolStripMenuItem.Text = "Application";
@@ -86,22 +90,10 @@
             // 
             // accountSettingToolStripMenuItem
             // 
-            accountSettingToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { currentUserInfoToolStripMenuItem, changePasswordToolStripMenuItem, logoutToolStripMenuItem });
+            accountSettingToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { logoutToolStripMenuItem });
             accountSettingToolStripMenuItem.Name = "accountSettingToolStripMenuItem";
             accountSettingToolStripMenuItem.Size = new Size(128, 24);
             accountSettingToolStripMenuItem.Text = "Account Setting";
-            // 
-            // currentUserInfoToolStripMenuItem
-            // 
-            currentUserInfoToolStripMenuItem.Name = "currentUserInfoToolStripMenuItem";
-            currentUserInfoToolStripMenuItem.Size = new Size(224, 26);
-            currentUserInfoToolStripMenuItem.Text = "Current  User Info";
-            // 
-            // changePasswordToolStripMenuItem
-            // 
-            changePasswordToolStripMenuItem.Name = "changePasswordToolStripMenuItem";
-            changePasswordToolStripMenuItem.Size = new Size(224, 26);
-            changePasswordToolStripMenuItem.Text = "Change Password";
             // 
             // logoutToolStripMenuItem
             // 
@@ -109,6 +101,37 @@
             logoutToolStripMenuItem.Size = new Size(224, 26);
             logoutToolStripMenuItem.Text = "Logout";
             logoutToolStripMenuItem.Click += logoutToolStripMenuItem_Click;
+            // 
+            // drivingLicensServiceToolStripMenuItem
+            // 
+            drivingLicensServiceToolStripMenuItem.Name = "drivingLicensServiceToolStripMenuItem";
+            drivingLicensServiceToolStripMenuItem.Size = new Size(262, 26);
+            drivingLicensServiceToolStripMenuItem.Text = "Driving Licens Service";
+            // 
+            // manageApplicationToolStripMenuItem
+            // 
+            manageApplicationToolStripMenuItem.Name = "manageApplicationToolStripMenuItem";
+            manageApplicationToolStripMenuItem.Size = new Size(262, 26);
+            manageApplicationToolStripMenuItem.Text = "Manage Application";
+            // 
+            // detainLicenseToolStripMenuItem
+            // 
+            detainLicenseToolStripMenuItem.Name = "detainLicenseToolStripMenuItem";
+            detainLicenseToolStripMenuItem.Size = new Size(262, 26);
+            detainLicenseToolStripMenuItem.Text = "Detain License";
+            // 
+            // manageApplicationTypeToolStripMenuItem
+            // 
+            manageApplicationTypeToolStripMenuItem.Name = "manageApplicationTypeToolStripMenuItem";
+            manageApplicationTypeToolStripMenuItem.Size = new Size(262, 26);
+            manageApplicationTypeToolStripMenuItem.Text = "Manage Application Type";
+            manageApplicationTypeToolStripMenuItem.Click += manageApplicationTypeToolStripMenuItem_Click;
+            // 
+            // manageTestTypeToolStripMenuItem
+            // 
+            manageTestTypeToolStripMenuItem.Name = "manageTestTypeToolStripMenuItem";
+            manageTestTypeToolStripMenuItem.Size = new Size(262, 26);
+            manageTestTypeToolStripMenuItem.Text = "Manage Test Type";
             // 
             // Main
             // 
@@ -136,8 +159,11 @@
         private ToolStripMenuItem userToolStripMenuItem;
         private ToolStripMenuItem accountSettingToolStripMenuItem;
         private Panel panel1;
-        private ToolStripMenuItem currentUserInfoToolStripMenuItem;
-        private ToolStripMenuItem changePasswordToolStripMenuItem;
         private ToolStripMenuItem logoutToolStripMenuItem;
+        private ToolStripMenuItem drivingLicensServiceToolStripMenuItem;
+        private ToolStripMenuItem manageApplicationToolStripMenuItem;
+        private ToolStripMenuItem detainLicenseToolStripMenuItem;
+        private ToolStripMenuItem manageApplicationTypeToolStripMenuItem;
+        private ToolStripMenuItem manageTestTypeToolStripMenuItem;
     }
 }
