@@ -302,5 +302,21 @@ namespace Driving_License_Management_System.Forms.Users
 
 
         }
+
+        private void contextMenuStrip1_Opening(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
+        private void editePasswordToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int userID = Convert.ToInt32(
+                dataGridView1.CurrentRow.Cells["UserID"].Value
+            );
+
+            frmInforUserWithPerson frmUpdate = new frmInforUserWithPerson(userID);
+            frmUpdate.ShowDialog();
+
+        }
     }
 }

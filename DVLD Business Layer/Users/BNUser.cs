@@ -66,5 +66,14 @@ namespace DVLD_Business_Layer.Users
         {
             return DVL_Data_Access_Layer.Users.DBAUser.UpdateUser(userID,personID,userName,password,isActive);
         }
+
+        public static bool UpdatePassword(int userID, string password) { 
+            return DVL_Data_Access_Layer.Users.DBAUser.UpdatePassword(userID,password);
+        }
+
+        public static bool CheckIfPasswordCorrect(int userID, string password){
+            return DVL_Data_Access_Layer.Users.DBAUser.CheckIfPasswordCorrect(userID, password);
+        }
+
     }
 }

@@ -333,5 +333,70 @@ namespace DVL_Data_Access_Layer.Users
 
             return rowsAffected > 0;
         }
+
+        // update password
+        // Updates the password of a specific user.
+        public static bool UpdatePassword(int userID, string newPassword)
+        {
+            const string query = @"
+        UPDATE Users
+        SET Password = @Password
+        WHERE UserID = @UserID;";
+
+            try
+            {
+                using (SqlConnection connection =
+                       new SqlConnection(DataBaseSetting.ConnectionString))
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.Add("@UserID", SqlDbType.Int).Value = userID;
+                    command.Parameters.Add("@Password", SqlDbType.NVarChar, 100).Value =
+                        newPassword;
+
+                    connection.Open();
+
+                    int rowsAffected = command.ExecuteNonQuery();
+
+                    return rowsAffected > 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error updating password: {ex.Message}");
+                return false;
+            }
+        }
+
+        // check if password is correct
+        // Checks whether the entered password matches the specified user.
+        public static bool CheckIfPasswordCorrect(int userID, string password)
+        {
+            const string query = @"
+        SELECT COUNT(1)
+        FROM Users
+        WHERE UserID = @UserID
+          AND Password = @Password;";
+
+            try
+            {
+                using (SqlConnection connection =
+                       new SqlConnection(DataBaseSetting.ConnectionString))
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.Add("@UserID", SqlDbType.Int).Value = userID;
+                    command.Parameters.Add("@Password", SqlDbType.NVarChar, 100).Value =
+                        password ?? string.Empty;
+
+                    connection.Open();
+                    int count = Convert.ToInt32(command.ExecuteScalar());
+                    return count > 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error checking password: {ex.Message}");
+                return false;
+            }
+        }
     }
 }

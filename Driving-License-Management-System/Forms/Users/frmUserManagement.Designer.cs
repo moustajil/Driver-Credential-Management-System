@@ -44,6 +44,7 @@
             label2 = new Label();
             lbRecord = new Label();
             button1 = new Button();
+            editePasswordToolStripMenuItem = new ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             contextMenuStrip1.SuspendLayout();
@@ -83,9 +84,10 @@
             // contextMenuStrip1
             // 
             contextMenuStrip1.ImageScalingSize = new Size(20, 20);
-            contextMenuStrip1.Items.AddRange(new ToolStripItem[] { showUserToolStripMenuItem, addUserToolStripMenuItem, deletUserToolStripMenuItem, editeUserToolStripMenuItem });
+            contextMenuStrip1.Items.AddRange(new ToolStripItem[] { showUserToolStripMenuItem, addUserToolStripMenuItem, deletUserToolStripMenuItem, editeUserToolStripMenuItem, editePasswordToolStripMenuItem });
             contextMenuStrip1.Name = "contextMenuStrip1";
-            contextMenuStrip1.Size = new Size(211, 128);
+            contextMenuStrip1.Size = new Size(211, 152);
+            contextMenuStrip1.Opening += contextMenuStrip1_Opening;
             // 
             // showUserToolStripMenuItem
             // 
@@ -171,6 +173,13 @@
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
+            // editePasswordToolStripMenuItem
+            // 
+            editePasswordToolStripMenuItem.Name = "editePasswordToolStripMenuItem";
+            editePasswordToolStripMenuItem.Size = new Size(210, 24);
+            editePasswordToolStripMenuItem.Text = "Edite Password";
+            editePasswordToolStripMenuItem.Click += editePasswordToolStripMenuItem_Click;
+            // 
             // frmUserManagement
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -212,5 +221,6 @@
         private ToolStripMenuItem addUserToolStripMenuItem;
         private ToolStripMenuItem deletUserToolStripMenuItem;
         private ToolStripMenuItem editeUserToolStripMenuItem;
+        private ToolStripMenuItem editePasswordToolStripMenuItem;
     }
 }
