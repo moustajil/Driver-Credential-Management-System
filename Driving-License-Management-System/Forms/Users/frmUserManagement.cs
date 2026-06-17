@@ -318,5 +318,18 @@ namespace Driving_License_Management_System.Forms.Users
             frmUpdate.ShowDialog();
 
         }
+
+        private void showUserToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int userID = Convert.ToInt32(
+               dataGridView1.CurrentRow.Cells["UserID"].Value
+           );
+
+
+            frmDetailsInfo frmDetails = new frmDetailsInfo(userID);
+            frmDetails.ShowDialog();
+
+
+        }
     }
 }

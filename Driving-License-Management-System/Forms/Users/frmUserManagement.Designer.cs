@@ -38,13 +38,13 @@
             addUserToolStripMenuItem = new ToolStripMenuItem();
             deletUserToolStripMenuItem = new ToolStripMenuItem();
             editeUserToolStripMenuItem = new ToolStripMenuItem();
+            editePasswordToolStripMenuItem = new ToolStripMenuItem();
             pictureBox2 = new PictureBox();
             cbFilterUsers = new ComboBox();
             tbFilter = new TextBox();
             label2 = new Label();
             lbRecord = new Label();
             button1 = new Button();
-            editePasswordToolStripMenuItem = new ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             contextMenuStrip1.SuspendLayout();
@@ -94,6 +94,7 @@
             showUserToolStripMenuItem.Name = "showUserToolStripMenuItem";
             showUserToolStripMenuItem.Size = new Size(210, 24);
             showUserToolStripMenuItem.Text = "Show User";
+            showUserToolStripMenuItem.Click += showUserToolStripMenuItem_Click;
             // 
             // addUserToolStripMenuItem
             // 
@@ -114,6 +115,13 @@
             editeUserToolStripMenuItem.Size = new Size(210, 24);
             editeUserToolStripMenuItem.Text = "Edite User";
             editeUserToolStripMenuItem.Click += editeUserToolStripMenuItem_Click;
+            // 
+            // editePasswordToolStripMenuItem
+            // 
+            editePasswordToolStripMenuItem.Name = "editePasswordToolStripMenuItem";
+            editePasswordToolStripMenuItem.Size = new Size(210, 24);
+            editePasswordToolStripMenuItem.Text = "Edite Password";
+            editePasswordToolStripMenuItem.Click += editePasswordToolStripMenuItem_Click;
             // 
             // pictureBox2
             // 
@@ -172,13 +180,6 @@
             button1.Text = "Close";
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
-            // 
-            // editePasswordToolStripMenuItem
-            // 
-            editePasswordToolStripMenuItem.Name = "editePasswordToolStripMenuItem";
-            editePasswordToolStripMenuItem.Size = new Size(210, 24);
-            editePasswordToolStripMenuItem.Text = "Edite Password";
-            editePasswordToolStripMenuItem.Click += editePasswordToolStripMenuItem_Click;
             // 
             // frmUserManagement
             // 

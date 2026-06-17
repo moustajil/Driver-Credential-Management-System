@@ -22,6 +22,9 @@
     <Compile Update="Forms\Users\frmAddUser.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Forms\Users\frmDetailsInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Forms\Users\frmUpdatePassword.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -29,6 +32,9 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Forms\Users\frmUserManagement.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\Users\showInfoPersonDetail.cs">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>
