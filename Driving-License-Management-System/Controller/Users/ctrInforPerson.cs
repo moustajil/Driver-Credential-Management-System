@@ -1,4 +1,5 @@
-﻿using DVLD_Business_Layer.DVLD_Business_Layer;
+﻿using Driving_License_Management_System.Forms.People;
+using DVLD_Business_Layer.DVLD_Business_Layer;
 using System;
 using System.Windows.Forms;
 
@@ -53,7 +54,7 @@ namespace Driving_License_Management_System.Controller.Users
 
             // Change these control names to your actual label names.
             lbPersonID.Text = person.PersonID.ToString();
-            lbName.Text = person.FirstName + " " + person.SecondName + " " + person.ThirdName ;
+            lbName.Text = person.FirstName + " " + person.SecondName + " " + person.ThirdName;
             lbCountry.Text = DVLD_Business_Layer.BnCountries.GetCountryNameByCountryID(person.NationalityCountryID);
             lbAddress.Text = person.Address;
             lbNationalID.Text = person.NationalID;
@@ -61,33 +62,39 @@ namespace Driving_License_Management_System.Controller.Users
             lbPhone.Text = person.Phone;
             lbEmail.Text = person.Email;
             lbDateOfBirth.Text = person.DateOfBirth.ToString();
-            
+
 
             //LoadPersonImage(imagePath);
         }
 
-       
 
-       /* public void ClearPersonInfo()
-        {
-            _personID = -1;
 
-            lblPersonID.Text = "[????]";
-            lblNationalNo.Text = "[????]";
-            lblFullName.Text = "[????]";
-            lblDateOfBirth.Text = "[????]";
-            lblGender.Text = "[????]";
-            lblAddress.Text = "[????]";
-            lblPhone.Text = "[????]";
-            lblEmail.Text = "[????]";
-            lblNationality.Text = "[????]";
+        /* public void ClearPersonInfo()
+         {
+             _personID = -1;
 
-            pbPersonImage.Image = null;
-            pbPersonImage.ImageLocation = null;
-        }*/
+             lblPersonID.Text = "[????]";
+             lblNationalNo.Text = "[????]";
+             lblFullName.Text = "[????]";
+             lblDateOfBirth.Text = "[????]";
+             lblGender.Text = "[????]";
+             lblAddress.Text = "[????]";
+             lblPhone.Text = "[????]";
+             lblEmail.Text = "[????]";
+             lblNationality.Text = "[????]";
+
+             pbPersonImage.Image = null;
+             pbPersonImage.ImageLocation = null;
+         }*/
 
         private void groupBox1_Enter(object sender, EventArgs e)
         {
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            frmAddEdite frmAddEdite = new frmAddEdite(_personID);
+            frmAddEdite.ShowDialog();
         }
     }
 }

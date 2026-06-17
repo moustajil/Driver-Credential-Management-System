@@ -155,6 +155,7 @@
             linkLabel1.TabIndex = 13;
             linkLabel1.TabStop = true;
             linkLabel1.Text = "Edite Person Info";
+            linkLabel1.LinkClicked += linkLabel1_LinkClicked;
             // 
             // pictureBox1
             // 
