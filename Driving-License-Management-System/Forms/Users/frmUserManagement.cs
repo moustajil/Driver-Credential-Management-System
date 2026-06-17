@@ -89,7 +89,7 @@ namespace Driving_License_Management_System.Forms.Users
 
         private void pictureBox2_Click(object sender, EventArgs e)
         {
-            using (frmAddUser addUserForm = new frmAddUser(-1))
+            using (frmAddUser addUserForm = new frmAddUser())
             {
                 addUserForm.DataBack += AddUserForm_DataBack;
                 addUserForm.ShowDialog();

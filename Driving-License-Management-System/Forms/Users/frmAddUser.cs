@@ -1,4 +1,5 @@
-﻿using DVLD_Business_Layer.DVLD_Business_Layer;
+﻿using Driving_License_Management_System.Forms.People;
+using DVLD_Business_Layer.DVLD_Business_Layer;
 using DVLD_Business_Layer.Users;
 using System;
 using System.Data;
@@ -555,6 +556,13 @@ namespace Driving_License_Management_System.Forms.Users
         {
             DialogResult = DialogResult.Cancel;
             Close();
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            frmAddEdite addPerson = new frmAddEdite(_personID);
+            
+            addPerson.ShowDialog();
         }
     }
 }
