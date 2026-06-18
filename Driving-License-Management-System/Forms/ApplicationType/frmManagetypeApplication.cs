@@ -13,6 +13,7 @@ namespace Driving_License_Management_System.Forms.Application
         public frmManagetypeApplication()
         {
             InitializeComponent();
+            UiTheme.Apply(this);
       
         }
 

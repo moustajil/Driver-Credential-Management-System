@@ -36,6 +36,7 @@ namespace Driving_License_Management_System.Controller.People
         public ctlFromAddEdite()
         {
             InitializeComponent();
+            UiTheme.Apply(this);
 
             dtPiker.MinDate = new DateTime(1900, 1, 1);
             dtPiker.MaxDate = DateTime.Today.AddYears(-18);

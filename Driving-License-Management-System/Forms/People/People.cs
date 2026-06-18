@@ -9,6 +9,7 @@ namespace Driving_License_Management_System.Forms.People
         public People()
         {
             InitializeComponent();
+            UiTheme.Apply(this);
         }
 
         private void LoadPeople()

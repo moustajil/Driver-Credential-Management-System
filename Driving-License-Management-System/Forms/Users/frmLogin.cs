@@ -11,6 +11,7 @@ namespace Driving_License_Management_System.Forms.Users
         public frmLogin()
         {
             InitializeComponent();
+            UiTheme.Apply(this);
         }
 
         private void frmLogin_Load(object sender, EventArgs e)
@@ -38,7 +39,7 @@ namespace Driving_License_Management_System.Forms.Users
 
             if (checkUser)
             {
-                if (cbActive.Checked)
+                /*if (cbActive.Checked)
                 {
                     File.WriteAllLines(FilePath, new string[]
                     {
@@ -50,7 +51,7 @@ namespace Driving_License_Management_System.Forms.Users
                 {
                     if (File.Exists(FilePath))
                         File.Delete(FilePath);
-                }
+                }*/
 
                 Main main = new Main();
                 main.Show();

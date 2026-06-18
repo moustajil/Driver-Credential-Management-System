@@ -11,6 +11,7 @@ namespace Driving_License_Management_System.Forms.Users
         public frmUserManagement()
         {
             InitializeComponent();
+            UiTheme.Apply(this);
         }
 
         private void frmUserManagement_Load(object sender, EventArgs e)

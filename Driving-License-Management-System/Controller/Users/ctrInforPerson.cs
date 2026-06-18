@@ -17,11 +17,13 @@ namespace Driving_License_Management_System.Controller.Users
         public ctrInforPerson()
         {
             InitializeComponent();
+            UiTheme.Apply(this);
         }
 
         public ctrInforPerson(int personID)
         {
             InitializeComponent();
+            UiTheme.Apply(this);
             LoadPersonInfo(personID);
         }
 

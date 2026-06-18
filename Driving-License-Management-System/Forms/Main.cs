@@ -16,6 +16,7 @@ namespace Driving_License_Management_System
         public Main()
         {
             InitializeComponent();
+            UiTheme.Apply(this);
         }
 
         private void showToolStripMenuItem_Click(object sender, EventArgs e)

@@ -13,6 +13,7 @@ namespace Driving_License_Management_System.Forms.Users
         public showInfoPersonDetail()
         {
             InitializeComponent();
+            UiTheme.Apply(this);
         }
     }
 }

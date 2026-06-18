@@ -34,6 +34,7 @@ namespace Driving_License_Management_System.Forms.Users
         public frmAddUser()
         {
             InitializeComponent();
+            UiTheme.Apply(this);
 
             _mode = FormMode.AddNew;
             _userID = -1;
@@ -44,6 +45,7 @@ namespace Driving_License_Management_System.Forms.Users
         public frmAddUser(int userID)
         {
             InitializeComponent();
+            UiTheme.Apply(this);
 
             _mode = FormMode.Update;
             _userID = userID;

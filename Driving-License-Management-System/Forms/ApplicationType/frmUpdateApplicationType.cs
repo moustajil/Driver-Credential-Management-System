@@ -13,6 +13,7 @@ namespace Driving_License_Management_System.Forms.ApplicationType
         public frmUpdateApplicationType()
         {
             InitializeComponent();
+            UiTheme.Apply(this);
         }
 
         private void frmUpdateApplicationType_Load(object sender, EventArgs e)

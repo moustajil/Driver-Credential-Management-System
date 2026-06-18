@@ -16,12 +16,14 @@ namespace Driving_License_Management_System.Controller.Users
         public ctrInforPersonWithUser()
         {
             InitializeComponent();
+            UiTheme.Apply(this);
         }
 
         // Initializes the control with a specific user ID.
         public ctrInforPersonWithUser(int userID)
         {
             InitializeComponent();
+            UiTheme.Apply(this);
             _userID = userID;
         }
 

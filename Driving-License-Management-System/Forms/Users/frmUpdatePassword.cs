@@ -11,6 +11,7 @@ namespace Driving_License_Management_System.Forms.Users
         public frmInforUserWithPerson(int userID)
         {
             InitializeComponent();
+            UiTheme.Apply(this);
             _userID = userID;
         }
 

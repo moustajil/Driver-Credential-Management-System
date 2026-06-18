@@ -20,6 +20,7 @@ namespace Driving_License_Management_System.Forms.People
         public frmAddEdite(int persID)
         {
             InitializeComponent();
+            UiTheme.Apply(this);
             if (_personID > 0)
             {
                 updateAddPerson.Text = "Update Person";
