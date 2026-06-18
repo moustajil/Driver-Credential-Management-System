@@ -72,6 +72,104 @@ namespace DVL_Data_Access_Layer.Application
                     return 0;
                 }
             }
+
+        
         }
+
+        public static DataTable FindApplicationTypeByID(int applicationTypeID)
+        {
+            DataTable dt = new DataTable();
+
+            using (SqlConnection connection =
+                new SqlConnection(DataAccessSetting.DataBaseSetting.ConnectionString))
+            {
+                string query = @"
+            SELECT *
+            FROM ApplicationTypes
+            WHERE ApplicationTypeID = @ApplicationTypeID;";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.Add(
+                        "@ApplicationTypeID",
+                        SqlDbType.Int
+                    ).Value = applicationTypeID;
+
+                    try
+                    {
+                        connection.Open();
+
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            dt.Load(reader);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(
+                            $"Error finding application type: {ex.Message}"
+                        );
+                    }
+                }
+            }
+
+            return dt;
+        }
+
+        // update info application type
+        public static bool UpdateInfoApplicationType(
+     int applicationTypeID,
+     string applicationTypeTitle,
+     decimal applicationTypeFees)
+        {
+            int rowsAffected = 0;
+
+            using (SqlConnection connection =
+                new SqlConnection(DataAccessSetting.DataBaseSetting.ConnectionString))
+            {
+                string query = @"
+            UPDATE ApplicationTypes
+            SET
+                ApplicationTypeTitle = @ApplicationTypeTitle,
+                ApplicationFees = @ApplicationFees
+            WHERE ApplicationTypeID = @ApplicationTypeID;";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.Add(
+                        "@ApplicationTypeID",
+                        SqlDbType.Int
+                    ).Value = applicationTypeID;
+
+                    command.Parameters.Add(
+                        "@ApplicationTypeTitle",
+                        SqlDbType.NVarChar,
+                        150
+                    ).Value = applicationTypeTitle;
+
+                    command.Parameters.Add(
+                        "@ApplicationFees",
+                        SqlDbType.SmallMoney
+                    ).Value = applicationTypeFees;
+
+                    try
+                    {
+                        connection.Open();
+                        rowsAffected = command.ExecuteNonQuery();
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(
+                            $"Error updating application type: {ex.Message}"
+                        );
+
+                        return false;
+                    }
+                }
+            }
+
+            return rowsAffected > 0;
+        }
+
     }
 }

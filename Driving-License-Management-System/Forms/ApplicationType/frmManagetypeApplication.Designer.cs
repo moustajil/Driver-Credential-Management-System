@@ -38,6 +38,7 @@
             lbRecorde = new Label();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             contextMenuStrip1.SuspendLayout();
+            SuspendLayout();
             // 
             // label1
             // 
@@ -64,13 +65,14 @@
             contextMenuStrip1.ImageScalingSize = new Size(20, 20);
             contextMenuStrip1.Items.AddRange(new ToolStripItem[] { editeApplicationToolStripMenuItem });
             contextMenuStrip1.Name = "contextMenuStrip1";
-            contextMenuStrip1.Size = new Size(194, 28);
+            contextMenuStrip1.Size = new Size(211, 56);
             // 
             // editeApplicationToolStripMenuItem
             // 
             editeApplicationToolStripMenuItem.Name = "editeApplicationToolStripMenuItem";
-            editeApplicationToolStripMenuItem.Size = new Size(193, 24);
+            editeApplicationToolStripMenuItem.Size = new Size(210, 24);
             editeApplicationToolStripMenuItem.Text = "Edite Application";
+            editeApplicationToolStripMenuItem.Click += editeApplicationToolStripMenuItem_Click;
             // 
             // button1
             // 

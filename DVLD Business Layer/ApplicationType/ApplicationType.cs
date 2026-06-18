@@ -16,5 +16,16 @@ namespace DVLD_Business_Layer.ApplicationType
         {
             return DBAApplicationType.GetApplicationTypeCount();
         }
+
+        // Find Application Type By ID
+        public static DataTable FindApplicatonTypeByID(int id) {
+            return DVL_Data_Access_Layer.Application.DBAApplicationType.FindApplicationTypeByID(id);
+        }
+
+        // update Application type
+        public static bool UpdateApplicationType(int applicationTypeID, string applicationTitle, decimal applicaiotnFees)
+        {
+            return DVL_Data_Access_Layer.Application.DBAApplicationType.UpdateInfoApplicationType(applicationTypeID, applicationTitle, applicaiotnFees);
+        }
     }
 }
