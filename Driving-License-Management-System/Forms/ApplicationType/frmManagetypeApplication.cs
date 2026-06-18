@@ -86,5 +86,10 @@ namespace Driving_License_Management_System.Forms.Application
             // Refresh the DataGridView after updating.
             LoadData();
         }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

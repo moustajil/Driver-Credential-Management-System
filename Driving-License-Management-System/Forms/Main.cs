@@ -1,4 +1,6 @@
 ﻿using Driving_License_Management_System.Forms.Application;
+using Driving_License_Management_System.Forms.ApplicationTestType;
+using Driving_License_Management_System.Forms.ApplicationType;
 using Driving_License_Management_System.Forms.People;
 using Driving_License_Management_System.Forms.Users;
 using System;
@@ -49,6 +51,12 @@ namespace Driving_License_Management_System
         {
             frmManagetypeApplication frmManagetype = new frmManagetypeApplication();
             frmManagetype.Show();
+        }
+
+        private void manageTestTypeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmManageTestApplicationtype applicationTest = new frmManageTestApplicationtype();
+            applicationTest.ShowDialog();
         }
     }
 }

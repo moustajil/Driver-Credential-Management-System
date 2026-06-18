@@ -1,6 +1,6 @@
-﻿namespace Driving_License_Management_System.Forms.Application
+﻿namespace Driving_License_Management_System.Forms.ApplicationTestType
 {
-    partial class frmManagetypeApplication
+    partial class frmManageTestApplicationtype
     {
         /// <summary>
         /// Required designer variable.
@@ -31,11 +31,11 @@
             components = new System.ComponentModel.Container();
             label1 = new Label();
             dataGridView1 = new DataGridView();
-            contextMenuStrip1 = new ContextMenuStrip(components);
-            editeApplicationToolStripMenuItem = new ToolStripMenuItem();
             button1 = new Button();
             label2 = new Label();
             lbRecorde = new Label();
+            contextMenuStrip1 = new ContextMenuStrip(components);
+            editeTypeTestToolStripMenuItem = new ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             contextMenuStrip1.SuspendLayout();
             SuspendLayout();
@@ -43,80 +43,80 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(123, 30);
+            label1.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.Location = new Point(241, 54);
             label1.Name = "label1";
-            label1.Size = new Size(352, 38);
+            label1.Size = new Size(287, 31);
             label1.TabIndex = 0;
-            label1.Text = "Manage Type Application";
+            label1.Text = "Manage Application Type";
             // 
             // dataGridView1
             // 
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.ContextMenuStrip = contextMenuStrip1;
-            dataGridView1.Location = new Point(12, 107);
+            dataGridView1.Location = new Point(73, 154);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(589, 256);
+            dataGridView1.Size = new Size(667, 188);
             dataGridView1.TabIndex = 1;
-            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
-            // 
-            // contextMenuStrip1
-            // 
-            contextMenuStrip1.ImageScalingSize = new Size(20, 20);
-            contextMenuStrip1.Items.AddRange(new ToolStripItem[] { editeApplicationToolStripMenuItem });
-            contextMenuStrip1.Name = "contextMenuStrip1";
-            contextMenuStrip1.Size = new Size(194, 28);
-            // 
-            // editeApplicationToolStripMenuItem
-            // 
-            editeApplicationToolStripMenuItem.Name = "editeApplicationToolStripMenuItem";
-            editeApplicationToolStripMenuItem.Size = new Size(193, 24);
-            editeApplicationToolStripMenuItem.Text = "Edite Application";
-            editeApplicationToolStripMenuItem.Click += editeApplicationToolStripMenuItem_Click;
             // 
             // button1
             // 
-            button1.Location = new Point(507, 390);
+            button1.Location = new Point(646, 398);
             button1.Name = "button1";
             button1.Size = new Size(94, 29);
             button1.TabIndex = 2;
             button1.Text = "Cancel";
             button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
             // label2
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.Location = new Point(12, 394);
+            label2.Location = new Point(73, 398);
             label2.Name = "label2";
-            label2.Size = new Size(85, 23);
+            label2.Size = new Size(90, 23);
             label2.TabIndex = 3;
-            label2.Text = "Recorde :";
+            label2.Text = "Recorde : ";
             // 
             // lbRecorde
             // 
             lbRecorde.AutoSize = true;
             lbRecorde.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lbRecorde.Location = new Point(103, 394);
+            lbRecorde.Location = new Point(169, 398);
             lbRecorde.Name = "lbRecorde";
-            lbRecorde.Size = new Size(20, 23);
+            lbRecorde.Size = new Size(31, 23);
             lbRecorde.TabIndex = 4;
-            lbRecorde.Text = "0";
+            lbRecorde.Text = "???";
             // 
-            // frmManagetypeApplication
+            // contextMenuStrip1
+            // 
+            contextMenuStrip1.ImageScalingSize = new Size(20, 20);
+            contextMenuStrip1.Items.AddRange(new ToolStripItem[] { editeTypeTestToolStripMenuItem });
+            contextMenuStrip1.Name = "contextMenuStrip1";
+            contextMenuStrip1.Size = new Size(211, 56);
+            // 
+            // editeTypeTestToolStripMenuItem
+            // 
+            editeTypeTestToolStripMenuItem.Name = "editeTypeTestToolStripMenuItem";
+            editeTypeTestToolStripMenuItem.Size = new Size(210, 24);
+            editeTypeTestToolStripMenuItem.Text = "Edite Type Test";
+            editeTypeTestToolStripMenuItem.Click += editeTypeTestToolStripMenuItem_Click;
+            // 
+            // frmManageTestApplicationtype
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(627, 461);
+            ClientSize = new Size(800, 450);
             Controls.Add(lbRecorde);
             Controls.Add(label2);
             Controls.Add(button1);
             Controls.Add(dataGridView1);
             Controls.Add(label1);
-            Name = "frmManagetypeApplication";
-            Text = "frmManagetypeApplication";
-            Load += frmManagetypeApplication_Load;
+            Name = "frmManageTestApplicationtype";
+            Text = "frmManageTestApplicationtype";
+            Load += frmManageTestApplicationtype_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             contextMenuStrip1.ResumeLayout(false);
             ResumeLayout(false);
@@ -128,9 +128,9 @@
         private Label label1;
         private DataGridView dataGridView1;
         private Button button1;
-        private ContextMenuStrip contextMenuStrip1;
-        private ToolStripMenuItem editeApplicationToolStripMenuItem;
         private Label label2;
         private Label lbRecorde;
+        private ContextMenuStrip contextMenuStrip1;
+        private ToolStripMenuItem editeTypeTestToolStripMenuItem;
     }
 }

@@ -30,17 +30,17 @@
         {
             menuStrip1 = new MenuStrip();
             applicationToolStripMenuItem = new ToolStripMenuItem();
+            drivingLicensServiceToolStripMenuItem = new ToolStripMenuItem();
+            manageApplicationToolStripMenuItem = new ToolStripMenuItem();
+            detainLicenseToolStripMenuItem = new ToolStripMenuItem();
+            manageApplicationTypeToolStripMenuItem = new ToolStripMenuItem();
+            manageTestTypeToolStripMenuItem = new ToolStripMenuItem();
             peopleToolStripMenuItem = new ToolStripMenuItem();
             showToolStripMenuItem = new ToolStripMenuItem();
             driverToolStripMenuItem = new ToolStripMenuItem();
             userToolStripMenuItem = new ToolStripMenuItem();
             accountSettingToolStripMenuItem = new ToolStripMenuItem();
             logoutToolStripMenuItem = new ToolStripMenuItem();
-            drivingLicensServiceToolStripMenuItem = new ToolStripMenuItem();
-            manageApplicationToolStripMenuItem = new ToolStripMenuItem();
-            detainLicenseToolStripMenuItem = new ToolStripMenuItem();
-            manageApplicationTypeToolStripMenuItem = new ToolStripMenuItem();
-            manageTestTypeToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -60,6 +60,38 @@
             applicationToolStripMenuItem.Name = "applicationToolStripMenuItem";
             applicationToolStripMenuItem.Size = new Size(100, 24);
             applicationToolStripMenuItem.Text = "Application";
+            // 
+            // drivingLicensServiceToolStripMenuItem
+            // 
+            drivingLicensServiceToolStripMenuItem.Name = "drivingLicensServiceToolStripMenuItem";
+            drivingLicensServiceToolStripMenuItem.Size = new Size(262, 26);
+            drivingLicensServiceToolStripMenuItem.Text = "Driving Licens Service";
+            // 
+            // manageApplicationToolStripMenuItem
+            // 
+            manageApplicationToolStripMenuItem.Name = "manageApplicationToolStripMenuItem";
+            manageApplicationToolStripMenuItem.Size = new Size(262, 26);
+            manageApplicationToolStripMenuItem.Text = "Manage Application";
+            // 
+            // detainLicenseToolStripMenuItem
+            // 
+            detainLicenseToolStripMenuItem.Name = "detainLicenseToolStripMenuItem";
+            detainLicenseToolStripMenuItem.Size = new Size(262, 26);
+            detainLicenseToolStripMenuItem.Text = "Detain License";
+            // 
+            // manageApplicationTypeToolStripMenuItem
+            // 
+            manageApplicationTypeToolStripMenuItem.Name = "manageApplicationTypeToolStripMenuItem";
+            manageApplicationTypeToolStripMenuItem.Size = new Size(262, 26);
+            manageApplicationTypeToolStripMenuItem.Text = "Manage Application Type";
+            manageApplicationTypeToolStripMenuItem.Click += manageApplicationTypeToolStripMenuItem_Click;
+            // 
+            // manageTestTypeToolStripMenuItem
+            // 
+            manageTestTypeToolStripMenuItem.Name = "manageTestTypeToolStripMenuItem";
+            manageTestTypeToolStripMenuItem.Size = new Size(262, 26);
+            manageTestTypeToolStripMenuItem.Text = "Manage Test Type";
+            manageTestTypeToolStripMenuItem.Click += manageTestTypeToolStripMenuItem_Click;
             // 
             // peopleToolStripMenuItem
             // 
@@ -98,40 +130,9 @@
             // logoutToolStripMenuItem
             // 
             logoutToolStripMenuItem.Name = "logoutToolStripMenuItem";
-            logoutToolStripMenuItem.Size = new Size(224, 26);
+            logoutToolStripMenuItem.Size = new Size(139, 26);
             logoutToolStripMenuItem.Text = "Logout";
             logoutToolStripMenuItem.Click += logoutToolStripMenuItem_Click;
-            // 
-            // drivingLicensServiceToolStripMenuItem
-            // 
-            drivingLicensServiceToolStripMenuItem.Name = "drivingLicensServiceToolStripMenuItem";
-            drivingLicensServiceToolStripMenuItem.Size = new Size(262, 26);
-            drivingLicensServiceToolStripMenuItem.Text = "Driving Licens Service";
-            // 
-            // manageApplicationToolStripMenuItem
-            // 
-            manageApplicationToolStripMenuItem.Name = "manageApplicationToolStripMenuItem";
-            manageApplicationToolStripMenuItem.Size = new Size(262, 26);
-            manageApplicationToolStripMenuItem.Text = "Manage Application";
-            // 
-            // detainLicenseToolStripMenuItem
-            // 
-            detainLicenseToolStripMenuItem.Name = "detainLicenseToolStripMenuItem";
-            detainLicenseToolStripMenuItem.Size = new Size(262, 26);
-            detainLicenseToolStripMenuItem.Text = "Detain License";
-            // 
-            // manageApplicationTypeToolStripMenuItem
-            // 
-            manageApplicationTypeToolStripMenuItem.Name = "manageApplicationTypeToolStripMenuItem";
-            manageApplicationTypeToolStripMenuItem.Size = new Size(262, 26);
-            manageApplicationTypeToolStripMenuItem.Text = "Manage Application Type";
-            manageApplicationTypeToolStripMenuItem.Click += manageApplicationTypeToolStripMenuItem_Click;
-            // 
-            // manageTestTypeToolStripMenuItem
-            // 
-            manageTestTypeToolStripMenuItem.Name = "manageTestTypeToolStripMenuItem";
-            manageTestTypeToolStripMenuItem.Size = new Size(262, 26);
-            manageTestTypeToolStripMenuItem.Text = "Manage Test Type";
             // 
             // Main
             // 
