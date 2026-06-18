@@ -19,6 +19,10 @@ namespace DVLD_Business_Layer.ApplicationTestType
             return DVL_Data_Access_Layer.ApplicationTestType.DBAApplicationTestType.GetApplicationTestType(testTypeID);
         }
 
+        public static bool UpdateTestType(int testTypeID, string testTypeTitle, string testTypeDescription, decimal fees) { 
+            return DVL_Data_Access_Layer.ApplicationTestType.DBAApplicationTestType.UpdateTestType(testTypeID,testTypeTitle, testTypeDescription, fees);
+        }
+
 
     }
 }

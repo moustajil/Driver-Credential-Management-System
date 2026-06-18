@@ -85,5 +85,57 @@ namespace DVL_Data_Access_Layer.ApplicationTestType
             return dt;
         }
 
+        // update test type
+        public static bool UpdateTestType(
+      int testTypeID,
+      string testTypeTitle,
+      string testTypeDescription,
+      decimal testTypeFees)
+        {
+            int rowsAffected = 0;
+
+            using (SqlConnection connection = new SqlConnection(
+                DataAccessSetting.DataBaseSetting.ConnectionString))
+            {
+                string query = @"
+            UPDATE TestTypes
+            SET
+                TestTypeTitle = @TestTypeTitle,
+                TestTypeDescription = @TestTypeDescription,
+                TestTypeFees = @TestTypeFees
+            WHERE TestTypeID = @TestTypeID;";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.Add("@TestTypeID", SqlDbType.Int)
+                        .Value = testTypeID;
+
+                    command.Parameters.Add("@TestTypeTitle", SqlDbType.NVarChar, 100)
+                        .Value = testTypeTitle;
+
+                    command.Parameters.Add("@TestTypeDescription", SqlDbType.NVarChar, 500)
+                        .Value = testTypeDescription;
+
+                    command.Parameters.Add("@TestTypeFees", SqlDbType.Decimal)
+                        .Value = testTypeFees;
+
+                    try
+                    {
+                        connection.Open();
+                        rowsAffected = command.ExecuteNonQuery();
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(
+                            $"Error updating test type: {ex.Message}"
+                        );
+
+                        return false;
+                    }
+                }
+            }
+
+            return rowsAffected > 0;
+        }
     }
 }

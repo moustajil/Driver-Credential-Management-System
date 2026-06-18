@@ -131,6 +131,7 @@
             lable.TabIndex = 9;
             lable.Text = "Update";
             lable.UseVisualStyleBackColor = true;
+            lable.Click += lable_Click;
             // 
             // button1
             // 
@@ -140,6 +141,7 @@
             button1.TabIndex = 10;
             button1.Text = "Cancel";
             button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
             // frmUpdateApplicationTestType
             // 

@@ -57,5 +57,70 @@ namespace Driving_License_Management_System.Forms.ApplicationTestType
                 this.Close();
             }
         }
+
+        private void lable_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(tbTitle.Text) ||
+                string.IsNullOrWhiteSpace(rtbDescription.Text) ||
+                string.IsNullOrWhiteSpace(tbFees.Text))
+            {
+                MessageBox.Show(
+                    "Please fill in all fields.",
+                    "Missing Information",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+
+                return;
+            }
+
+            if (!decimal.TryParse(tbFees.Text, out decimal testTypeFees))
+            {
+                MessageBox.Show(
+                    "Please enter valid test fees.",
+                    "Invalid Fees",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+
+                tbFees.Focus();
+                return;
+            }
+
+            bool checkUpdateTest =
+                DVLD_Business_Layer.ApplicationTestType
+                    .BNApplicationTestType.UpdateTestType(
+                        _testTypeID,
+                        tbTitle.Text.Trim(),
+                        rtbDescription.Text.Trim(), decimal.Parse(tbFees.Text)
+
+                    );
+
+            if (checkUpdateTest)
+            {
+                MessageBox.Show(
+                    "Test type updated successfully.",
+                    "Success",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information
+                );
+
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show(
+                    "Failed to update the test type.",
+                    "Update Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }
