@@ -287,6 +287,38 @@ namespace DVL_Data_Access_Layer.Users
         }
 
 
+        // Find User By PersonID
+        public static DataTable FindUserByPersonID(int PersonID)
+        {
+            DataTable dt = new DataTable();
+            SqlConnection Connection =
+                new SqlConnection(DataBaseSetting.ConnectionString);
+
+            string query = "Select * From Users WHERE PersonID = @PersonID";
+
+            using (SqlCommand command = new SqlCommand(query, Connection))
+            {
+                command.Parameters.AddWithValue("@PersonID", PersonID);
+
+                try
+                {
+                    Connection.Open();
+
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        dt.Load(reader);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
+
+            return dt;
+        }
+
+
         // update user
 
         // Updates a user record in the database.

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -56,6 +57,11 @@ namespace DVLD_Business_Layer.Users
 
         public static DataTable FindUserByID(int userID) {
             return DVL_Data_Access_Layer.Users.DBAUser.FindUserById(userID);
+        }
+
+        public static DataTable FindUserByPersonID(int personID)
+        {
+            return DVL_Data_Access_Layer.Users.DBAUser.FindUserByPersonID(personID);
         }
 
         public static bool UpdateUser(int userID,
