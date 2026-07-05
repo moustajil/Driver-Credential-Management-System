@@ -52,6 +52,8 @@
     <Compile Include="Class1.cs" />
     <Compile Include="Countries\Countries.cs" />
     <Compile Include="DataAccessSetting\DataBaseSetting.cs" />
+    <Compile Include="LicenseClasses\LicenseClasses.cs" />
+    <Compile Include="LocalDriverLicense_view\localDriverLicense.cs" />
     <Compile Include="People\People.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Users\User.cs" />
