@@ -31,18 +31,21 @@
             label1 = new Label();
             tabControl1 = new TabControl();
             tabPage1 = new TabPage();
+            button1 = new Button();
             ctrFindPerson1 = new Driving_License_Management_System.Controller.Users.ctrFindPerson();
             tabPage2 = new TabPage();
             lbCreatedBy = new Label();
             label7 = new Label();
             label6 = new Label();
             label5 = new Label();
-            comboBox1 = new ComboBox();
+            cbClasses = new ComboBox();
             label3 = new Label();
             applicationDate = new Label();
             label4 = new Label();
             lbApplicationID = new Label();
             label2 = new Label();
+            button2 = new Button();
+            button3 = new Button();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
             tabPage2.SuspendLayout();
@@ -70,6 +73,7 @@
             // 
             // tabPage1
             // 
+            tabPage1.Controls.Add(button1);
             tabPage1.Controls.Add(ctrFindPerson1);
             tabPage1.Location = new Point(4, 29);
             tabPage1.Name = "tabPage1";
@@ -78,6 +82,16 @@
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Person Info";
             tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            button1.Location = new Point(584, 550);
+            button1.Name = "button1";
+            button1.Size = new Size(94, 29);
+            button1.TabIndex = 1;
+            button1.Text = "Next";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
             // ctrFindPerson1
             // 
@@ -93,7 +107,7 @@
             tabPage2.Controls.Add(label7);
             tabPage2.Controls.Add(label6);
             tabPage2.Controls.Add(label5);
-            tabPage2.Controls.Add(comboBox1);
+            tabPage2.Controls.Add(cbClasses);
             tabPage2.Controls.Add(label3);
             tabPage2.Controls.Add(applicationDate);
             tabPage2.Controls.Add(label4);
@@ -133,9 +147,9 @@
             label6.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label6.Location = new Point(372, 286);
             label6.Name = "label6";
-            label6.Size = new Size(31, 23);
+            label6.Size = new Size(30, 23);
             label6.TabIndex = 7;
-            label6.Text = "???";
+            label6.Text = "15";
             // 
             // label5
             // 
@@ -147,13 +161,13 @@
             label5.TabIndex = 6;
             label5.Text = "Application Fees :";
             // 
-            // comboBox1
+            // cbClasses
             // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(372, 213);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(151, 28);
-            comboBox1.TabIndex = 5;
+            cbClasses.FormattingEnabled = true;
+            cbClasses.Location = new Point(372, 213);
+            cbClasses.Name = "cbClasses";
+            cbClasses.Size = new Size(275, 28);
+            cbClasses.TabIndex = 5;
             // 
             // label3
             // 
@@ -205,11 +219,33 @@
             label2.TabIndex = 0;
             label2.Text = "D.L Application ID :";
             // 
+            // button2
+            // 
+            button2.Location = new Point(645, 726);
+            button2.Name = "button2";
+            button2.Size = new Size(94, 29);
+            button2.TabIndex = 2;
+            button2.Text = "Save";
+            button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
+            // 
+            // button3
+            // 
+            button3.Location = new Point(532, 726);
+            button3.Name = "button3";
+            button3.Size = new Size(94, 29);
+            button3.TabIndex = 3;
+            button3.Text = "Close";
+            button3.UseVisualStyleBackColor = true;
+            button3.Click += button3_Click;
+            // 
             // LocalDriverLicense
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(787, 807);
+            Controls.Add(button3);
+            Controls.Add(button2);
             Controls.Add(tabControl1);
             Controls.Add(label1);
             Name = "LocalDriverLicense";
@@ -230,7 +266,7 @@
         private TabPage tabPage1;
         private TabPage tabPage2;
         private Controller.Users.ctrFindPerson ctrFindPerson1;
-        private ComboBox comboBox1;
+        private ComboBox cbClasses;
         private Label label3;
         private Label applicationDate;
         private Label label4;
@@ -240,5 +276,8 @@
         private Label label7;
         private Label label6;
         private Label label5;
+        private Button button1;
+        private Button button2;
+        private Button button3;
     }
 }
