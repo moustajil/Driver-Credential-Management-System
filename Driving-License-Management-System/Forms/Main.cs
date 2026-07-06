@@ -4,6 +4,7 @@ using Driving_License_Management_System.Forms.ApplicationType;
 using Driving_License_Management_System.Forms.LocalDrivingApplication;
 using Driving_License_Management_System.Forms.People;
 using Driving_License_Management_System.Forms.Users;
+using Driving_License_Management_System.LicenseManage;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -59,7 +60,7 @@ namespace Driving_License_Management_System
             frmManageTestApplicationtype applicationTest = new frmManageTestApplicationtype();
             applicationTest.ShowDialog();
         }
-
+        
         private void replacementForLostOrDamageToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
@@ -67,8 +68,14 @@ namespace Driving_License_Management_System
 
         private void localeLicenseToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            LocalDriverLicense local = new LocalDriverLicense();
+            LocalDriverLicenseApplication local = new LocalDriverLicenseApplication();
             local.ShowDialog();
+        }
+
+        private void localeDrivingLicenseApplicationToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmLicenseManage frmLicense = new frmLicenseManage();
+            frmLicense.ShowDialog();
         }
     }
 }

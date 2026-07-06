@@ -25,7 +25,7 @@
     <Compile Update="Forms\ApplicationType\frmUpdateApplicationType.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Forms\LocalDrivingApplication\LocalDriverLicense.cs">
+    <Compile Update="Forms\LocalDrivingApplication\LocalDriverLicenseApplication.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Forms\Main.cs">
@@ -53,6 +53,9 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Forms\Users\showInfoPersonDetail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\LicenseManage\frmLicenseManage.cs">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>

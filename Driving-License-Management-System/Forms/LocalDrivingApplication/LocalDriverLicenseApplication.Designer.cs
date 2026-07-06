@@ -1,6 +1,6 @@
 ﻿namespace Driving_License_Management_System.Forms.LocalDrivingApplication
 {
-    partial class LocalDriverLicense
+    partial class LocalDriverLicenseApplication
     {
         /// <summary>
         /// Required designer variable.
