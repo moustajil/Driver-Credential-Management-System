@@ -46,7 +46,7 @@
             ClientSize = new Size(852, 743);
             Controls.Add(ctrInforPersonWithUser1);
             Name = "frmInforUserWithPerson";
-            Text = "frmInforUserWithPerson";
+            Text = "Update User Password";
             Load += frmInforUserWithPerson_Load;
             ResumeLayout(false);
         }

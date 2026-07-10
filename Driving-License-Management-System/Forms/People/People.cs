@@ -15,7 +15,12 @@ namespace Driving_License_Management_System.Forms.People
         private void LoadPeople()
         {
             dataGridView1.DataSource = BNPeople.GetAllPeople();
-            recordes.Text = BNPeople.NumbersOfPeople().ToString();
+            UpdateRecordCount();
+        }
+
+        private void UpdateRecordCount()
+        {
+            recordes.Text = dataGridView1.Rows.Count.ToString();
         }
 
         private void People_Load(object sender, EventArgs e)
@@ -48,7 +53,7 @@ namespace Driving_License_Management_System.Forms.People
             if (cbFilter.SelectedItem == null)
                 return;
 
-            string selected = cbFilter.SelectedItem.ToString();
+            string selected = cbFilter.SelectedItem?.ToString() ?? string.Empty;
 
             if (selected == "none")
             {
@@ -76,16 +81,14 @@ namespace Driving_License_Management_System.Forms.People
                 "Gendor" => "Gendor",
                 "Phone" => "Phone",
                 "Email" => "Email",
-                _ => null
+                _ => string.Empty
             };
 
             if (string.IsNullOrEmpty(dbColumn))
                 return;
 
-            MessageBox.Show(dbColumn + "==" + value, "Search Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-
             dataGridView1.DataSource = BNPeople.FindByCol(dbColumn, value);
+            UpdateRecordCount();
         }
 
         // ---------------- ADD ----------------
@@ -157,7 +160,7 @@ namespace Driving_License_Management_System.Forms.People
             if (!tbfilter.Visible) return;
             if (cbFilter.SelectedItem == null) return;
 
-            string column = cbFilter.SelectedItem.ToString();
+            string column = cbFilter.SelectedItem?.ToString() ?? string.Empty;
 
 
             if (column == "none")

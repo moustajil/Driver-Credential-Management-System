@@ -137,7 +137,7 @@
             Controls.Add(label2);
             Controls.Add(label1);
             Name = "frmUpdateApplicationType";
-            Text = "frmUpdateApplicationType";
+            Text = "Update Application Type";
             Load += frmUpdateApplicationType_Load;
             ResumeLayout(false);
             PerformLayout();

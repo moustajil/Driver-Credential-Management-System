@@ -217,7 +217,7 @@
             label2.Name = "label2";
             label2.Size = new Size(194, 28);
             label2.TabIndex = 0;
-            label2.Text = "D.L Application ID :";
+            label2.Text = "Application ID:";
             // 
             // button2
             // 
@@ -249,7 +249,7 @@
             Controls.Add(tabControl1);
             Controls.Add(label1);
             Name = "LocalDriverLicense";
-            Text = "LocalDriverLicense";
+            Text = "New Local Driving License Application";
             Load += LocalDriverLicense_Load;
             tabControl1.ResumeLayout(false);
             tabPage1.ResumeLayout(false);

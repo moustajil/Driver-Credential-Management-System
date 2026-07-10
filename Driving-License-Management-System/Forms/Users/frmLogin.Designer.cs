@@ -114,7 +114,7 @@
             Controls.Add(tbpassword);
             Controls.Add(tbusername);
             Name = "frmLogin";
-            Text = "frmLogin";
+            Text = "Driver Credential Management";
             ResumeLayout(false);
             PerformLayout();
         }

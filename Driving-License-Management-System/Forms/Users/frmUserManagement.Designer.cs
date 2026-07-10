@@ -106,21 +106,21 @@
             // 
             deletUserToolStripMenuItem.Name = "deletUserToolStripMenuItem";
             deletUserToolStripMenuItem.Size = new Size(210, 24);
-            deletUserToolStripMenuItem.Text = "Delet User";
+            deletUserToolStripMenuItem.Text = "Delete User";
             deletUserToolStripMenuItem.Click += deletUserToolStripMenuItem_Click;
             // 
             // editeUserToolStripMenuItem
             // 
             editeUserToolStripMenuItem.Name = "editeUserToolStripMenuItem";
             editeUserToolStripMenuItem.Size = new Size(210, 24);
-            editeUserToolStripMenuItem.Text = "Edite User";
+            editeUserToolStripMenuItem.Text = "Edit User";
             editeUserToolStripMenuItem.Click += editeUserToolStripMenuItem_Click;
             // 
             // editePasswordToolStripMenuItem
             // 
             editePasswordToolStripMenuItem.Name = "editePasswordToolStripMenuItem";
             editePasswordToolStripMenuItem.Size = new Size(210, 24);
-            editePasswordToolStripMenuItem.Text = "Edite Password";
+            editePasswordToolStripMenuItem.Text = "Edit Password";
             editePasswordToolStripMenuItem.Click += editePasswordToolStripMenuItem_Click;
             // 
             // pictureBox2
@@ -196,7 +196,7 @@
             Controls.Add(pictureBox1);
             Controls.Add(label1);
             Name = "frmUserManagement";
-            Text = "frmUserManagement";
+            Text = "Users Management";
             Load += frmUserManagement_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();

@@ -75,7 +75,7 @@
             drivingLicensServiceToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { newDrivingLicenseToolStripMenuItem, renewDrivingLicenseToolStripMenuItem, replacementForLostOrDamageToolStripMenuItem, releaseDetainedDriverLicenseToolStripMenuItem, retakeTestToolStripMenuItem });
             drivingLicensServiceToolStripMenuItem.Name = "drivingLicensServiceToolStripMenuItem";
             drivingLicensServiceToolStripMenuItem.Size = new Size(262, 26);
-            drivingLicensServiceToolStripMenuItem.Text = "Driving Licens Service";
+            drivingLicensServiceToolStripMenuItem.Text = "Driving License Service";
             // 
             // newDrivingLicenseToolStripMenuItem
             // 
@@ -88,14 +88,14 @@
             // 
             localeLicenseToolStripMenuItem.Name = "localeLicenseToolStripMenuItem";
             localeLicenseToolStripMenuItem.Size = new Size(224, 26);
-            localeLicenseToolStripMenuItem.Text = "Locale License";
+            localeLicenseToolStripMenuItem.Text = "Local License";
             localeLicenseToolStripMenuItem.Click += localeLicenseToolStripMenuItem_Click;
             // 
             // internatioleLicenseToolStripMenuItem
             // 
             internatioleLicenseToolStripMenuItem.Name = "internatioleLicenseToolStripMenuItem";
             internatioleLicenseToolStripMenuItem.Size = new Size(224, 26);
-            internatioleLicenseToolStripMenuItem.Text = "internatiole License";
+            internatioleLicenseToolStripMenuItem.Text = "International License";
             // 
             // renewDrivingLicenseToolStripMenuItem
             // 
@@ -133,14 +133,14 @@
             // 
             localeDrivingLicenseApplicationToolStripMenuItem.Name = "localeDrivingLicenseApplicationToolStripMenuItem";
             localeDrivingLicenseApplicationToolStripMenuItem.Size = new Size(369, 26);
-            localeDrivingLicenseApplicationToolStripMenuItem.Text = "Locale Driving License Application";
+            localeDrivingLicenseApplicationToolStripMenuItem.Text = "Local Driving License Application";
             localeDrivingLicenseApplicationToolStripMenuItem.Click += localeDrivingLicenseApplicationToolStripMenuItem_Click;
             // 
             // internationaleDrivingLicenseApplicationToolStripMenuItem
             // 
             internationaleDrivingLicenseApplicationToolStripMenuItem.Name = "internationaleDrivingLicenseApplicationToolStripMenuItem";
             internationaleDrivingLicenseApplicationToolStripMenuItem.Size = new Size(369, 26);
-            internationaleDrivingLicenseApplicationToolStripMenuItem.Text = "Internationale Driving License Application";
+            internationaleDrivingLicenseApplicationToolStripMenuItem.Text = "International Driving License Application";
             // 
             // detainLicenseToolStripMenuItem
             // 
@@ -228,7 +228,6 @@
         private ToolStripMenuItem driverToolStripMenuItem;
         private ToolStripMenuItem userToolStripMenuItem;
         private ToolStripMenuItem accountSettingToolStripMenuItem;
-        private Panel panel1;
         private ToolStripMenuItem logoutToolStripMenuItem;
         private ToolStripMenuItem drivingLicensServiceToolStripMenuItem;
         private ToolStripMenuItem manageApplicationToolStripMenuItem;

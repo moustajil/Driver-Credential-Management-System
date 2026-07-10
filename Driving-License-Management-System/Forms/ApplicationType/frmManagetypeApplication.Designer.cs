@@ -72,7 +72,7 @@
             // 
             editeApplicationToolStripMenuItem.Name = "editeApplicationToolStripMenuItem";
             editeApplicationToolStripMenuItem.Size = new Size(193, 24);
-            editeApplicationToolStripMenuItem.Text = "Edite Application";
+            editeApplicationToolStripMenuItem.Text = "Edit Application Type";
             editeApplicationToolStripMenuItem.Click += editeApplicationToolStripMenuItem_Click;
             // 
             // button1
@@ -92,7 +92,7 @@
             label2.Name = "label2";
             label2.Size = new Size(85, 23);
             label2.TabIndex = 3;
-            label2.Text = "Recorde :";
+            label2.Text = "Records:";
             // 
             // lbRecorde
             // 
@@ -115,7 +115,7 @@
             Controls.Add(dataGridView1);
             Controls.Add(label1);
             Name = "frmManagetypeApplication";
-            Text = "frmManagetypeApplication";
+            Text = "Application Types";
             Load += frmManagetypeApplication_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             contextMenuStrip1.ResumeLayout(false);

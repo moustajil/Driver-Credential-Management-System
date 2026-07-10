@@ -160,7 +160,7 @@
             Controls.Add(label2);
             Controls.Add(label1);
             Name = "frmUpdateApplicationTestType";
-            Text = "frmUpdateApplicationTestType";
+            Text = "Update Test Type";
             Load += frmUpdateApplicationTestType_Load;
             ResumeLayout(false);
             PerformLayout();

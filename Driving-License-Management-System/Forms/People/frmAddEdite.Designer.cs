@@ -83,7 +83,7 @@
             Controls.Add(label2);
             Controls.Add(updateAddPerson);
             Name = "frmAddEdite";
-            Text = "frmAddEdite";
+            Text = "Person Details";
             Load += frmAddEdite_Load;
             ResumeLayout(false);
             PerformLayout();

@@ -12,7 +12,7 @@ namespace Driving_License_Management_System.Forms.ApplicationType
             int applicationTypeID
         );
 
-        public event DataBackEventHandler DataBack;
+        public event DataBackEventHandler? DataBack;
 
         private readonly int _applicationTypeID;
 
@@ -137,7 +137,7 @@ namespace Driving_License_Management_System.Forms.ApplicationType
                         .UpdateApplicationType(
                             _applicationTypeID,
                             applicationTitle,
-                            decimal.Parse(tbFees.Text)
+                            applicationFees
                         );
 
                 if (!isUpdated)

@@ -104,7 +104,7 @@
             label3.Name = "label3";
             label3.Size = new Size(85, 23);
             label3.TabIndex = 6;
-            label3.Text = "Recorde :";
+            label3.Text = "Records:";
             // 
             // lbRecorde
             // 
@@ -130,7 +130,7 @@
             Controls.Add(dgvApplicaton);
             Controls.Add(label1);
             Name = "frmLicenseManage";
-            Text = "LicenseManage";
+            Text = "Local Driving License Applications";
             Load += LicenseManage_Load;
             ((System.ComponentModel.ISupportInitialize)dgvApplicaton).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();

@@ -109,7 +109,7 @@ namespace Driving_License_Management_System.Forms.Users
             if (cbFilterUsers.SelectedItem == null)
                 return;
 
-            string selectedFilter = cbFilterUsers.SelectedItem.ToString();
+            string selectedFilter = cbFilterUsers.SelectedItem?.ToString() ?? string.Empty;
 
             tbFilter.Clear();
 
@@ -225,8 +225,10 @@ namespace Driving_License_Management_System.Forms.Users
             }
         }
 
-        private void deletUserToolStripMenuItem_Click(object sender, EventArgs e)
+        private bool TryGetSelectedUserID(out int userID)
         {
+            userID = -1;
+
             if (dataGridView1.CurrentRow == null)
             {
                 MessageBox.Show(
@@ -236,12 +238,31 @@ namespace Driving_License_Management_System.Forms.Users
                     MessageBoxIcon.Warning
                 );
 
-                return;
+                return false;
             }
 
-            int userID = Convert.ToInt32(
-                dataGridView1.CurrentRow.Cells["UserID"].Value
-            );
+            object? value = dataGridView1.CurrentRow.Cells["UserID"].Value;
+            if (value == null || !int.TryParse(value.ToString(), out userID))
+            {
+                MessageBox.Show(
+                    "The selected user ID is invalid.",
+                    "Invalid User",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+
+                return false;
+            }
+
+            return true;
+        }
+
+        private void deletUserToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!TryGetSelectedUserID(out int userID))
+            {
+                return;
+            }
 
             DialogResult result = MessageBox.Show(
                 $"Are you sure you want to delete user with ID {userID}?",
@@ -291,9 +312,10 @@ namespace Driving_License_Management_System.Forms.Users
 
         private void editeUserToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            int userID = Convert.ToInt32(
-                dataGridView1.CurrentRow.Cells["UserID"].Value
-            );
+            if (!TryGetSelectedUserID(out int userID))
+            {
+                return;
+            }
 
             using (frmAddUser addUserForm = new frmAddUser(userID))
             {
@@ -311,9 +333,10 @@ namespace Driving_License_Management_System.Forms.Users
 
         private void editePasswordToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            int userID = Convert.ToInt32(
-                dataGridView1.CurrentRow.Cells["UserID"].Value
-            );
+            if (!TryGetSelectedUserID(out int userID))
+            {
+                return;
+            }
 
             frmInforUserWithPerson frmUpdate = new frmInforUserWithPerson(userID);
             frmUpdate.ShowDialog();
@@ -322,10 +345,10 @@ namespace Driving_License_Management_System.Forms.Users
 
         private void showUserToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            int userID = Convert.ToInt32(
-               dataGridView1.CurrentRow.Cells["UserID"].Value
-           );
-
+            if (!TryGetSelectedUserID(out int userID))
+            {
+                return;
+            }
 
             frmDetailsInfo frmDetails = new frmDetailsInfo(userID);
             frmDetails.ShowDialog();

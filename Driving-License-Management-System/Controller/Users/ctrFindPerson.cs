@@ -7,20 +7,16 @@ namespace Driving_License_Management_System.Controller.Users
     public partial class ctrFindPerson : UserControl
     {
 
-        public event Action<int> OnFindPersonID;
+        public event Action<int>? OnFindPersonID;
         protected virtual void PersonId(int personID)
         {
-            Action<int> handler = OnFindPersonID;
-            if (handler!=null)
-            {
-                handler(personID);
-                
-            }
+            OnFindPersonID?.Invoke(personID);
         }
         
         public ctrFindPerson()
         {
             InitializeComponent();
+            UiTheme.Apply(this);
         }
 
         private void ctrFindPerson_Load(object sender, EventArgs e)
@@ -65,7 +61,7 @@ namespace Driving_License_Management_System.Controller.Users
 
             string nameKey;
 
-            if (cbFilter.SelectedItem.ToString() == "National ID")
+            if (cbFilter.SelectedItem?.ToString() == "National ID")
             {
                 nameKey = "NationalNo";
             }
@@ -96,7 +92,7 @@ namespace Driving_License_Management_System.Controller.Users
 
             if (OnFindPersonID != null)
             {
-                OnFindPersonID(int.Parse(personRow["PersonID"].ToString()));
+                OnFindPersonID(Convert.ToInt32(personRow["PersonID"]));
             }
 
            
@@ -104,12 +100,12 @@ namespace Driving_License_Management_System.Controller.Users
             personID.Text = personRow["PersonID"].ToString();
             name.Text = personRow["FirstName"].ToString() + personRow["SecondName"].ToString();
             natiolity.Text = personRow["NationalNo"].ToString();
-            gender.Text = int.Parse(personRow["Gendor"].ToString()) == 0 ? "Male" : "Female";
+            gender.Text = Convert.ToInt32(personRow["Gendor"]) == 0 ? "Male" : "Female";
             email.Text = personRow["Email"].ToString();
             address.Text = personRow["Address"].ToString();
             dateOfBirthe.Text = personRow["DateOfBirth"].ToString();
             phone.Text = personRow["Phone"].ToString();
-            country.Text = DVLD_Business_Layer.BnCountries.GetCountryNameByCountryID(int.Parse(personRow["NationalityCountryID"].ToString()));
+            country.Text = DVLD_Business_Layer.BnCountries.GetCountryNameByCountryID(Convert.ToInt32(personRow["NationalityCountryID"]));
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)

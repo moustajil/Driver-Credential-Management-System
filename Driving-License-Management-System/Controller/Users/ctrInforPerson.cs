@@ -37,22 +37,11 @@ namespace Driving_License_Management_System.Controller.Users
 
             _personID = personID;
 
-            string nationalNo = string.Empty;
-            string firstName = string.Empty;
-            string secondName = string.Empty;
-            string thirdName = string.Empty;
-            string lastName = string.Empty;
-            DateTime dateOfBirth = DateTime.MinValue;
-            byte gender = 0;
-            string address = string.Empty;
-            string phone = string.Empty;
-            string email = string.Empty;
-            int nationalityCountryID = -1;
-            string imagePath = string.Empty;
-
             BNPeople person = DVLD_Business_Layer.DVLD_Business_Layer.BNPeople.Find(personID);
-
-
+            if (person == null)
+            {
+                return;
+            }
 
             // Change these control names to your actual label names.
             lbPersonID.Text = person.PersonID.ToString();
@@ -66,7 +55,6 @@ namespace Driving_License_Management_System.Controller.Users
             lbDateOfBirth.Text = person.DateOfBirth.ToString();
 
 
-            //LoadPersonImage(imagePath);
         }
 
 

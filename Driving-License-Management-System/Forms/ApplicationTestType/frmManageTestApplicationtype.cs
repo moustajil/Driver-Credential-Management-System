@@ -9,6 +9,7 @@ namespace Driving_License_Management_System.Forms.ApplicationTestType
         public frmManageTestApplicationtype()
         {
             InitializeComponent();
+            UiTheme.Apply(this);
         }
 
         private void button1_Click(object sender, EventArgs e)

@@ -14,6 +14,7 @@ namespace Driving_License_Management_System.Forms.ApplicationTestType
         public frmUpdateApplicationTestType(int testTypeID)
         {
             InitializeComponent();
+            UiTheme.Apply(this);
             _testTypeID = testTypeID;
         }
 
@@ -92,7 +93,8 @@ namespace Driving_License_Management_System.Forms.ApplicationTestType
                     .BNApplicationTestType.UpdateTestType(
                         _testTypeID,
                         tbTitle.Text.Trim(),
-                        rtbDescription.Text.Trim(), decimal.Parse(tbFees.Text)
+                        rtbDescription.Text.Trim(),
+                        testTypeFees
 
                     );
 

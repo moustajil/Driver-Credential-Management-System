@@ -35,7 +35,6 @@
             tbValue = new TextBox();
             cbFilter = new ComboBox();
             label1 = new Label();
-            sqlCommand1 = new Microsoft.Data.SqlClient.SqlCommand();
             groupBox2 = new GroupBox();
             pictureBox3 = new PictureBox();
             country = new Label();
@@ -124,12 +123,6 @@
             label1.Size = new Size(102, 28);
             label1.TabIndex = 0;
             label1.Text = "Filter by : ";
-            // 
-            // sqlCommand1
-            // 
-            sqlCommand1.CommandTimeout = 30;
-            sqlCommand1.EnableOptimizedParameterBinding = false;
-            // 
             // groupBox2
             // 
             groupBox2.Controls.Add(pictureBox3);
@@ -225,7 +218,7 @@
             label8.Name = "label8";
             label8.Size = new Size(114, 20);
             label8.TabIndex = 12;
-            label8.Text = "Date Of Birthe :";
+            label8.Text = "Date of Birth:";
             // 
             // address
             // 
@@ -325,7 +318,7 @@
             label4.Name = "label4";
             label4.Size = new Size(114, 20);
             label4.TabIndex = 2;
-            label4.Text = "NAtionality ID :";
+            label4.Text = "National ID:";
             // 
             // label3
             // 
@@ -370,7 +363,6 @@
 
         private GroupBox groupBox1;
         private Label label1;
-        private Microsoft.Data.SqlClient.SqlCommand sqlCommand1;
         private TextBox tbValue;
         private ComboBox cbFilter;
         private PictureBox pictureBox1;

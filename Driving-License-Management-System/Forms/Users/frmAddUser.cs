@@ -28,7 +28,7 @@ namespace Driving_License_Management_System.Forms.Users
         // Event used to return the saved user ID to the management form.
         public delegate void DataBackEventHandler(object sender, int userID);
 
-        public event DataBackEventHandler DataBack;
+        public event DataBackEventHandler? DataBack;
 
         // Opens the form in Add New mode.
         public frmAddUser()
@@ -234,7 +234,7 @@ namespace Driving_License_Management_System.Forms.Users
                 return;
             }
 
-            string selectedFilter = cbFilter.SelectedItem.ToString();
+            string selectedFilter = cbFilter.SelectedItem?.ToString() ?? string.Empty;
 
             string databaseColumn =
                 GetDatabaseColumnName(selectedFilter);

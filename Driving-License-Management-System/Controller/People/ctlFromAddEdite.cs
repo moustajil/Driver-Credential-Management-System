@@ -9,19 +9,14 @@ namespace Driving_License_Management_System.Controller.People
 {
     public partial class ctlFromAddEdite : UserControl
     {
-        public event Action<int> GetPersonIdCreated;
+        public event Action<int>? GetPersonIdCreated;
 
         /// <summary>
         /// Raises the GetPersonIdCreated event and sends the created person ID.
         /// </summary>
         protected virtual void PersonIdCreated(int persondID)
         {
-            Action<int> handler = GetPersonIdCreated;
-
-            if (handler != null)
-            {
-                handler(persondID);
-            }
+            GetPersonIdCreated?.Invoke(persondID);
         }
 
         // Mode: add or update
@@ -310,6 +305,8 @@ namespace Driving_License_Management_System.Controller.People
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error
                 );
+
+                return;
             }
 
             nNumber.Text = person.NationalID;
@@ -333,7 +330,11 @@ namespace Driving_License_Management_System.Controller.People
             pNumber.Text = person.Phone;
             email.Text = person.Email;
 
-            cbCountry.SelectedIndex = person.NationalityCountryID;
+            int countryIndex = person.NationalityCountryID - 1;
+            if (countryIndex >= 0 && countryIndex < cbCountry.Items.Count)
+            {
+                cbCountry.SelectedIndex = countryIndex;
+            }
 
             if (person.Gender == 1)
                 rbFamel.Checked = true;

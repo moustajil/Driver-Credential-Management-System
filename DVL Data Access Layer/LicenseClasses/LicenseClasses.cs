@@ -1,5 +1,5 @@
 ﻿using DVL_Data_Access_Layer.DataAccessSetting;
-using Microsoft.Data.SqlClient;
+using System.Data.SqlClient;
 using System;
 using System.Data;
 

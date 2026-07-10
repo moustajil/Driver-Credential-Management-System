@@ -1,5 +1,5 @@
 ﻿using DVL_Data_Access_Layer.DataAccessSetting;
-using Microsoft.Data.SqlClient;
+using System.Data.SqlClient;
 using System;
 using System.Data;
 
@@ -102,7 +102,7 @@ namespace DVL_Data_Access_Layer.LiceneseManage
                             applicationID = Convert.ToInt32(result);
                         }
                     }
-                    catch (SqlException ex)
+                    catch (SqlException)
                     {
                         throw;
                     }

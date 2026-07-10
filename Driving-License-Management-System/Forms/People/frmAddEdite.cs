@@ -8,7 +8,7 @@ namespace Driving_License_Management_System.Forms.People
     {
 
         public delegate void DelegateEventHandler(object sender, int personID);
-        public DelegateEventHandler DataBack;
+        public DelegateEventHandler? DataBack;
 
         /// <summary>
         /// Initializes the Add/Edit Person form.
@@ -21,11 +21,11 @@ namespace Driving_License_Management_System.Forms.People
         {
             InitializeComponent();
             UiTheme.Apply(this);
+            _personID = persID;
             if (_personID > 0)
             {
                 updateAddPerson.Text = "Update Person";
             }
-            _personID = persID;
             personID.Text = persID.ToString();
         }
 

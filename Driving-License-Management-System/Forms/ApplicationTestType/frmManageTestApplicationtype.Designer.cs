@@ -48,7 +48,7 @@
             label1.Name = "label1";
             label1.Size = new Size(287, 31);
             label1.TabIndex = 0;
-            label1.Text = "Manage Application Type";
+            label1.Text = "Manage Test Types";
             // 
             // dataGridView1
             // 
@@ -66,7 +66,7 @@
             button1.Name = "button1";
             button1.Size = new Size(94, 29);
             button1.TabIndex = 2;
-            button1.Text = "Cancel";
+            button1.Text = "Close";
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
@@ -78,7 +78,7 @@
             label2.Name = "label2";
             label2.Size = new Size(90, 23);
             label2.TabIndex = 3;
-            label2.Text = "Recorde : ";
+            label2.Text = "Records:";
             // 
             // lbRecorde
             // 
@@ -101,7 +101,7 @@
             // 
             editeTypeTestToolStripMenuItem.Name = "editeTypeTestToolStripMenuItem";
             editeTypeTestToolStripMenuItem.Size = new Size(210, 24);
-            editeTypeTestToolStripMenuItem.Text = "Edite Type Test";
+            editeTypeTestToolStripMenuItem.Text = "Edit Test Type";
             editeTypeTestToolStripMenuItem.Click += editeTypeTestToolStripMenuItem_Click;
             // 
             // frmManageTestApplicationtype
@@ -115,7 +115,7 @@
             Controls.Add(dataGridView1);
             Controls.Add(label1);
             Name = "frmManageTestApplicationtype";
-            Text = "frmManageTestApplicationtype";
+            Text = "Manage Test Types";
             Load += frmManageTestApplicationtype_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             contextMenuStrip1.ResumeLayout(false);

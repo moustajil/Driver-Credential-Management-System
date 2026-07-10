@@ -104,7 +104,7 @@
             label2.Name = "label2";
             label2.Size = new Size(77, 20);
             label2.TabIndex = 6;
-            label2.Text = "Recordes :";
+            label2.Text = "Records:";
             // 
             // recordes
             // 
@@ -140,7 +140,7 @@
             // 
             editePersonToolStripMenuItem.Name = "editePersonToolStripMenuItem";
             editePersonToolStripMenuItem.Size = new Size(159, 24);
-            editePersonToolStripMenuItem.Text = "Edite Person";
+            editePersonToolStripMenuItem.Text = "Edit Person";
             editePersonToolStripMenuItem.Click += editePersonToolStripMenuItem_Click;
             // 
             // label3

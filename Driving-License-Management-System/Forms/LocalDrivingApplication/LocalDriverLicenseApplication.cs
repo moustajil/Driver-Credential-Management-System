@@ -16,28 +16,47 @@ namespace Driving_License_Management_System.Forms.LocalDrivingApplication
         public LocalDriverLicenseApplication()
         {
             InitializeComponent();
+            UiTheme.Apply(this);
         }
 
         private void LocalDriverLicense_Load(object sender, EventArgs e)
         {
-            applicationDate.Text = DateTime.Now.ToString();
+            applicationDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
             cbClasses.Items.Clear();
             cbClasses.DataSource =
         DVLD_Business_Layer.LicenseClasses.BNLinceClasses.GetAllClasses();
 
             cbClasses.DisplayMember = "ClassName";
-            cbClasses.SelectedIndex = 0;
+
+            if (cbClasses.Items.Count > 0)
+                cbClasses.SelectedIndex = 0;
 
         }
 
         private void ctrFindPerson1_OnFindPersonID(int personID)
         {
-            lbCreatedBy.Text = DVL_Data_Access_Layer.Users.DBAUser.FindUserByPersonID(personID).Rows[0]["UserName"].ToString();
             pID = personID;
+
+            DataTable userInfo =
+                DVL_Data_Access_Layer.Users.DBAUser.FindUserByPersonID(personID);
+
+            lbCreatedBy.Text = userInfo.Rows.Count > 0
+                ? userInfo.Rows[0]["UserName"].ToString()
+                : "Unknown";
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
+            if (pID <= 0)
+            {
+                MessageBox.Show(
+                    "Please find and select a person before continuing.",
+                    "Person Required",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+                return;
+            }
+
             tabControl1.SelectedIndex = 1;
         }
 
@@ -50,6 +69,16 @@ namespace Driving_License_Management_System.Forms.LocalDrivingApplication
         {
             try
             {
+                if (pID <= 0)
+                {
+                    MessageBox.Show(
+                        "Please find and select a person before saving.",
+                        "Person Required",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
+                    return;
+                }
+
                 var person =
                     DVLD_Business_Layer.DVLD_Business_Layer.BNPeople.Find(pID);
 
@@ -66,7 +95,7 @@ namespace Driving_License_Management_System.Forms.LocalDrivingApplication
                 }
 
                 DateTime date = DateTime.Parse(applicationDate.Text);
-                string className = cbClasses.SelectedItem.ToString();
+                string className = cbClasses.Text;
                 string nationalID = person.NationalID;
 
                 string fullName =
@@ -83,6 +112,8 @@ namespace Driving_License_Management_System.Forms.LocalDrivingApplication
 
                 if (applicationID > 0)
                 {
+                    lbApplicationID.Text = applicationID.ToString();
+
                     MessageBox.Show(
                         $"Application saved successfully.\nApplication ID: {applicationID}",
                         "Success",

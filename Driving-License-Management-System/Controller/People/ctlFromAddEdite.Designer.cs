@@ -168,7 +168,7 @@
             label7.Name = "label7";
             label7.Size = new Size(129, 23);
             label7.TabIndex = 11;
-            label7.Text = "Date Of Birthe :";
+            label7.Text = "Date of Birth:";
             // 
             // dtPiker
             // 
